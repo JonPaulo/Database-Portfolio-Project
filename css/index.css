@@ -1,3 +1,22 @@
+html, body, #containerbg {
+  height: 100%;
+}
+
+
 h1 {
   text-align: center;
+}
+
+body {
+  height:100%;
+  padding-top: 55px;
+  background-color: black;
+  background-size: cover;
+}
+
+#containerbg {
+  background: white;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
 }
