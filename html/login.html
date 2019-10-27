@@ -19,42 +19,36 @@
         <a class="nav-item nav-link" href="index.html">Home</a>
         <a class="nav-item nav-link" href="shop.html">Shop</a>
         <a class="nav-item nav-link" href="cart.html">Cart</a>
-        <a class="nav-item nav-link active" href="orders.html">Orders<span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="create.html">Create an Account</span></a>
+        <a class="nav-item nav-link" href="orders.html">Orders</a>
+        <a class="nav-item nav-link" href="create.html">Create an Account</a>
         <a class="nav-item nav-link" href="settings.html">Settings</a>
-        <a class="nav-item nav-link" href="login.html">Log In</a>
+        <a class="nav-item nav-link active" href="login.html">Log In<span class="sr-only">(current)</span></a>
       </div>
     </div>
     </nav>
 
   <div class="container" id ='containerbg'>
-    <br>
-    <br>
+    <br> <br> <br>
 
-    <h1>Orders Page</h1>
+    <h1>Log In</h1>
 
-    <table class = 'table'>
-      <thead>
-        <tr>
-          <th>Order Number</th>
-          <th>Order Date</th>
-          <th>Order Total</th>
-        </tr>
-      </thead>
-      <tbody>
-          <td>
-            <span id='orderNumber'>1</span>
-          </td>
-          <td>
-            <span id='orderDate'>12-25-2019</span>
-          </td>
-          <td>
-            $<span id='orderTotal'>9.95</span>
-          </td>
-        </tr>
 
-      </tbody>
-    </table>
+    <form>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" placeholder="Username">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+      </div>
+
+    <div style='text-align: center'><button type="submit" class="btn btn-primary btn-block">Log In</button></div>  
+    </form>
 
   </div>
 
