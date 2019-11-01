@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="..\\css\index.css">
   </head>
-  <body>
+  <body style='background-color: #660000;'>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <a class="navbar-brand" href="index.html">Dumb Amazon</a>
@@ -17,18 +17,16 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav mr-auto">
 
-        <a class="nav-item nav-link active" href="index.html">Home<span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="shop.html">Shop</a>
-        <a class="nav-item nav-link" href="cart.html">Cart</a>
-        <a class="nav-item nav-link" href="orders.html">Orders</a>
+        <a class="nav-item nav-link" href="productsdb.html">Product Database</a>
+        <a class="nav-item nav-link" href="cartdb.html">Cart Database</a>
+        <a class="nav-item nav-link" href="orderdb.html">Order Database</a>
 
       </div>
 
       <div class="navbar-nav">
 
-      <a class="nav-item nav-link" href="settings.html">Settings</a>
-      <a class="nav-item nav-link" href="login.html">Log In</a>
-      <a class="nav-item nav-link" href="productsdb.html">Administrative</a>
+      <a class="nav-item nav-link active" href="addproducts.html">Add Products</a>
+      <a class="nav-item nav-link" href="index.html">Customer</a>
 
       </div>
     </div>
@@ -37,25 +35,44 @@
   <div class="container" id ='containerbg'>
     <br>
 
-    <h1>Dumb Amazon Home Page</h1>
-    <p style='text-align: center; color: #606060;'>A basic online shopping site</p>
+    <hr>
 
-    <h3>Other Ideas</h3>
-    <ol>
-      <li>Not Amazon</li>
-      <li>Yosemite</li>
-      <li>Mazamon</li>
-      <li>Azamon</li>
-      <li>Beff Jezos</li>
-      <li>YouShop</li>
-      <li>OSUShop</li>
-      <li>iShop</li>
-      <li>PopShop</li>
-      <li>Alabiba</li>
-      <li>Balabiba</li>
-    </ol>
+    <h1>Add Products</h1>
 
-      <p>Will later fill the home page with filler ads or text</p>
+    <form>
+
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="product name">Product Name</label>
+          <input type="text" class="form-control" id="productname" placeholder="Product Name">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="product price">Product Price</label>
+          <input type="number" class="form-control" id="productprice" placeholder="0.00">
+        </div>
+      </div>
+
+      <div class="form-row">
+
+      <div class="form-group col-md-6">
+        <label for="inv count">Inventory Count</label>
+        <input type="number" class="form-control" id="invcount" placeholder="0">
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="Seller Name">Seller Name</label>
+        <input type="text" class="form-control" id="seller" placeholder="Seller Name">
+      </div>
+
+      </div>
+
+      <div class="form-row">
+        <button type="submit" class="btn btn-primary btn-block">Add Inventory to Database</button>
+      </div>
+
+    </form>
+
 
   </div>
 
