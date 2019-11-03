@@ -101,33 +101,33 @@ app.get('/ordersdb',function(req,res){
   var context = {};
   var params = [];
 
-  pool.query('select * from actor', (err, rows) => {
-    for (var p in req.body)
-    {
-      params.push({'orderNumber': p});
-    }
-    console.log(rows);
-    context.data = rows;
-  });
-
-  req.addEventListener('load', function() {
-    if (req.status >= 200 && req.status < 400) {
-      console.log(JSON.parse(req.responseText));
-      document.getElementById("data").textContent = req.responseText;
-    } else {
-      console.log("Error in network request: " + req.statusText);
-      document.getElementById("data").textContent = "Error in network request: " + req.statusText;
-    }
-  });
-
-  context.list = params;
-  // console.log(params);
-
-  pool.end((err) => {
-    // The connection is terminated gracefully
-    // Ensures all previously enqueued queries are still
-    // before sending a COM_QUIT packet to the MySQL server.
-  });
+  // pool.query('select * from actor', (err, rows) => {
+  //   for (var p in req.body)
+  //   {
+  //     params.push({'orderNumber': p});
+  //   }
+  //   console.log(rows);
+  //   context.data = rows;
+  // });
+  //
+  // req.addEventListener('load', function() {
+  //   if (req.status >= 200 && req.status < 400) {
+  //     console.log(JSON.parse(req.responseText));
+  //     document.getElementById("data").textContent = req.responseText;
+  //   } else {
+  //     console.log("Error in network request: " + req.statusText);
+  //     document.getElementById("data").textContent = "Error in network request: " + req.statusText;
+  //   }
+  // });
+  //
+  // context.list = params;
+  // // console.log(params);
+  //
+  // pool.end((err) => {
+  //   // The connection is terminated gracefully
+  //   // Ensures all previously enqueued queries are still
+  //   // before sending a COM_QUIT packet to the MySQL server.
+  // });
 
   res.render('ordersdb', context);
 
