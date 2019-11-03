@@ -55,6 +55,13 @@ app.get('/cart', function (req, res) {
 
 });
 
+app.get('/category', function (req, res) {
+
+	var context = {};
+	res.render('category', context);
+
+});
+
 app.get('/order',function(req,res){
 
   var context = {};
