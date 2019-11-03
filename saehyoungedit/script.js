@@ -41,10 +41,10 @@ app.get('/account', function (req, res) {
 
 });
 
-app.get('/products',function(req,res){
+app.get('/product',function(req,res){
 
   var context = {};
-  res.render('products', context);
+  res.render('product', context);
 
 });
 
@@ -62,10 +62,10 @@ app.get('/category', function (req, res) {
 
 });
 
-app.get('/orders',function(req,res){
+app.get('/order',function(req,res){
 
   var context = {};
-  res.render('orders', context);
+  res.render('order', context);
 
 });
 
