@@ -1,9 +1,0 @@
-{
-  "name": "cs-340-project",
-  "version": "0.0.0",
-  "description": "CS 340 Project",
-  "main": "server.js",
-  "author": {
-    "name": ""
-  }
-}
