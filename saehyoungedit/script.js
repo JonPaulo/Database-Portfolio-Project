@@ -62,10 +62,17 @@ app.get('/category', function (req, res) {
 
 });
 
-app.get('/order',function(req,res){
+app.get('/order', function (req, res) {
 
-  var context = {};
-  res.render('order', context);
+	var context = {};
+	res.render('order', context);
+
+});
+
+app.get('/order_product', function (req, res) {
+
+	var context = {};
+	res.render('order_product', context);
 
 });
 
