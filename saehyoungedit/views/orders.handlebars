@@ -3,7 +3,7 @@
 <hr>
 <h1>Order Database</h1><hr>
 <input class="form-control" type="text" placeholder="Search" aria-label="Search"> <hr> <br>
-{{data}}
+<!--{{data}}-->
 <table class = 'table'>
 	<thead>
 		<tr>
@@ -15,34 +15,31 @@
 		</tr>
 	</thead>
 	<tbody>
-		{{#each list}}
+		<!--{{#each list}}-->
 		<tr>
 			<td>
-				{{this.orderNumber}}
+				<!--{{this.orderNumber}}-->
 				<!-- <span id='orderNumber'>00000001</span> -->
+				<span id='orderid'>00000001</span>
 			</td>
 			<td>
-				placeholder
+				<span id='username'>barry</span>
 				<!-- <span id='products'>T-Shirt</span> <br> -->
 			</td>
 			<td>
-				placeholder
+				<span id='ordertotal'>$123.45</span>
 				<!-- <span id='quantity'>1</span> <br> -->
 			</td>
 			<td>
-				placeholder
+				<span id='orderdate'>01-23-2019</span>
 				<!-- $<span id='productPrice'>9.95</span> <br> -->
 			</td>
 			<td>
-				placeholder
+				<button type="button" class="btn btn-dark">View</button>
 				<!-- $<span id='orderTotal'>19.95</span> -->
 			</td>
-			<td>
-				{{this.orderDate}}
-				<!-- <span id='orderDate'>12-25-2019</span> -->
-			</td>
 		</tr>
-		{{/each}}
+		<!--{{/each}}-->
 	</tbody>
 </table>
 </div>
