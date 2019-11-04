@@ -1,9 +1,29 @@
 <div class="container" id ='containerbg'>
-<br>
-<hr>
-<h1>Order Database</h1><hr>
-<input class="form-control" type="text" placeholder="Search" aria-label="Search"> <hr> <br>
-<table class = 'table'>
+	<br><hr>
+	<h1>Order Database</h1><hr>
+
+	<table>
+		<body>
+			<form class="" action="index.html" method="post">
+				<tr>
+					<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+				</tr>
+				<tr>
+					<td><input type="radio" id="Payment ID" name="searchFilter" value="Payment ID"><label for="Payment ID">Payment ID</label> </td>
+					<td><input type="radio" id="username" name="searchFilter" value="username"><label for="username">Username</label> </td>
+					<td><input type="radio" id="First Name" name="searchFilter" value="First Name"><label for="First Name">First Name</label> </td>
+					<td><input type="radio" id="Last Name" name="searchFilter" value="Last Name"><label for="Last Name">Last Name</label> </td>
+					<td><input type="radio" id="Street" name="searchFilter" value="Street"><label for="Street">Street</label> </td>
+					<td><input type="radio" id="City" name="searchFilter" value="City"><label for="City">City</label> </td>
+					<td><input type="radio" id="Zip" name="searchFilter" value="Zip"><label for="Zip">Zip</label> </td>
+					<td><input type="radio" id="Card Number" name="searchFilter" value="Card Number"><label for="Card Number">Card Number</label> </td>
+					<td><input type="radio" id="Expiration" name="searchFilter" value="Expiration"><label for="Expiration">Expiration</label> </td>
+				</tr>
+			</form>
+		</body>
+	</table>
+
+	<table class = 'table'>
 	<thead>
 		<tr>
 			<th>Order Number</th>
@@ -31,6 +51,6 @@
 				<a href="order_product"><button type="button" class="btn btn-dark">View</button></a>
 			</td>
 		</tr>
-	</tbody>
-</table>
+		</tbody>
+	</table>
 </div>

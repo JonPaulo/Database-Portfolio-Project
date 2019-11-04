@@ -1,10 +1,23 @@
 <div class="container" id='containerbg'>
-	<br>
-
-	<hr>
-
+	<br><hr>
 	<h1>Products</h1>
-	<input class="form-control" type="text" placeholder="Search" aria-label="Search"><br />
+
+	<table>
+		<body>
+			<form class="" action="index.html" method="post">
+				<tr>
+					<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+				</tr>
+				<tr>
+					<td><input type="radio" id="Product ID" name="searchFilter" value="Product ID"><label for="Product ID">Product ID</label> </td>
+					<td><input type="radio" id="name" name="searchFilter" value="name"><label for="name">Name</label> </td>
+					<td><input type="radio" id="inventory" name="searchFilter" value="inventory"><label for="inventory">Inventory</label> </td>
+					<td><input type="radio" id="Category ID" name="searchFilter" value="Category ID"><label for="Category ID">Category ID</label> </td>
+				</tr>
+			</form>
+		</body>
+	</table>
+
 	<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#addproduct" aria-expanded="false" aria-controls="addproduct">
 		Add Product
 	</button><br />
