@@ -1,8 +1,25 @@
 <div class="container" id ='containerbg'>
 <br>
-<hr>
-<h1>Order Database</h1><hr>
-<input class="form-control" type="text" placeholder="Search" aria-label="Search"> <hr> <br>
+
+<h1>Order Database</h1>
+<table>
+	<body>
+		<form class="" action="index.html" method="post">
+
+		<tr>
+			<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+		</tr>
+		<tr>
+			<td><input type="radio" id="Order Number" name="searchFilter" value="Order Number"><label for="Order Number">Order Number</label> </td>
+			<td><input type="radio" id="username" name="searchFilter" value="username"><label for="username">Username</label> </td>
+		</tr>
+		</form>
+	</body>
+</table>
+
+<br>
+<button type="button" class="btn btn-primary">Add Order</button><hr>
+
 <table class = 'table'>
 	<thead>
 		<tr>

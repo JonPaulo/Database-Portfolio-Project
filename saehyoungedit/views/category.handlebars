@@ -1,48 +1,35 @@
-<div class="container" id='containerbg'>
-	<br>
+<div class="container" id ='containerbg'>
+<br>
 
-	<hr>
+<h1>Category Table</h1>
+<input class="form-control" type="text" placeholder="Search Category Name" aria-label="Search"><br>
 
-	<h1>Category Table</h1>
-	<input class="form-control" type="text" placeholder="Search" aria-label="Search"><br />
-	<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#addcategory" aria-expanded="false" aria-controls="addcategory">
-		Add Category
-	</button><br />
-	<div class="collapse" id="addcategory">
-		<form>
-			<div class="form-group">
-				<label for="newCategoryName">Category Name</label>
-				<input type="text" class="form-control" id="newCategoryName" placeholder="Category Name">
-			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
-		</form>
-	</div>
-	<hr />
+<button type="button" class="btn btn-primary">Add Category</button><hr>
 
-	<table class='table'>
-		<thead>
-			<tr>
-				<th>Category ID</th>
-				<th>Category Name</th>
-				<th>Edit Name</th>
-				<th>Delete Category</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>
-					<span id='categoryid'>1</span>
-				</td>
-				<td>
-					<span id='categoryname'>Food</span> <br>
-				</td>
-				<td>
-					<button type="button" class="btn btn-dark">Edit</button>
-				</td>
-				<td>
-					<button type="button" class="btn btn-danger">Delete</button>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+<table class = 'table'>
+	<thead>
+		<tr>
+			<th>Category ID</th>
+			<th>Category Name</th>
+			<th>Edit Name</th>
+			<th>Delete Category</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<span id='categoryid'>1</span>
+			</td>
+			<td>
+				<span id='categoryname'>Food</span> <br>
+			</td>
+			<td>
+				<button type="button" class="btn btn-dark">Edit</button>
+			</td>
+			<td>
+				<button type="button" class="btn btn-danger">Delete</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
 </div>

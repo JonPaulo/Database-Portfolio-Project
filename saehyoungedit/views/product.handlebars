@@ -1,117 +1,101 @@
-<div class="container" id='containerbg'>
-	<br>
+<div class="container" id ='containerbg'>
+<br>
 
-	<hr>
+<h1>Products</h1>
+<table>
+	<body>
+		<form class="" action="index.html" method="post">
 
-	<h1>Products</h1>
-	<input class="form-control" type="text" placeholder="Search" aria-label="Search"><br />
-	<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#addproduct" aria-expanded="false" aria-controls="addproduct">
-		Add Product
-	</button><br />
-	<div class="collapse" id="addproduct">
-		<form>
-			<div class="form-group">
-				<label for="newProductName">Product Name</label>
-				<input type="text" class="form-control" id="newProductName" placeholder="Product Name">
-			</div>
-			<label for="newCategory">Category</label>
-			<select class="form-control" id="newCategory">
-				<option>Clothes</option>
-				<option>Cars</option>
-				<option>3</option>
-				<option>4</option>
-			</select>
-			<div class="form-group">
-				<label for="newPrice">Price</label>
-				<input type="number" min="0.00" step="0.01" class="form-control" id="newPrice" placeholder="Price">
-			</div>
-			<div class="form-group">
-				<label for="newInventory">Inventory</label>
-				<input type="number" class="form-control" id="newInventory" placeholder="Inventory">
-			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
+		<tr>
+			<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+		</tr>
+		<tr>
+			<td><input type="radio" id="Product ID" name="searchFilter" value="Product ID"><label for="Product ID">Product ID</label> </td>
+			<td><input type="radio" id="name" name="searchFilter" value="name"><label for="name">Name</label> </td>
+			<td><input type="radio" id="inventory" name="searchFilter" value="inventory"><label for="inventory">Inventory</label> </td>
+  		<td><input type="radio" id="Category ID" name="searchFilter" value="Category ID"><label for="Category ID">Category ID</label> </td>
+		</tr>
 		</form>
-	</div>
-	<hr />
+	</body>
+</table>
 
-	<div class="table-responsive">
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col" class="border-0 bg-light">
-						<div class="p-2 px-3 text-uppercase">Product</div>
-					</th>
-					<th scope="col" class="border-0 bg-light">
-						<div class="p-2 px-3 text-uppercase">Category</div>
-					</th>
-					<th scope="col" class="border-0 bg-light">
-						<div class="py-2 text-uppercase">Price</div>
-					</th>
-					<th scope="col" class="border-0 bg-light">
-						<div class="py-2 text-uppercase">Inventory</div>
-					</th>
-					<th scope="col" class="border-0 bg-light">
-						<div class="py-2 text-uppercase">Update</div>
-					</th>
-					<th scope="col" class="border-0 bg-light">
-						<div class="py-2 text-uppercase">Remove Product</div>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th scope="row" class="border-0">
-						<div class="p-2">
-							<img src="" alt="" width="70" class="">
-							<div>
-								<h5 class="mb-0"> <span class=""><b>T-Shirt</b></span></h5>
+<br>
+<button type="button" class="btn btn-primary">Add Product</button><hr>
 
-							</div>
-						</div>
-					</th>
-					<td class="border-0 align-middle">
-						Clothes
-					</td>
-					<td class="border-0 align-middle"><strong>$9.95</strong></td>
-					<td class="border-0 align-middle">
-						24
-					</td>
-					<td class="border-0 align-middle">
-						<a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
-						<button type="button" class="btn btn-dark">Edit</button>
-					</td>
-					<td class="border-0 align-middle">
-						<a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
-						<button type="button" class="btn btn-danger">Delete</button>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">
-						<div class="p-2">
-							<img src="" alt="" width="70" class="img-fluid rounded shadow-sm">
-							<div>
-								<h5 class="mb-0"><span href="#" class=""><b>Lamborghini Aventador</b></span></h5>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col" class="border-0 bg-light">
+				<div class="p-2 px-3 text-uppercase">Product</div>
+            </th>
+            <th scope="col" class="border-0 bg-light">
+				<div class="p-2 px-3 text-uppercase">Category</div>
+            </th>
+            <th scope="col" class="border-0 bg-light">
+				<div class="py-2 text-uppercase">Price</div>
+            </th>
+            <th scope="col" class="border-0 bg-light">
+				<div class="py-2 text-uppercase">Quantity</div>
+            </th>
+            <th scope="col" class="border-0 bg-light">
+				<div class="py-2 text-uppercase">Update</div>
+            </th>
+            <th scope="col" class="border-0 bg-light">
+				<div class="py-2 text-uppercase">Remove Product</div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row" class="border-0">
+				<div class="p-2">
+					<img src="" alt="" width="70" class="">
+					<div>
+					<h5 class="mb-0"> <span class=""><b>T-Shirt</b></span></h5>
 
-							</div>
-						</div>
-					</th>
-					<td class="align-middle">
-						Cars
-					</td>
-					<td class="align-middle"><strong>$375,000.00</strong></td>
-					<td class="align-middle">
-						6
-					</td>
-					<td class="align-middle">
-						<a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
-						<button type="button" class="btn btn-dark">Edit</button>
-					</td>
-					<td class="align-middle">
-						<a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
-						<button type="button" class="btn btn-danger">Delete</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+					</div>
+				</div>
+            </th>
+            <td class="border-0 align-middle">
+                Clothes
+            </td>
+            <td class="border-0 align-middle"><strong>$9.95</strong></td>
+            <td class="border-0 align-middle">
+                24
+            </td>
+            <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
+				<button type="button" class="btn btn-dark">Edit</button>
+            </td>
+            <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
+			 <button type="button" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+            <div class="p-2">
+                <img src="" alt="" width="70" class="img-fluid rounded shadow-sm">
+                <div>
+                <h5 class="mb-0"><span href="#" class=""><b>Lamborghini Aventador</b></span></h5>
+
+                </div>
+            </div>
+            </th>
+            <td class="align-middle">
+                Cars
+            </td>
+            <td class="align-middle"><strong>$375,000.00</strong></td>
+            <td class="align-middle">
+                6
+            </td>
+            <td class="align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
+				<button type="button" class="btn btn-dark">Edit</button>
+            </td>
+            <td class="align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
+				<button type="button" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+  </div>
 </div>
