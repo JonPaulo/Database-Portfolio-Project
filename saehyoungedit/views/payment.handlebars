@@ -1,86 +1,117 @@
-<div class="container" id ='containerbg'>
-<br>
+<div class="container" id='containerbg'>
+	<br>
 
-<h1>Payment Database</h1>
-<table>
-	<body>
-		<form class="" action="index.html" method="post">
+	<hr>
 
-		<tr>
-			<input class="form-control" type="text" placeholder="Search" aria-label="Search">
-		</tr>
-		<tr>
-			<td><input type="radio" id="Payment ID" name="searchFilter" value="Payment ID"><label for="Payment ID">Payment ID</label> </td>
-			<td><input type="radio" id="username" name="searchFilter" value="username"><label for="username">Username</label> </td>
-			<td><input type="radio" id="First Name" name="searchFilter" value="First Name"><label for="First Name">First Name</label> </td>
-			<td><input type="radio" id="Last Name" name="searchFilter" value="Last Name"><label for="Last Name">Last Name</label> </td>
-			<td><input type="radio" id="Street" name="searchFilter" value="Street"><label for="Street">Street</label> </td>
-			<td><input type="radio" id="City" name="searchFilter" value="City"><label for="City">City</label> </td>
-			<td><input type="radio" id="Zip" name="searchFilter" value="Zip"><label for="Zip">Zip</label> </td>
-			<td><input type="radio" id="Card Number" name="searchFilter" value="Card Number"><label for="Card Number">Card Number</label> </td>
-			<td><input type="radio" id="Expiration" name="searchFilter" value="Expiration"><label for="Expiration">Expiration</label> </td>
-		</tr>
+	<h1>Payment Database</h1>
+	<input class="form-control" type="text" placeholder="Search" aria-label="Search"><br />
+	<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#addpayment" aria-expanded="false" aria-controls="addpayment">
+		Add Payment
+	</button><br />
+	<div class="collapse" id="addpayment">
+		<form>
+			<div class="form-group">
+				<label for="newUsername">Username</label>
+				<input type="text" class="form-control" id="newUsername" placeholder="Username">
+			</div>
+			<div class="form-group">
+				<label for="newEmail">Email address</label>
+				<input type="email" class="form-control" id="newEmail" aria-describedby="emailHelp" placeholder="Email address">
+				<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+			</div>
+			<div class="form-group">
+				<label for="newFname">First Name</label>
+				<input type="text" class="form-control" id="newFname" placeholder="First Name">
+			</div>
+			<div class="form-group">
+				<label for="newLname">Last Name</label>
+				<input type="text" class="form-control" id="newLname" placeholder="Last Name">
+			</div>
+			<div class="form-group">
+				<label for="newStreet">Street</label>
+				<input type="text" class="form-control" id="newStreet" placeholder="Street">
+			</div>
+			<div class="form-group">
+				<label for="newCity">City</label>
+				<input type="text" class="form-control" id="newCity" placeholder="City">
+			</div>
+			<div class="form-group">
+				<label for="newZip">Zip</label>
+				<input type="text" class="form-control" id="newZip" placeholder="Zip">
+			</div>
+			<div class="form-group">
+				<label for="newCardNum">Card Number</label>
+				<input type="text" class="form-control" id="newCardNum" placeholder="Card Number">
+			</div>
+			<div class="form-group">
+				<label for="newExpMonth">Expiration Month</label>
+				<input type="text" class="form-control" id="newExpMonth" placeholder="Expiration Month">
+			</div>
+			<div class="form-group">
+				<label for="newExpYear">Expiration Year</label>
+				<input type="text" class="form-control" id="newExpYear" placeholder="Expiration Year">
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
-	</body>
-</table>
+	</div>
+	<hr />
 
-<br>
-<button type="button" class="btn btn-primary">Add Payment</button><hr>
-
-<table class = 'table'>
-	<thead>
-		<tr>
-			<th>Payment ID</th>
-			<th>Username</th>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Street</th>
-			<th>City</th>
-			<th>Zip</th>
-			<th>Card Number</th>
-			<th>Expiration</th>
-			<th>Edit</th>
-			<th>Delete</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>
-				<span id='paymentid'>00000001</span>
-			</td>
-			<td>
-				<span id='username'>barry</span>
-			</td>
-			<td>
-				<span id='fname'>Barack</span>
-			</td>
-			<td>
-				<span id='lname'>Obama</span>
-			</td>
-			<td>
-				<span id='street'>1234 Fake Street</span>
-			</td>
-			<td>
-				<span id='city'>Honolulu</span>
-			</td>
-			<td>
-				<span id='zip'>90210</span>
-			</td>
-			<td>
-				<span id='cardnumber'>1234-5678-9012</span>
-			</td>
-			<td>
-				<span id='expiration'>11/11</span>
-			</td>
-			<td>
-				<button type="button" class="btn btn-dark">Edit</button>
-			</td>
-			<td>
-				<button type="button" class="btn btn-danger">Delete</button>
-			</td>
-		</tr>
-	</tbody>
-</table>
+	<table class='table'>
+		<thead>
+			<tr>
+				<th>Payment ID</th>
+				<th>Username</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Street</th>
+				<th>City</th>
+				<th>Zip</th>
+				<th>Card Number</th>
+				<th>Expiration</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+		<tbody>
+			<tr>
+				<td>
+					<span id='paymentid'>00000001</span>
+				</td>
+				<td>
+					<span id='username'>barry</span>
+				</td>
+				<td>
+					<span id='fname'>Barack</span>
+				</td>
+				<td>
+					<span id='lname'>Obama</span>
+				</td>
+				<td>
+					<span id='street'>1234 Fake Street</span>
+				</td>
+				<td>
+					<span id='city'>Honolulu</span>
+				</td>
+				<td>
+					<span id='zip'>90210</span>
+				</td>
+				<td>
+					<span id='cardnumber'>1234-5678-9012</span>
+				</td>
+				<td>
+					<span id='expiration'>11/11</span>
+				</td>
+				<td>
+					<button type="button" class="btn btn-dark">Edit</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-danger">Delete</button>
+				</td>
+			</tr>
+		</tbody>
+		</tbody>
+	</table>
 
 
 </div>
