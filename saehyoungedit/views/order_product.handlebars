@@ -1,4 +1,4 @@
-<div class="container" id ='containerbg'>
+<div class="container" id='containerbg'>
 	<br><hr>
 	<h1>Order Products</h1><hr>
 
@@ -12,12 +12,35 @@
 			</form>
 		</body>
 	</table>
-	<table class = 'table'>
+
+	<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#addOrderProduct" aria-expanded="false" aria-controls="addOrderProduct">
+		Add Order_Product
+	</button><br />
+	<div class="collapse" id="addOrderProduct">
+		<form>
+			<label for="newProduct">Product Name</label>
+			<select class="form-control" id="newProduct">
+				<option>T-Shirt</option>
+				<option>Lamborghini Aventador</option>
+				<option>3</option>
+				<option>4</option>
+			</select>
+			<div class="form-group">
+				<label for="newQuantity">Quantity</label>
+				<input type="number" class="form-control" id="newQuantity" placeholder="Quantity">
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+
+	<table class='table'>
 		<thead>
 			<tr>
 				<th>Product Name</th>
 				<th>Quantity</th>
 				<th>Price</th>
+				<th>Edit</th>
+				<th>Delete</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -30,6 +53,12 @@
 				</td>
 				<td>
 					<span id='price'>$123.45</span>
+				</td>
+				<td>
+					<button type="button" class="btn btn-dark">Edit</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-danger">Delete</button>
 				</td>
 			</tr>
 		</tbody>

@@ -1,4 +1,4 @@
-<div class="container" id ='containerbg'>
+<div class="container" id='containerbg'>
 	<br><hr>
 	<h1>Order Database</h1><hr>
 
@@ -23,34 +23,63 @@
 		</body>
 	</table>
 
-	<table class = 'table'>
-	<thead>
-		<tr>
-			<th>Order Number</th>
-			<th>Username</th>
-			<th>Order Total</th>
-			<th>Order Date</th>
-			<th>Order Detail</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>
-				<span id='orderid'>00000001</span>
-			</td>
-			<td>
-				<span id='username'>barry</span>
-			</td>
-			<td>
-				<span id='ordertotal'>$123.45</span>
-			</td>
-			<td>
-				<span id='orderdate'>01-23-2019</span>
-			</td>
-			<td>
-				<a href="order_product"><button type="button" class="btn btn-dark">View</button></a>
-			</td>
-		</tr>
+	<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#addorder" aria-expanded="false" aria-controls="addorder">
+		Add Order
+	</button><br />
+	<div class="collapse" id="addorder">
+		<form>
+			<div class="form-group">
+				<label for="newUsername">Username</label>
+				<input type="text" class="form-control" id="newUsername" placeholder="Username">
+			</div>
+			<div class="form-group">
+				<label for="newTotal">Order Total</label>
+				<input type="number" min="0.00" step="0.01" class="form-control" id="newTotal" placeholder="Order Total">
+			</div>
+			<div class="form-group">
+				<label for="newDate">Order Date</label>
+				<input type="date" class="form-control" id="newDate" placeholder="newDate">
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+
+	<table class='table'>
+		<thead>
+			<tr>
+				<th>Order Number</th>
+				<th>Username</th>
+				<th>Order Total</th>
+				<th>Order Date</th>
+				<th>Order Detail</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<span id='orderid'>00000001</span>
+				</td>
+				<td>
+					<span id='username'>barry</span>
+				</td>
+				<td>
+					<span id='ordertotal'>$123.45</span>
+				</td>
+				<td>
+					<span id='orderdate'>01-23-2019</span>
+				</td>
+				<td>
+					<a href="order_product"><button type="button" class="btn btn-dark">View</button></a>
+				</td>
+				<td>
+					<button type="button" class="btn btn-dark">Edit</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-danger">Delete</button>
+				</td>
+			</tr>
 		</tbody>
 	</table>
 </div>
