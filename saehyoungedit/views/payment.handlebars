@@ -1,8 +1,8 @@
 <div class="container" id='containerbg'>
-	<br><hr>
+	<br>
 	<h1>Payment Database</h1>
 
-	<table>
+	<!-- <table>
 		<body>
 			<form class="" action="index.html" method="post">
 				<tr>
@@ -21,7 +21,29 @@
 				</tr>
 			</form>
 		</body>
-	</table>
+	</table> -->
+
+	<form class="" action="index.html" method="post">
+		<div class="form-row">
+				<div class="form-group col-md-9">
+					<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+				</div>
+				<div class="form-group col-md-3">
+					<select class="form-control" id="newCategory">
+						<option>Payment ID</option>
+						<option>Username</option>
+						<option>Email</option>
+						<option>First Name</option>
+						<option>Last Name</option>
+						<option>Street</option>
+						<option>City</option>
+						<option>Zip</option>
+						<option>Card Number</option>
+						<option>Expiration</option>
+					</select>
+				</div>
+		</div>
+	</form>
 
 	<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#addpayment" aria-expanded="false" aria-controls="addpayment">
 		Add Payment
@@ -37,99 +59,106 @@
 				<input type="email" class="form-control" id="newEmail" aria-describedby="emailHelp" placeholder="Email address">
 				<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 			</div>
-			<div class="form-group">
-				<label for="newFname">First Name</label>
-				<input type="text" class="form-control" id="newFname" placeholder="First Name">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="newFname">First Name</label>
+					<input type="text" class="form-control" id="newFname" placeholder="First Name">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="newLname">Last Name</label>
+					<input type="text" class="form-control" id="newLname" placeholder="Last Name">
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="newLname">Last Name</label>
-				<input type="text" class="form-control" id="newLname" placeholder="Last Name">
+			<div class="form-row">
+				<div class="form-group col-md-5">
+					<label for="newStreet">Street</label>
+					<input type="text" class="form-control" id="newStreet" placeholder="Street">
+				</div>
+					<div class="form-group col-md-5">
+					<label for="newCity">City</label>
+					<input type="text" class="form-control" id="newCity" placeholder="City">
+				</div>
+					<div class="form-group col-md-2">
+					<label for="newZip">Zip</label>
+					<input type="text" class="form-control" id="newZip" placeholder="Zip">
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="newStreet">Street</label>
-				<input type="text" class="form-control" id="newStreet" placeholder="Street">
-			</div>
-			<div class="form-group">
-				<label for="newCity">City</label>
-				<input type="text" class="form-control" id="newCity" placeholder="City">
-			</div>
-			<div class="form-group">
-				<label for="newZip">Zip</label>
-				<input type="text" class="form-control" id="newZip" placeholder="Zip">
-			</div>
-			<div class="form-group">
-				<label for="newCardNum">Card Number</label>
-				<input type="text" class="form-control" id="newCardNum" placeholder="Card Number">
-			</div>
-			<div class="form-group">
-				<label for="newExpMonth">Expiration Month</label>
-				<input type="text" class="form-control" id="newExpMonth" placeholder="Expiration Month">
-			</div>
-			<div class="form-group">
-				<label for="newExpYear">Expiration Year</label>
-				<input type="text" class="form-control" id="newExpYear" placeholder="Expiration Year">
+			<div class="form-row">
+				<div class="form-group col-md-8">
+					<label for="newCardNum">Card Number</label>
+					<input type="text" class="form-control" id="newCardNum" placeholder="Card Number">
+				</div>
+				<div class="form-group col-md-2">
+					<label for="newExpMonth">Expiration Month</label>
+					<input type="number" class="form-control" id="newExpMonth" placeholder="MM">
+				</div>
+				<div class="form-group col-md-2">
+					<label for="newExpYear">Expiration Year</label>
+					<input type="number" class="form-control" id="newExpYear" placeholder="YY">
+				</div>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
 	<hr />
 
-	<table class='table'>
-		<thead>
-			<tr>
-				<th>Payment ID</th>
-				<th>Username</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Street</th>
-				<th>City</th>
-				<th>Zip</th>
-				<th>Card Number</th>
-				<th>Expiration</th>
-				<th>Edit</th>
-				<th>Delete</th>
-			</tr>
-		</thead>
-		<tbody>
-		<tbody>
-			<tr>
-				<td>
-					<span id='paymentid'>00000001</span>
-				</td>
-				<td>
-					<span id='username'>barry</span>
-				</td>
-				<td>
-					<span id='fname'>Barack</span>
-				</td>
-				<td>
-					<span id='lname'>Obama</span>
-				</td>
-				<td>
-					<span id='street'>1234 Fake Street</span>
-				</td>
-				<td>
-					<span id='city'>Honolulu</span>
-				</td>
-				<td>
-					<span id='zip'>90210</span>
-				</td>
-				<td>
-					<span id='cardnumber'>1234-5678-9012</span>
-				</td>
-				<td>
-					<span id='expiration'>11/11</span>
-				</td>
-				<td>
-					<button type="button" class="btn btn-dark">Edit</button>
-				</td>
-				<td>
-					<button type="button" class="btn btn-danger">Delete</button>
-				</td>
-			</tr>
-		</tbody>
-		</tbody>
-	</table>
-
+	<div class="table-responsive">
+		<table class='table'>
+			<thead>
+				<tr>
+					<th>Payment ID</th>
+					<th>Username</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Street</th>
+					<th>City</th>
+					<th>Zip</th>
+					<th>Card Number</th>
+					<th>Expiration</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+			<tbody>
+				<tr>
+					<td>
+						<span id='paymentid'>00000001</span>
+					</td>
+					<td>
+						<span id='username'>barry</span>
+					</td>
+					<td>
+						<span id='fname'>Barack</span>
+					</td>
+					<td>
+						<span id='lname'>Obama</span>
+					</td>
+					<td>
+						<span id='street'>1234 Fake Street</span>
+					</td>
+					<td>
+						<span id='city'>Honolulu</span>
+					</td>
+					<td>
+						<span id='zip'>90210</span>
+					</td>
+					<td>
+						<span id='cardnumber'>1234-5678-9012</span>
+					</td>
+					<td>
+						<span id='expiration'>11/11</span>
+					</td>
+					<td>
+						<button type="button" class="btn btn-dark">Edit</button>
+					</td>
+					<td>
+						<button type="button" class="btn btn-danger">Delete</button>
+					</td>
+				</tr>
+			</tbody>
+			</tbody>
+		</table>
+	</div>
 
 </div>

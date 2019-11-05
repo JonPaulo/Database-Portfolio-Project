@@ -1,8 +1,8 @@
 <div class="container" id='containerbg'>
-	<br><hr>
+	<br>
 	<h1>Products</h1>
 
-	<table>
+	<!-- <table>
 		<body>
 			<form class="" action="index.html" method="post">
 				<tr>
@@ -16,36 +16,59 @@
 				</tr>
 			</form>
 		</body>
-	</table>
+	</table> -->
+
+	<form class="" action="index.html" method="post">
+		<div class="form-row">
+				<div class="form-group col-md-9">
+					<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+				</div>
+				<div class="form-group col-md-3">
+					<select class="form-control" id="newCategory">
+						<option>Name</option>
+						<option>Product ID</option>
+						<option>Inventory</option>
+						<option>Category ID</option>
+					</select>
+				</div>
+		</div>
+	</form>
 
 	<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#addproduct" aria-expanded="false" aria-controls="addproduct">
 		Add Product
 	</button><br />
 	<div class="collapse" id="addproduct">
 		<form>
-			<div class="form-group">
-				<label for="newProductName">Product Name</label>
-				<input type="text" class="form-control" id="newProductName" placeholder="Product Name">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="newProductName">Product Name</label>
+					<input type="text" class="form-control" id="newProductName" placeholder="Product Name">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="newCategory">Category</label>
+					<select class="form-control" id="newCategory">
+						<option>Null</option>
+						<option>Clothes</option>
+						<option>Cars</option>
+						<option>3</option>
+						<option>4</option>
+					</select>
+				</div>
 			</div>
-			<label for="newCategory">Category</label>
-			<select class="form-control" id="newCategory">
-				<option>Clothes</option>
-				<option>Cars</option>
-				<option>3</option>
-				<option>4</option>
-			</select>
-			<div class="form-group">
-				<label for="newPrice">Price</label>
-				<input type="number" min="0.00" step="0.01" class="form-control" id="newPrice" placeholder="Price">
-			</div>
-			<div class="form-group">
-				<label for="newInventory">Inventory</label>
-				<input type="number" class="form-control" id="newInventory" placeholder="Inventory">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="newPrice">Price</label>
+					<input type="number" min="0.00" step="0.01" class="form-control" id="newPrice" placeholder="Price">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="newInventory">Inventory</label>
+					<input type="number" class="form-control" id="newInventory" placeholder="Inventory">
+				</div>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
-	<hr />
+	<hr>
 
 	<div class="table-responsive">
 		<table class="table">

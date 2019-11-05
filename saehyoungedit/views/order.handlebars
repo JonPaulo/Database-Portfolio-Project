@@ -1,8 +1,9 @@
 <div class="container" id='containerbg'>
-	<br><hr>
-	<h1>Order Database</h1><hr>
+	<br>
 
-	<table>
+	<h1>Order Database</h1>
+
+	<!-- <table>
 		<body>
 			<form class="" action="index.html" method="post">
 				<tr>
@@ -21,7 +22,29 @@
 				</tr>
 			</form>
 		</body>
-	</table>
+	</table> -->
+
+	<form class="" action="index.html" method="post">
+		<div class="form-row">
+				<div class="form-group col-md-9">
+					<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+				</div>
+				<div class="form-group col-md-3">
+					<select class="form-control" id="newCategory">
+						<option>Payment ID</option>
+						<option>Username</option>
+						<option>Email</option>
+						<option>First Name</option>
+						<option>Last Name</option>
+						<option>Street</option>
+						<option>City</option>
+						<option>Zip</option>
+						<option>Card Number</option>
+						<option>Expiration</option>
+					</select>
+				</div>
+		</div>
+	</form>
 
 	<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#addorder" aria-expanded="false" aria-controls="addorder">
 		Add Order

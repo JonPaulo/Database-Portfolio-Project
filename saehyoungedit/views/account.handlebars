@@ -1,8 +1,8 @@
 <div class="container" id ='containerbg'>
-	<br><hr>
+	<br>
 
 	<h1>Account Database</h1>
-	<table>
+	<!-- <table>
 		<body>
 			<form class="" action="index.html" method="post">
 				<tr>
@@ -21,102 +21,132 @@
 				</tr>
 			</form>
 		</body>
-	</table>
-	
+	</table> -->
+
+	<form class="" action="index.html" method="post">
+		<div class="form-row">
+				<div class="form-group col-md-9">
+					<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+				</div>
+				<div class="form-group col-md-3">
+					<select class="form-control" id="newCategory">
+						<option>User ID</option>
+						<option>Username</option>
+						<option>Password</option>
+						<option>Email</option>
+						<option>First Name</option>
+						<option>Last Name</option>
+						<option>Street</option>
+						<option>City</option>
+						<option>Zip</option>
+					</select>
+				</div>
+		</div>
+	</form>
+
 	<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#addaccount" aria-expanded="false" aria-controls="addaccount">
 	Add Account
 	</button><br />
 	<div class="collapse" id="addaccount">
 		<form>
-			<div class="form-group">
-				<label for="newUsername">Username</label>
-				<input type="text" class="form-control" id="newUsername" placeholder="Username">
-			</div>
-			<div class="form-group">
-				<label for="newPassword">Password</label>
-				<input type="password" class="form-control" id="newPassword" placeholder="Password">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="newUsername">Username</label>
+					<input type="text" class="form-control" id="newUsername" placeholder="Username">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="newPassword">Password</label>
+					<input type="password" class="form-control" id="newPassword" placeholder="Password">
+				</div>
 			</div>
 			<div class="form-group">
 				<label for="newEmail">Email address</label>
 				<input type="email" class="form-control" id="newEmail" aria-describedby="emailHelp" placeholder="Email address">
 				<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 			</div>
-			<div class="form-group">
-				<label for="newFname">First Name</label>
-				<input type="text" class="form-control" id="newFname" placeholder="First Name">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="newFname">First Name</label>
+					<input type="text" class="form-control" id="newFname" placeholder="First Name">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="newLname">Last Name</label>
+					<input type="text" class="form-control" id="newLname" placeholder="Last Name">
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="newLname">Last Name</label>
-				<input type="text" class="form-control" id="newLname" placeholder="Last Name">
-			</div>
-			<div class="form-group">
-				<label for="newStreet">Street</label>
-				<input type="text" class="form-control" id="newStreet" placeholder="Street">
-			</div>
-			<div class="form-group">
-				<label for="newCity">City</label>
-				<input type="text" class="form-control" id="newCity" placeholder="City">
-			</div>
-			<div class="form-group">
-				<label for="newZip">Zip</label>
-				<input type="text" class="form-control" id="newZip" placeholder="Zip">
+			<div class="form-row">
+				<div class="form-group col-md-5">
+					<label for="newStreet">Street</label>
+					<input type="text" class="form-control" id="newStreet" placeholder="Street">
+				</div>
+					<div class="form-group col-md-5">
+					<label for="newCity">City</label>
+					<input type="text" class="form-control" id="newCity" placeholder="City">
+				</div>
+					<div class="form-group col-md-2">
+					<label for="newZip">Zip</label>
+					<input type="text" class="form-control" id="newZip" placeholder="Zip">
+				</div>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
-	<hr />
-	<table class = 'table'>
-		<thead>
-			<tr>
-				<th>User ID</th>
-				<th>Username</th>
-				<th>Password</th>
-				<th>Email</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Street</th>
-				<th>City</th>
-				<th>Zip</th>
-				<th>Edit</th>
-				<th>Delete</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>
-					<span id='userid'>00000001</span>
-				</td>
-				<td>
-					<span id='username'>barry</span>
-				</td>
-				<td>
-					<span id='password'>1</span>
-				</td>
-				<td>
-					<span id='email'>google@google.com</span>
-				</td>
-				<td>
-					<span id='fname'>Barack</span>
-				</td>
-				<td>
-					<span id='lname'>Obama</span>
-				</td>
-				<td>
-					<span id='street'>1234 Fake Street</span>
-				</td>
-				<td>
-					<span id='city'>Honolulu</span>
-				</td>
-				<td>
-					<span id='zip'>90210</span>
-				</td>
-				<td>
-					<button type="button" class="btn btn-dark">Edit</button>
-				</td>
-				<td>
-					<button type="button" class="btn btn-danger">Delete</button>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+
+	<hr>
+	<div class="table-responsive">
+		<table class = 'table'>
+			<thead>
+				<tr>
+					<th>User ID</th>
+					<th>Username</th>
+					<th>Password</th>
+					<th>Email</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Street</th>
+					<th>City</th>
+					<th>Zip</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<span id='userid'>00000001</span>
+					</td>
+					<td>
+						<span id='username'>barry</span>
+					</td>
+					<td>
+						<span id='password'>1</span>
+					</td>
+					<td>
+						<span id='email'>google@google.com</span>
+					</td>
+					<td>
+						<span id='fname'>Barack</span>
+					</td>
+					<td>
+						<span id='lname'>Obama</span>
+					</td>
+					<td>
+						<span id='street'>1234 Fake Street</span>
+					</td>
+					<td>
+						<span id='city'>Honolulu</span>
+					</td>
+					<td>
+						<span id='zip'>90210</span>
+					</td>
+					<td>
+						<button type="button" class="btn btn-dark">Edit</button>
+					</td>
+					<td>
+						<button type="button" class="btn btn-danger">Delete</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
