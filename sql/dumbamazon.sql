@@ -1,6 +1,13 @@
 -- Dumb Amazon by Jon Paulo Bautista and Sae Hyoung Oh
 
+-- Removes tables if they previously existed in your database
+drop table if exists `order_product`;
+drop table if exists `orders`;
+drop table if exists `payment`;
 drop table if exists `account`;
+drop table if exists `product`;
+drop table if exists `categories`;
+
 create table `account` (
     `id` int(10) not null auto_increment,
     `username` varchar(255) not null,
@@ -15,7 +22,6 @@ create table `account` (
     unique `full_name` (fname, lname)
 )  ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-drop table if exists `payment`;
 create table `payment` (
     `id` int(10) not null auto_increment,
     `user_id` int(10) not null,
@@ -68,6 +74,8 @@ create table `order_product` (
     foreign key (`product_id`) references product(id)
 )  ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- Tables that don't contain foreign keys must have their data inserted first
+
 insert into account(username, password, email, fname, lname, street, city, zip)
 values
     ('barry', 'barry123', 'barryiscool@gmail.com', 'Barack', 'Obama', '123 Fake Street', 'DC', '90210'),
@@ -77,6 +85,24 @@ insert into payment(user_id, fname, lname, street, city, zip, card_num, exp_mont
 values
     (1, 'Barack', 'Obama', '123 Fake Street', 'DC', '90210', '1234567890987654', '11', '12');
 
+insert into categories(id, name)
+values
+    (1, 'clothing');
+
+insert into orders(id, user_id, payment_id, order_date, order_total)
+values
+    (1, 2, 1, CURRENT_TIMESTAMP, 12345678.90),
+    (2, 2, 1, now(), 349.95),
+    (3, 2, 1, CURRENT_TIME(), 349.95),
+    (4, 2, 1, UTC_TIMESTAMP(), 349.95);
+
+insert into product(id, name, price, inventory, category_id)
+values
+    (1, 'car', 123456.78, 1234567890, 1);
+
+insert into order_product(order_id, product_id, quantity, price)
+values
+    (1, 1, 24, 123456.78);
 
 DESCRIBE payment;
 DESCRIBE account;
