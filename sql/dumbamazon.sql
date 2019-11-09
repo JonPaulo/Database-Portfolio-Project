@@ -93,8 +93,8 @@ insert into orders(id, user_id, payment_id, order_date, order_total)
 values
     (1, 2, 1, CURRENT_TIMESTAMP, 12345678.90),
     (2, 2, 1, now(), 349.95),
-    (3, 2, 1, CURRENT_TIME(), 349.95),
-    (4, 2, 1, UTC_TIMESTAMP(), 349.95);
+    (3, 2, 1, CURRENT_TIME, 349.95),
+    (4, 2, 1, UTC_TIMESTAMP, 349.95);
 
 insert into product(id, name, price, inventory, category_id)
 values
