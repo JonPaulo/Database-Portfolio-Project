@@ -52,11 +52,11 @@ app.get('/account', function (req, res) {
 
 });
 
-// GET category page
-app.get('/category', function (req, res) {
+// GET categories page
+app.get('/categories', function (req, res) {
 
 	var context = {};
-	res.render('category', context);
+	res.render('categories', context);
 
 });
 
