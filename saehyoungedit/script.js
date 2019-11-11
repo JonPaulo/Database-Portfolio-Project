@@ -1,32 +1,42 @@
+// require express
 var express = require('express');
-
 var app = express();
-var handlebars = require('express-handlebars').create({defaultLayout:'main'});
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var request = require('request');
-var mysql = require('mysql');
 
-// var params = [];
-
-var pool = mysql.createPool({
-  connectionLimit : 10,
-  host            : 'classmysql.engr.oregonstate.edu',
-  user            : 'cs340_bautijon',
-  password        : '3212',
-  database        : 'cs340_bautijon'
-});
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(express.static('public'));
-app.use(session({secret:'superSecretPassword', resave: true, saveUninitialized: true}));
-
+// require express-handlebars
+var handlebars = require('express-handlebars').create({ defaultLayout: 'main' });
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
+
+// require body-parser for POST
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// require express-session
+var session = require('express-session');
+app.use(session({secret:'superSecretPassword', resave: true, saveUninitialized: true}));
+
+// require request
+var request = require('request');
+
+// require mySQL
+var mysql = require('mysql');
+var pool = mysql.createPool({
+	connectionLimit	: 10,
+	host			: 'classmysql.engr.oregonstate.edu',
+	user			: 'cs340_bautijon',
+	password		: '3212',
+	database		: 'cs340_bautijon'
+});
+
+// use specific folders for files
+app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/views'));
+
+// set port from argument
 app.set('port', process.argv[2]);
 
-
+// GET index page
 app.get('/',function(req,res){
 
   var context = {};
@@ -34,6 +44,7 @@ app.get('/',function(req,res){
 
 });
 
+// GET account page
 app.get('/account', function (req, res) {
 
 	var context = {};
@@ -41,20 +52,7 @@ app.get('/account', function (req, res) {
 
 });
 
-app.get('/product',function(req,res){
-
-  var context = {};
-  res.render('product', context);
-
-});
-
-app.get('/cart', function (req, res) {
-
-	var context = {};
-	res.render('cart', context);
-
-});
-
+// GET category page
 app.get('/category', function (req, res) {
 
 	var context = {};
@@ -62,24 +60,35 @@ app.get('/category', function (req, res) {
 
 });
 
-app.get('/order', function (req, res) {
+// GET orders page
+app.get('/orders', function (req, res) {
 
 	var context = {};
-	res.render('order', context);
+	res.render('orders', context);
 
 });
 
-app.get('/order_product', function (req, res) {
+// GET orders_product page
+app.get('/orders_product', function (req, res) {
 
 	var context = {};
-	res.render('order_product', context);
+	res.render('orders_product', context);
 
 });
 
+// GET payment page
 app.get('/payment', function (req, res) {
 
 	var context = {};
 	res.render('payment', context);
+
+});
+
+// GET product page
+app.get('/product', function (req, res) {
+
+	var context = {};
+	res.render('product', context);
 
 });
 
