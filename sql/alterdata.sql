@@ -5,7 +5,7 @@
 SELECT username, email FROM account;
 
 -- Update: change username from barry to barrybonds
-UPDATE account set username = 'barrybonds' WHERE username = 'barry';
+UPDATE account SET username = 'barrybonds' WHERE username = 'barry';
 
 -- Insert account
 INSERT INTO account(username, password, email, fname, lname, street, city, zip)
