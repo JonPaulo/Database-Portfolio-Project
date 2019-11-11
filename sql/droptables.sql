@@ -1,4 +1,4 @@
--- Use this code to drop all of the tables
+-- Use this code to drop all of the tables from your database
 -- The order is specific. Tables can only be dropped if there is no foreign key referencing it.
 -- Therefore, order_product must be dropped first.
 
