@@ -1,6 +1,6 @@
 function editAccount() {
 
-    document.getElementById("username").textContent = document.getElementById("editZip").value;
+    document.getElementById("username").textContent = document.getElementById("editUsername").value;
     document.getElementById("password").textContent = document.getElementById("editPassword").value;
     document.getElementById("email").textContent = document.getElementById("editEmail").value;
     document.getElementById("fname").textContent = document.getElementById("editFname").value;
