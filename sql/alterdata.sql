@@ -4,14 +4,14 @@
 -- Select username and email only from account table
 SELECT username, email FROM account;
 
--- Update: change username from barry to barrybonds
+-- Update: edit username info
 UPDATE account SET username = :usernameInput, password = :passwordInput, email = :emailInput, fname = :fnameInput, lname = :lnameInput, street = :streetInput, city = :cityInput, zip = :zipInput WHERE id = :idSelected;
 
 -- Insert account
 INSERT INTO account(username, password, email, fname, lname, street, city, zip)
 VALUES (:usernameInput, :passwordInput, :emailInput, :fnameInput, :lnameInput, :streetInput, :cityInput, :zipInput);
 
--- Delete account where username = snoopy
+-- Delete account where username = whatever the user selected
 DELETE FROM account WHERE id = :idSelected;
 
 -- Update product category to NULL
