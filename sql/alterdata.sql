@@ -9,7 +9,7 @@ UPDATE account SET username = :usernameInput, password = :passwordInput, email =
 
 -- Insert account
 INSERT INTO account(username, password, email, fname, lname, street, city, zip)
-VALUES (:usernameInput, :passwordInput, :emailInput, ::fnameInput, :lnameInput, :streetInput, :cityInput, :zipInput);
+VALUES (:usernameInput, :passwordInput, :emailInput, :fnameInput, :lnameInput, :streetInput, :cityInput, :zipInput);
 
 -- Delete account where username = snoopy
 DELETE FROM account WHERE id = :idSelected;
