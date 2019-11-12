@@ -13,25 +13,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // require express-session
-var session = require('express-session');
-app.use(session({secret:'superSecretPassword', resave: true, saveUninitialized: true}));
+//var session = require('express-session');
+//app.use(session({secret:'superSecretPassword', resave: true, saveUninitialized: true}));
 
 // require request
 var request = require('request');
 
-// require mySQL
-var mysql = require('mysql');
-var pool = mysql.createPool({
-	connectionLimit	: 10,
-	host			: 'classmysql.engr.oregonstate.edu',
-	user			: 'cs340_bautijon',
-	password		: '3212',
-	database		: 'cs340_bautijon'
-});
-
 // use specific folders for files
-app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '/public'));
+
+// require mySQL
+var mysql = require('./dbcon.js');
+app.set('mysql', mysql);
 
 // set port from argument
 app.set('port', process.argv[2]);
