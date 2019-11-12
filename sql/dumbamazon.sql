@@ -79,11 +79,13 @@ CREATE TABLE `order_product` (
 INSERT INTO account(username, password, email, fname, lname, street, city, zip)
 VALUES
     ('barry', 'barry123', 'barryiscool@gmail.com', 'Barack', 'Obama', '123 Fake Street', 'DC', '90210'),
+    ('snoopy', 'cb532', 'charliebrown@gmail.com', 'Charlie', 'Brown', '1234 Rodeo Drive', 'Los Angeles', '17283'),
     ('willy', 'whereswill', 'notwillsmith@gmail.com', 'Will', 'Smith', '315 Fake Street', 'Los Angeles', '91111');
 
 INSERT INTO payment(user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year)
 VALUES
-    (1, 'Barack', 'Obama', '123 Fake Street', 'DC', '90210', '1234567890987654', '11', '12');
+    (1, 'Barack', 'Obama', '123 Fake Street', 'DC', '90210', '1234567890987654', '11', '12'),
+    (2, 'Charlie', 'Brown', '1234 Rodeo Drive', 'Los Angeles', '17283', '1111222233334444', '12', '25');
 
 INSERT INTO categories(name)
 VALUES
@@ -93,12 +95,13 @@ INSERT INTO orders(user_id, payment_id, order_date, order_total)
 VALUES
     (2, 1, CURRENT_TIMESTAMP, 12345678.90),
     (2, 1, now(), 349.95),
-    (2, 1, CURRENT_TIME, 349.95),
-    (2, 1, UTC_TIMESTAMP, 349.95);
+    (2, 1, CURRENT_TIME, 99.99),
+    (2, 1, UTC_TIMESTAMP, 125.00);
 
 INSERT INTO product(name, price, inventory, category_id)
 VALUES
-    ('car', 123456.78, 1234567890, 1);
+    ('car', 123456.78, 1234567890, 1),
+    ('television', 349.99, 100, NULL);
 
 INSERT INTO order_product(order_id, product_id, quantity, price)
 VALUES

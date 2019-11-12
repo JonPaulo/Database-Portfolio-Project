@@ -1,3 +1,5 @@
+<script src="/js/editforms.js"></script>
+
 <div class="container" id ='containerbg'>
 	<br>
 
@@ -140,7 +142,7 @@
 						<span id='zip'>90210</span>
 					</td>
 					<td>
-						<button type="button" class="btn btn-dark">Edit</button>
+						<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalEdit">Edit</button>
 					</td>
 					<td>
 						<button type="button" class="btn btn-danger">Delete</button>
@@ -149,4 +151,77 @@
 			</tbody>
 		</table>
 	</div>
+
+<!-- Edit Pop Up (called Modal) -->
+
+<form class="" action="account" method="post">
+
+	<div class="row d-flex justify-content-center modalWrapper">
+
+		<div class="modal fade modalEditClass" id="modalEdit" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header text-center">
+						<h4 class="modal-title w-100 font-weight-bold ml-5">Edit Entry</h4>
+						<button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body mx-3">
+						<div class="md-form mb-1">
+							<input type="text" id="editUsername" class="form-control validate">
+							<label data-error="wrong" data-success="right" for="editUsername">Username</label>
+						</div>
+
+						<div class="md-form mb-1">
+							<input type="text" id="editPassword" class="form-control validate">
+							<label data-error="wrong" data-success="right" for="editPassword">Password</label>
+						</div>
+
+						<div class="md-form mb-1">
+							<input type="text" id="editEmail" class="form-control validate">
+							<label data-error="wrong" data-success="right" for="editEmail">Email</label>
+						</div>
+
+						<div class="form-row mb-1">
+							<div class = "col">
+								<input type="text" id="editFname" class="form-control validate">
+								<label data-error="wrong" data-success="right" for="editFname">First Name</label>
+							</div>
+
+							<div class="col">
+								<input type="text" id="editLname" class="form-control datepicker">
+								<label data-error="wrong" data-success="right" for="editLname">Last Name</label>
+							</div>
+						</div>
+
+						<div class="md-form">
+							<input type="text" id="editStreet" class="form-control validate">
+							<label data-error="wrong" data-success="right" for="editStreet">Street</label>
+						</div>
+
+						<div class="md-form">
+							<input type="text" id="editCity" class="form-control validate">
+							<label data-error="wrong" data-success="right" for="editCity">City</label>
+						</div>
+
+						<div class="md-form">
+							<input type="text" id="editZip" class="form-control validate">
+							<label data-error="wrong" data-success="right" for="editZip">Zip</label>
+						</div>
+
+					</div>
+					<div class="modal-footer d-flex justify-content-center editInsideWrapper">
+						<button onclick="editAccount()" class="btn btn-secondary btn-block editInside" data-dismiss="modal">Confirm Changes
+							<i class="fas fa-paper-plane-o ml-1"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</form>
+
+
 </div>

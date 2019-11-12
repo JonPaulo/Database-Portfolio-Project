@@ -12,8 +12,8 @@ INSERT INTO account(username, password, email, fname, lname, street, city, zip)
 VALUES
     ('tswizzie124', '1password1', 'totallynottaylorswift@gmail.com', 'Taylor', 'Swift', '123 Millionaire Row', 'Bel-Air', '90210');
 
--- Delete account where username = barrybonds
-DELETE FROM account WHERE username = 'barrybonds';
+-- Delete account where username = snoopy
+DELETE FROM account WHERE username = 'snoopy';
 
 -- Update product category to NULL
 UPDATE product SET category_id = NULL WHERE category_id = 1;
