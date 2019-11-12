@@ -5,15 +5,14 @@
 SELECT username, email FROM account;
 
 -- Update: change username from barry to barrybonds
-UPDATE account SET username = 'barrybonds' WHERE username = 'barry';
+UPDATE account SET username = :usernameInput, password = :passwordInput, email = :emailInput, fname = :fnameInput, lname = :lnameInput, street = :streetInput, city = :cityInput, zip = :zipInput WHERE id = :idSelected;
 
 -- Insert account
 INSERT INTO account(username, password, email, fname, lname, street, city, zip)
-VALUES
-    ('tswizzie124', '1password1', 'totallynottaylorswift@gmail.com', 'Taylor', 'Swift', '123 Millionaire Row', 'Bel-Air', '90210');
+VALUES (:usernameInput, :passwordInput, :emailInput, ::fnameInput, :lnameInput, :streetInput, :cityInput, :zipInput);
 
 -- Delete account where username = snoopy
-DELETE FROM account WHERE username = 'snoopy';
+DELETE FROM account WHERE id = :idSelected;
 
 -- Update product category to NULL
-UPDATE product SET category_id = NULL WHERE category_id = 1;
+UPDATE product SET category_id = NULL WHERE category_id = :idSelected;
