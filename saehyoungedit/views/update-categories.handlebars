@@ -1,5 +1,8 @@
-﻿<h1>Update {{categories.name}}:</h1>
-<form id="update-categories" action="/categories" method="post">
-	Name: <input type="text" name="name" value="{{categories.name}}" required><br>
-</form>
-<button type="submit" class="btn btn-primary" onclick="updateCategories({{categories.id}})">Update</button>
+﻿<div class="container" id='containerbg'>
+
+	<h1>Update {{categories.name}}:</h1>
+	<form id="update-categories" action="/categories" method="post">
+		Name: <input type="text" name="name" value="{{categories.name}}" required><br>
+	</form>
+	<button type="submit" class="btn btn-primary" onclick="updateCategories({{categories.id}})">Update</button>
+</div>

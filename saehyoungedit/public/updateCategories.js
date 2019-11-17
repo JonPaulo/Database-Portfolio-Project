@@ -1,5 +1,4 @@
 ﻿function updateCategories(id) {
-	console.log("loc3");
 	$.ajax({
 		url: '/categories/' + id,
 		type: 'PUT',

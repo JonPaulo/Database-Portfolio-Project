@@ -2,17 +2,6 @@
 	var express = require('express');
 	var router = express.Router();
 
-	//function getPlanets(res, mysql, context, complete) {
-	//	mysql.pool.query("SELECT planet_id as id, name FROM bsg_planets", function (error, results, fields) {
-	//		if (error) {
-	//			res.write(JSON.stringify(error));
-	//			res.end();
-	//		}
-	//		context.planets = results;
-	//		complete();
-	//	});
-	//}
-
 	function getCategories(res, mysql, context, complete) {
 		mysql.pool.query("SELECT id, name FROM categories", function (error, results, fields) {
 			if (error) {
@@ -23,20 +12,6 @@
 			complete();
 		});
 	}
-
-	//function getCategoriesbyHomeworld(req, res, mysql, context, complete) {
-	//	var query = "SELECT bsg_categories.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_categories INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id WHERE bsg_categories.homeworld = ?";
-	//	console.log(req.params)
-	//	var inserts = [req.params.homeworld]
-	//	mysql.pool.query(query, inserts, function (error, results, fields) {
-	//		if (error) {
-	//			res.write(JSON.stringify(error));
-	//			res.end();
-	//		}
-	//		context.categories = results;
-	//		complete();
-	//	});
-	//}
 
 	/* Find categories whose fname starts with a given string in the req */
 	function getCategoriesWithNameLike(req, res, mysql, context, complete) {
@@ -74,7 +49,6 @@
 		context.jsscripts = ["deleteCategories.js", "searchCategories.js"];
 		var mysql = req.app.get('mysql');
 		getCategories(res, mysql, context, complete);
-//		getPlanets(res, mysql, context, complete);
 		function complete() {
 			callbackCount++;
 			if (callbackCount >= 1) {
@@ -84,23 +58,6 @@
 		}
 	});
 
-	///*Display all categories from a given homeworld. Requires web based javascript to delete users with AJAX*/
-	//router.get('/filter/:homeworld', function (req, res) {
-	//	var callbackCount = 0;
-	//	var context = {};
-	//	context.jsscripts = ["deleteCategories.js", "filterCategories.js", "searchCategories.js"];
-	//	var mysql = req.app.get('mysql');
-	//	getCategoriesbyHomeworld(req, res, mysql, context, complete);
-	//	getPlanets(res, mysql, context, complete);
-	//	function complete() {
-	//		callbackCount++;
-	//		if (callbackCount >= 2) {
-	//			res.render('categories', context);
-	//		}
-
-	//	}
-	//});
-
 	/*Display all categories whose name starts with a given string. Requires web based javascript to delete users with AJAX */
 	router.get('/search/:s', function (req, res) {
 		var callbackCount = 0;
@@ -108,7 +65,6 @@
 		context.jsscripts = ["deleteCategories.js", "searchCategories.js"];
 		var mysql = req.app.get('mysql');
 		getCategoriesWithNameLike(req, res, mysql, context, complete);
-		//getPlanets(res, mysql, context, complete);
 		function complete() {
 			callbackCount++;
 			if (callbackCount >= 1) {
@@ -119,13 +75,11 @@
 
 	/* Display one categories for the specific purpose of updating categories */
 	router.get('/:id', function (req, res) {
-		console.log("loc5");
 		callbackCount = 0;
 		var context = {};
 		context.jsscripts = ["updateCategories.js"];
 		var mysql = req.app.get('mysql');
 		getOneCategories(res, mysql, context, req.params.id, complete);
-		//getPlanets(res, mysql, context, complete);
 		function complete() {
 			callbackCount++;
 			if (callbackCount >= 1) {
@@ -137,7 +91,6 @@
 
 	/* Adds a categories, redirects to the categories page after adding */
 	router.post('/', function (req, res) {
-		//console.log(req.body.homeworld)
 		console.log(req.body)
 		var mysql = req.app.get('mysql');
 		var sql = "INSERT INTO categories (name) VALUES (?)";
@@ -155,7 +108,6 @@
 
 	/* The URI that update data is sent to in order to update a categories */
 	router.put('/:id', function (req, res) {
-		console.log("loc6");
 		var mysql = req.app.get('mysql');
 		console.log(req.body)
 		console.log(req.params.id)
