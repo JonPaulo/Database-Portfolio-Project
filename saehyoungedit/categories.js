@@ -155,6 +155,7 @@
 
 	/* The URI that update data is sent to in order to update a categories */
 	router.put('/:id', function (req, res) {
+		console.log("loc6");
 		var mysql = req.app.get('mysql');
 		console.log(req.body)
 		console.log(req.params.id)
