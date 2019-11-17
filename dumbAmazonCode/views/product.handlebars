@@ -2,51 +2,54 @@
 	<br>
 	<h1>Products</h1>
 
-	<form class="" action="index.html" method="post">
+		<!-- Search Account -->
+
+		<form class="" action="/product/search" method="get">
 		<div class="form-row">
 				<div class="form-group col-md-9">
-					<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+					<input name="search" class="form-control" type="text" placeholder="Search" aria-label="Search">
 				</div>
 				<div class="form-group col-md-3">
-					<select class="form-control" id="newCategory">
-						<option>Name</option>
-						<option>Product ID</option>
-						<option>Inventory</option>
-						<option>Category ID</option>
+					<select class="form-control" name="filter">
+						<option value="name">Name</option>
+						<option value="id">Product ID</option>
+						<option value="inventory">Inventory</option>
+						<option value="category_id">Category ID</option>
 					</select>
 				</div>
 		</div>
 	</form>
 
+
+		<!-- Add Product -->
+
 	<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#addproduct" aria-expanded="false" aria-controls="addproduct">
 		Add Product
 	</button><br />
 	<div class="collapse" id="addproduct">
-		<form>
+		<form action="/product/add" method="post">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="newProductName">Product Name</label>
-					<input type="text" class="form-control" id="newProductName" placeholder="Product Name">
+					<input type="text" class="form-control" name="newProductName" placeholder="Product Name">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="newCategory">Category</label>
-					<select class="form-control" id="newCategory">
-						<option>Null</option>
-						<option>Clothes</option>
-						<option>Cars</option>
-						<option>3</option>
-						<option>4</option>
+					<select class="form-control" name="newCategory">
+						{{#each categories}}
+							<option value={{id}}>{{name}}</option>
+						{{/each}}
 					</select>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="newPrice">Price</label>
-					<input type="number" min="0.00" step="0.01" class="form-control" id="newPrice" placeholder="Price">
+					<input type="number" min="0.00" step="0.01" class="form-control" name="newPrice" placeholder="Price">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="newInventory">Inventory</label>
-					<input type="number" class="form-control" id="newInventory" placeholder="Inventory">
+					<input type="number" class="form-control" name="newInventory" placeholder="Inventory Count">
 				</div>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
@@ -54,84 +57,108 @@
 	</div>
 	<hr>
 
+	<!-- Display Product Data -->
+
 	<div class="table-responsive">
-		<table class="table">
+		<table class = 'table'>
 			<thead>
 				<tr>
-					<th scope="col" class="border-0 bg-light">
-						<div class="p-2 px-3 text-uppercase">Product</div>
-					</th>
-					<th scope="col" class="border-0 bg-light">
-						<div class="p-2 px-3 text-uppercase">Category</div>
-					</th>
-					<th scope="col" class="border-0 bg-light">
-						<div class="py-2 text-uppercase">Price</div>
-					</th>
-					<th scope="col" class="border-0 bg-light">
-						<div class="py-2 text-uppercase">Inventory</div>
-					</th>
-					<th scope="col" class="border-0 bg-light">
-						<div class="py-2 text-uppercase">Update</div>
-					</th>
-					<th scope="col" class="border-0 bg-light">
-						<div class="py-2 text-uppercase">Remove Product</div>
-					</th>
+					<th>Product</th>
+					<th>Price</th>
+					<th>Inventory</th>
+					<th>Category</th>
+					<th>Update</th>
+					<th>Remove Product</th>
 				</tr>
 			</thead>
 			<tbody>
+				{{#each product}}
 				<tr>
-					<th scope="row" class="border-0">
-						<div class="p-2">
-							<img src="" alt="" width="70" class="">
-							<div>
-								<h5 class="mb-0"> <span class=""><b>Leather</b></span></h5>
-
-							</div>
-						</div>
-					</th>
-					<td class="border-0 align-middle">
-						<em>Null</em>
+					<td>
+						{{name}}
 					</td>
-					<td class="border-0 align-middle"><strong>$9.95</strong></td>
-					<td class="border-0 align-middle">
-						24
+					<td>
+						{{price}}
 					</td>
-					<td class="border-0 align-middle">
-						<a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
-						<button type="button" class="btn btn-dark">Edit</button>
+					<td>
+						{{inventory}}
 					</td>
-					<td class="border-0 align-middle">
-						<a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
-						<button type="button" class="btn btn-danger">Delete</button>
+					<td>
+						{{category_id}}
+					</td>
+					<td>
+						<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalUpdate{{id}}">Update</button>
+					</td>
+					<td>
+						<form action="product/delete" method="post">
+							<input type="hidden" name="deleteID" value="{{id}}">
+							<button type="submit" class="btn btn-danger">Delete</button>
+						</form>
 					</td>
 				</tr>
-				<tr>
-					<th scope="row">
-						<div class="p-2">
-							<img src="" alt="" width="70" class="img-fluid rounded shadow-sm">
-							<div>
-								<h5 class="mb-0"><span href="#" class=""><b>Lamborghini Aventador</b></span></h5>
-
-							</div>
-						</div>
-					</th>
-					<td class="align-middle">
-						Cars
-					</td>
-					<td class="align-middle"><strong>$375,000.00</strong></td>
-					<td class="align-middle">
-						6
-					</td>
-					<td class="align-middle">
-						<a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
-						<button type="button" class="btn btn-dark">Edit</button>
-					</td>
-					<td class="align-middle">
-						<a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
-						<button type="button" class="btn btn-danger">Delete</button>
-					</td>
-				</tr>
+				{{/each}}
 			</tbody>
 		</table>
 	</div>
+
+
+	<!-- Edit Pop Up (called Modal) -->
+
+	{{#each product}}
+
+	<div class="row d-flex justify-content-center modalWrapper">
+		<div class="modal fade modalUpdateClass" id="modalUpdate{{id}}" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<form action="/product/update" method="post">
+						<input type="hidden" name="updateID" value="{{id}}">
+						<div class="modal-header text-center">
+							<h4 class="modal-title w-100 font-weight-bold ml-5">Update Entry</h4>
+							<button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body mx-3">
+
+							<div class="md-form mb-1">
+								<label data-error="wrong" data-success="right" for="editName">Name</label>
+								<input type="text" name="editName" class="form-control validate" value="{{name}}" required>
+							</div>
+
+							<div class="md-form mb-1">
+								<label data-error="wrong" data-success="right" for="editPrice">Price</label>
+								<input type="text" name="editPrice" class="form-control validate" value="{{price}}" required>
+							</div>
+
+							<div class="md-form mb-1">
+								<label data-error="wrong" data-success="right" for="editInventory">Inventory</label>
+								<input type="text" name="editInventory" class="form-control validate" value="{{inventory}}" required>
+							</div>
+
+							<div class="form-row">
+								<div class = "col">
+									<label data-error="wrong" data-success="right" for="editCategory_id">Category ID</label>
+									<select class="form-control" name="updateCategory">
+										{{#each ../categories}}
+											<option value={{id}}>{{name}}</option>
+										{{/each}}
+									</select>
+								</div>
+
+
+						</div>
+						<div class="modal-footer d-flex justify-content-center updateInsideWrapper">
+							<button type="submit" class="btn btn-secondary btn-block updateInside">
+								Confirm Changes
+								<i class="fas fa-paper-plane-o ml-1"></i>
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	{{/each}}
+
 </div>

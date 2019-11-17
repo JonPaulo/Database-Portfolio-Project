@@ -59,7 +59,7 @@ CREATE TABLE `product` (
     `name` varchar(255) NOT NULL,
     `price` decimal(8, 2) NOT NULL,
     `inventory` int(10) NOT NULL,
-    `category_id` int(10),
+    `category_id` int(10) NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
 )  ENGINE=InnoDB DEFAULT CHARSET=latin1;

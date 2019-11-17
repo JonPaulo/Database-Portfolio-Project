@@ -35,11 +35,10 @@ app.get('/',function(req,res){
 
 });
 
-// USE account page
+// USE pages
 app.use('/account', require('./account.js'));
-
-// USE categories page
 app.use('/categories', require('./categories.js'));
+app.use('/product', require('./product.js'));
 
 
 // GET orders page
@@ -66,13 +65,6 @@ app.get('/payment', function (req, res) {
 
 });
 
-// GET product page
-app.get('/product', function (req, res) {
-
-	var context = {};
-	res.render('product', context);
-
-});
 
 //exceptions handling
 app.use(function(req, res) {
