@@ -10,18 +10,20 @@ app.set('view engine', 'handlebars');
 // require body-parser for POST
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
 
 // require express-session
 //var session = require('express-session');
 //app.use(session({secret:'superSecretPassword', resave: true, saveUninitialized: true}));
 
 // require request
-var request = require('request');
+//var request = require('request');
 
 // use specific folders for files
-app.use(express.static(__dirname + '/views'));
-app.use(express.static(__dirname + '/public'));
+app.use('/static', express.static('public'));
+app.use('/', express.static('public'));
+//app.use(express.static(__dirname + '/views'));
+//app.use(express.static(__dirname + '/public'));
 
 // require mySQL
 var mysql = require('./dbcon.js');
@@ -46,13 +48,14 @@ app.get('/account', function (req, res) {
 
 });
 
-// GET categories page
-app.get('/categories', function (req, res) {
+app.use('/categories', require('./categories.js'));
+//// GET categories page
+//app.get('/categories', function (req, res) {
 
-	var context = {};
-	res.render('categories', context);
+//	var context = {};
+//	res.render('categories', context);
 
-});
+//});
 
 // GET orders page
 app.get('/orders', function (req, res) {

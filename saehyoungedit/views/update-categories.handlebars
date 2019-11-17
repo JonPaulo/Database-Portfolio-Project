@@ -1,0 +1,5 @@
+﻿<h1>Update {{categories.fname}} {{categories.lname}}:</h1>
+<form id="update-categories" action="/categories" method="post">
+	Name: <input type="text" name="fname" value="{{categories.name}}" required><br>
+</form>
+<button type="submit" class="btn btn-primary" onclick="updateCategories({{categories.id}})">Update</button>

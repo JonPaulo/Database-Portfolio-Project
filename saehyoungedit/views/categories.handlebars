@@ -1,23 +1,30 @@
 <div class="container" id='containerbg'>
 	<br>
-
 	<h1>Category Table</h1>
-	<input class="form-control" type="text" placeholder="Search Category Name" aria-label="Search"><br>
 
+	<!-- search bar -->
+	<form id='search_people'>
+		<input id="category_name_search_string" name="category_name_search_string" class="form-control" type="text" placeholder="Search Category Name" aria-label="Search" />
+		<button class="btn btn-primary" onclick="searchCategories()">Search</button>
+	</form>
+	<br>
+
+	<!-- add item -->
 	<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#addcategory" aria-expanded="false" aria-controls="addcategory">
 		Add Category
 	</button><br />
 	<div class="collapse" id="addcategory">
-		<form>
+		<form id="addCategories" action="/categories" method="post">
 			<div class="form-group">
 				<label for="newCategoryName">Category Name</label>
-				<input type="text" class="form-control" id="newCategoryName" placeholder="Category Name">
+				<input type="text" class="form-control" id="newCategoryName" name="newCategoryName" placeholder="Category Name" required>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
 	<hr />
 
+	<!-- display item -->
 	<table class='table'>
 		<thead>
 			<tr>
@@ -28,20 +35,22 @@
 			</tr>
 		</thead>
 		<tbody>
+			{{#each categories}}
 			<tr>
 				<td>
-					<span id='categoryid'>1</span>
+					<span id='categoryid'>{{id}}</span>
 				</td>
 				<td>
-					<span id='categoryname'>Food</span> <br>
+					<span id='categoryname'>{{name}}</span> <br>
 				</td>
 				<td>
-					<button type="button" class="btn btn-dark">Edit</button>
+					<a class="btn btn-dark" href="/people/{{id}}">Update</a>
 				</td>
 				<td>
-					<button type="button" class="btn btn-danger">Delete</button>
+					<button class="btn btn-danger" onclick="deleteCategories({{id}})">Delete</button>
 				</td>
 			</tr>
+			{{/each}}
 		</tbody>
 	</table>
 </div>
