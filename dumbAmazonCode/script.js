@@ -12,9 +12,6 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 //app.use(bodyParser.json());
 
-// require express-session
-//var session = require('express-session');
-//app.use(session({secret:'superSecretPassword', resave: true, saveUninitialized: true}));
 
 // require request
 //var request = require('request');
@@ -22,8 +19,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // use specific folders for files
 app.use('/static', express.static('public'));
 app.use('/', express.static('public'));
-//app.use(express.static(__dirname + '/views'));
-//app.use(express.static(__dirname + '/public'));
 
 // require mySQL
 var mysql = require('./dbcon2.js');
@@ -48,14 +43,9 @@ app.get('/account', function (req, res) {
 
 });
 
+// USE categories page
 app.use('/categories', require('./categories.js'));
-//// GET categories page
-//app.get('/categories', function (req, res) {
 
-//	var context = {};
-//	res.render('categories', context);
-
-//});
 
 // GET orders page
 app.get('/orders', function (req, res) {
