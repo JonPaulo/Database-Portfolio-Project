@@ -3,21 +3,23 @@
 	<h1>Category Table</h1>
 
 	<!-- search bar -->
-	<form id='search_people'>
-		<input id="category_name_search_string" name="category_name_search_string" class="form-control" type="text" placeholder="Search Category Name" aria-label="Search" />
-		<button class="btn btn-primary" onclick="searchCategories()">Search</button>
+	<form action="/categories/search" method="get">
+		<input name="searchName" class="form-control" type="text" placeholder="Search Category Name" aria-label="Search" />
+		<button type="submit" class="btn btn-primary">Search</button>
 	</form>
-	<br>
+	<form action="/categories" method="get">
+		<button type="submit" class="btn btn-secondary">Reset</button>
+	</form><br>
 
 	<!-- add item -->
 	<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#addcategory" aria-expanded="false" aria-controls="addcategory">
 		Add Category
 	</button><br />
 	<div class="collapse" id="addcategory">
-		<form id="addCategories" action="/categories" method="post">
+		<form id="addCategories" action="/categories/add" method="post">
 			<div class="form-group">
-				<label for="newCategoryName">Category Name</label>
-				<input type="text" class="form-control" id="newCategoryName" name="newCategoryName" placeholder="Category Name" required>
+				<label for="newName">Category Name</label>
+				<input type="text" class="form-control" id="newName" name="newName" placeholder="Category Name" required>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
@@ -30,8 +32,8 @@
 			<tr>
 				<th>Category ID</th>
 				<th>Category Name</th>
-				<th>Edit Name</th>
-				<th>Delete Category</th>
+				<th>Update</th>
+				<th>Delete</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -44,13 +46,52 @@
 					<span id='categoryname'>{{name}}</span> <br>
 				</td>
 				<td>
-					<a class="btn btn-dark" href="/categories/{{id}}">Update</a>
+					<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalUpdate{{id}}">Update</button>
 				</td>
 				<td>
-					<button class="btn btn-danger" onclick="deleteCategories({{id}})">Delete</button>
+					<form action="categories/delete" method="post">
+						<input type="hidden" name="deleteID" value="{{id}}">
+						<button type="submit" class="btn btn-danger">Delete</button>
+					</form>
 				</td>
 			</tr>
 			{{/each}}
 		</tbody>
 	</table>
+
+	<!-- Update Pop Up (called Modal) -->
+	{{#each categories}}
+
+	<div class="row d-flex justify-content-center modalWrapper">
+		<div class="modal fade modalUpdateClass" id="modalUpdate{{id}}" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<form action="/categories/update" method="post">
+						<input type="hidden" name="updateID" value="{{id}}">
+						<div class="modal-header text-center">
+							<h4 class="modal-title w-100 font-weight-bold ml-5">Update Entry</h4>
+							<button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body mx-3">
+							<div class="md-form mb-1">
+								<input type="text" name="updateName" class="form-control validate" value="{{name}}">
+								<label data-error="wrong" data-success="right" for="updateUsername">Name</label>
+							</div>
+
+						</div>
+						<div class="modal-footer d-flex justify-content-center updateInsideWrapper">
+							<button type="submit" class="btn btn-secondary btn-block updateInside">
+								Confirm Changes
+								<i class="fas fa-paper-plane-o ml-1"></i>
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	{{/each}}
 </div>
