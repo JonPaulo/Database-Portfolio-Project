@@ -5,69 +5,72 @@
 
 	<h1>Account Database</h1>
 
-	<form class="" action="index.html" method="post">
+	<!-- Search Account -->
+
+	<form class="" action="/account/search" method="get">
 		<div class="form-row">
 				<div class="form-group col-md-9">
-					<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+					<input name="search" class="form-control" type="text" placeholder="Search" aria-label="Search">
 				</div>
 				<div class="form-group col-md-3">
-					<select class="form-control" id="newCategory">
-						<option>User ID</option>
-						<option>Username</option>
-						<option>Password</option>
-						<option>Email</option>
-						<option>First Name</option>
-						<option>Last Name</option>
-						<option>Street</option>
-						<option>City</option>
-						<option>Zip</option>
+					<select class="form-control" name="filter">
+						<option value="username">Username</option>
+						<option value="password">Password</option>
+						<option value="email">Email</option>
+						<option value="fname">First Name</option>
+						<option value="lname">Last Name</option>
+						<option value="street">Street</option>
+						<option value="city">City</option>
+						<option value="zip">Zip</option>
 					</select>
 				</div>
 		</div>
 	</form>
 
+	<!-- Add Account -->
+
 	<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#addaccount" aria-expanded="false" aria-controls="addaccount">
 	Add Account
 	</button><br />
 	<div class="collapse" id="addaccount">
-		<form>
+		<form action="/account/add" method="post">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="newUsername">Username</label>
-					<input type="text" class="form-control" id="newUsername" placeholder="Username">
+					<input type="text" class="form-control" name="newUsername" placeholder="Username">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="newPassword">Password</label>
-					<input type="password" class="form-control" id="newPassword" placeholder="Password">
+					<input type="password" class="form-control" name="newPassword" placeholder="Password">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="newEmail">Email address</label>
-				<input type="email" class="form-control" id="newEmail" aria-describedby="emailHelp" placeholder="Email address">
+				<input type="email" class="form-control" name="newEmail" aria-describedby="emailHelp" placeholder="Email address">
 				<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="newFname">First Name</label>
-					<input type="text" class="form-control" id="newFname" placeholder="First Name">
+					<input type="text" class="form-control" name="newFname" placeholder="First Name">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="newLname">Last Name</label>
-					<input type="text" class="form-control" id="newLname" placeholder="Last Name">
+					<input type="text" class="form-control" name="newLname" placeholder="Last Name">
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-5">
 					<label for="newStreet">Street</label>
-					<input type="text" class="form-control" id="newStreet" placeholder="Street">
+					<input type="text" class="form-control" name="newStreet" placeholder="Street">
 				</div>
 					<div class="form-group col-md-5">
 					<label for="newCity">City</label>
-					<input type="text" class="form-control" id="newCity" placeholder="City">
+					<input type="text" class="form-control" name="newCity" placeholder="City">
 				</div>
 					<div class="form-group col-md-2">
 					<label for="newZip">Zip</label>
-					<input type="text" class="form-control" id="newZip" placeholder="Zip">
+					<input type="text" class="form-control" name="newZip" placeholder="Zip">
 				</div>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
@@ -91,7 +94,7 @@
 					<th>Street</th>
 					<th>City</th>
 					<th>Zip</th>
-					<th>Edit</th>
+					<th>Update</th>
 					<th>Delete</th>
 				</tr>
 			</thead>
@@ -99,37 +102,40 @@
 				{{#each account}}
 				<tr>
 					<td>
-						<span id='userid'>{{id}}</span>
+						{{id}}
 					</td>
 					<td>
-						<span id='username'>{{username}}</span>
+						{{username}}
 					</td>
 					<td>
-						<span id='password'>{{password}}</span>
+						{{password}}
 					</td>
 					<td>
-						<span id='email'>{{email}}</span>
+						{{email}}
 					</td>
 					<td>
-						<span id='fname'>{{fname}}</span>
+						{{fname}}
 					</td>
 					<td>
-						<span id='lname'>{{lname}}</span>
+						{{lname}}
 					</td>
 					<td>
-						<span id='street'>{{street}}</span>
+						{{street}}
 					</td>
 					<td>
-						<span id='city'>{{city}}</span>
+						{{city}}
 					</td>
 					<td>
-						<span id='zip'>{{zip}}</span>
+						{{zip}}
 					</td>
 					<td>
-						<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalEdit">Update</button>
+						<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalUpdate{{id}}">Update</button>
 					</td>
 					<td>
-						<button type="button" class="btn btn-danger" onclick="deleteAccount({{id}})">Delete</button>
+						<form action="account/delete" method="post">
+							<input type="hidden" name="deleteID" value="{{id}}">
+							<button type="submit" class="btn btn-danger">Delete</button>
+						</form>
 					</td>
 				</tr>
 				{{/each}}
@@ -139,74 +145,77 @@
 
 <!-- Edit Pop Up (called Modal) -->
 
-<form class="" action="account" method="post">
+{{#each account}}
 
-	<div class="row d-flex justify-content-center modalWrapper">
-
-		<div class="modal fade modalEditClass" id="modalEdit" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
+<div class="row d-flex justify-content-center modalWrapper">
+	<div class="modal fade modalUpdateClass" id="modalUpdate{{id}}" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form action="/account/update" method="post">
+					<input type="hidden" name="updateID" value="{{id}}">
 					<div class="modal-header text-center">
-						<h4 class="modal-title w-100 font-weight-bold ml-5">Edit Entry</h4>
+						<h4 class="modal-title w-100 font-weight-bold ml-5">Update Entry</h4>
 						<button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="modal-body mx-3">
+
 						<div class="md-form mb-1">
-							<input type="text" id="editUsername" class="form-control validate" placeholder="{{account.username}}" value="{{username}}" required>
 							<label data-error="wrong" data-success="right" for="editUsername">Username</label>
+							<input type="text" name="editUsername" class="form-control validate" value="{{username}}" required>
 						</div>
 
 						<div class="md-form mb-1">
-							<input type="text" id="editPassword" class="form-control validate" value="{{account.password}}" required>
 							<label data-error="wrong" data-success="right" for="editPassword">Password</label>
+							<input type="text" name="editPassword" class="form-control validate" value="{{password}}" required>
 						</div>
 
 						<div class="md-form mb-1">
-							<input type="text" id="editEmail" class="form-control validate" value="{{account.email}}" required>
 							<label data-error="wrong" data-success="right" for="editEmail">Email</label>
+							<input type="text" name="editEmail" class="form-control validate" value="{{email}}" required>
 						</div>
 
-						<div class="form-row mb-1">
+						<div class="form-row">
 							<div class = "col">
-								<input type="text" id="editFname" class="form-control validate" value="{{account.fname}}" required>
 								<label data-error="wrong" data-success="right" for="editFname">First Name</label>
+								<input type="text" name="editFname" class="form-control validate" value="{{fname}}" required>
 							</div>
 
 							<div class="col">
-								<input type="text" id="editLname" class="form-control datepicker" value="{{account.lname}}" required>
 								<label data-error="wrong" data-success="right" for="editLname">Last Name</label>
+								<input type="text" name="editLname" class="form-control datepicker" value="{{lname}}" required>
 							</div>
 						</div>
 
 						<div class="md-form">
-							<input type="text" id="editStreet" class="form-control validate" value="{{account.street}}" required>
 							<label data-error="wrong" data-success="right" for="editStreet">Street</label>
+							<input type="text" name="editStreet" class="form-control validate" value="{{street}}" required>
 						</div>
 
 						<div class="md-form">
-							<input type="text" id="editCity" class="form-control validate" value="{{account.city}}" required>
 							<label data-error="wrong" data-success="right" for="editCity">City</label>
+							<input type="text" name="editCity" class="form-control validate" value="{{city}}" required>
 						</div>
 
 						<div class="md-form">
-							<input type="text" id="editZip" class="form-control validate" value="{{account.zip}}" required>
 							<label data-error="wrong" data-success="right" for="editZip">Zip</label>
+							<input type="text" name="editZip" class="form-control validate" value="{{zip}}" required>
 						</div>
 
 					</div>
-					<div class="modal-footer d-flex justify-content-center editInsideWrapper">
-						<button onclick="updateAccount({{account.id}})" class="btn btn-secondary btn-block editInside" data-dismiss="modal">Confirm Changes
+					<div class="modal-footer d-flex justify-content-center updateInsideWrapper">
+						<button type="submit" class="btn btn-secondary btn-block updateInside">
+							Confirm Changes
 							<i class="fas fa-paper-plane-o ml-1"></i>
 						</button>
 					</div>
-				</div>
+				</form>
 			</div>
 		</div>
-
 	</div>
-</form>
 
+</div>
+{{/each}}
 
 </div>
