@@ -12,10 +12,6 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 //app.use(bodyParser.json());
 
-
-// require request
-//var request = require('request');
-
 // use specific folders for files
 app.use('/static', express.static('public'));
 app.use('/', express.static('public'));
@@ -36,10 +32,10 @@ app.get('/',function(req,res){
 });
 
 // USE pages
-app.use('/account', require('./account.js'));
-app.use('/categories', require('./categories.js'));
-app.use('/product', require('./product.js'));
-
+app.use('/account', require('./public/js/account.js'));
+app.use('/categories', require('./public/js/categories.js'));
+app.use('/product', require('./public/js/product.js'));
+app.use('/payment', require('./public/js/payment.js'));
 
 // GET orders page
 app.get('/orders', function (req, res) {
@@ -56,15 +52,6 @@ app.get('/orders_product', function (req, res) {
 	res.render('orders_product', context);
 
 });
-
-// GET payment page
-app.get('/payment', function (req, res) {
-
-	var context = {};
-	res.render('payment', context);
-
-});
-
 
 //exceptions handling
 app.use(function(req, res) {

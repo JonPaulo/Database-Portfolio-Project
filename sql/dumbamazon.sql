@@ -85,11 +85,14 @@ VALUES
 INSERT INTO payment(user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year)
 VALUES
     (1, 'Barack', 'Obama', '123 Fake Street', 'DC', '90210', '1234567890987654', '11', '12'),
-    (2, 'Charlie', 'Brown', '1234 Rodeo Drive', 'Los Angeles', '17283', '1111222233334444', '12', '25');
+    (2, 'Charlie', 'Brown', '1234 Rodeo Drive', 'Los Angeles', '17283', '1111222233334444', '12', '25'),
+    (3, 'Harry', 'Potter', '1234 Hogwarts Boulevard', 'Unknown', '012345', '28189489485', '01', '01');
 
 INSERT INTO categories(name)
 VALUES
-    ('clothing'), ('electronics');
+    ('clothing'),
+    ('electronics'),
+    ('food');
 
 INSERT INTO orders(user_id, payment_id, order_date, order_total)
 VALUES
@@ -101,7 +104,8 @@ VALUES
 INSERT INTO product(name, price, inventory, category_id)
 VALUES
     ('car', 123456.78, 1234567890, 1),
-    ('television', 349.99, 100, NULL);
+    ('television', 349.99, 100, NULL),
+    ('phone', 1300, 9000, NULL);
 
 INSERT INTO order_product(order_id, product_id, quantity, price)
 VALUES
