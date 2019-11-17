@@ -1,29 +1,9 @@
-<script src="/js/editforms.js"></script>
+<script src="/updateAccount.js"></script>
 
 <div class="container" id ='containerbg'>
 	<br>
 
 	<h1>Account Database</h1>
-	<!-- <table>
-		<body>
-			<form class="" action="index.html" method="post">
-				<tr>
-					<input class="form-control" type="text" placeholder="Search" aria-label="Search">
-				</tr>
-				<tr>
-					<td><input type="radio" id="User ID" name="searchFilter" value="User ID"><label for="User ID">User ID</label> </td>
-					<td><input type="radio" id="username" name="searchFilter" value="username"><label for="username">Username</label> </td>
-					<td><input type="radio" id="password" name="searchFilter" value="password"><label for="password">Password</label> </td>
-					<td><input type="radio" id="email" name="searchFilter" value="email"><label for="email">Email</label> </td>
-					<td><input type="radio" id="First Name" name="searchFilter" value="First Name"><label for="First Name">First Name</label> </td>
-					<td><input type="radio" id="Last Name" name="searchFilter" value="Last Name"><label for="Last Name">Last Name</label> </td>
-					<td><input type="radio" id="Street" name="searchFilter" value="Street"><label for="Street">Street</label> </td>
-					<td><input type="radio" id="City" name="searchFilter" value="City"><label for="City">City</label> </td>
-					<td><input type="radio" id="Zip" name="searchFilter" value="Zip"><label for="Zip">Zip</label> </td>
-				</tr>
-			</form>
-		</body>
-	</table> -->
 
 	<form class="" action="index.html" method="post">
 		<div class="form-row">
@@ -95,6 +75,9 @@
 	</div>
 
 	<hr>
+
+	<!-- Display Account Data -->
+
 	<div class="table-responsive">
 		<table class = 'table'>
 			<thead>
@@ -113,41 +96,43 @@
 				</tr>
 			</thead>
 			<tbody>
+				{{#each account}}
 				<tr>
 					<td>
-						<span id='userid'>00000001</span>
+						<span id='userid'>{{id}}</span>
 					</td>
 					<td>
-						<span id='username'>barry</span>
+						<span id='username'>{{username}}</span>
 					</td>
 					<td>
-						<span id='password'>1</span>
+						<span id='password'>{{password}}</span>
 					</td>
 					<td>
-						<span id='email'>google@google.com</span>
+						<span id='email'>{{email}}</span>
 					</td>
 					<td>
-						<span id='fname'>Barack</span>
+						<span id='fname'>{{fname}}</span>
 					</td>
 					<td>
-						<span id='lname'>Obama</span>
+						<span id='lname'>{{lname}}</span>
 					</td>
 					<td>
-						<span id='street'>1234 Fake Street</span>
+						<span id='street'>{{street}}</span>
 					</td>
 					<td>
-						<span id='city'>Honolulu</span>
+						<span id='city'>{{city}}</span>
 					</td>
 					<td>
-						<span id='zip'>90210</span>
+						<span id='zip'>{{zip}}</span>
 					</td>
 					<td>
-						<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalEdit">Edit</button>
+						<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalEdit">Update</button>
 					</td>
 					<td>
-						<button type="button" class="btn btn-danger">Delete</button>
+						<button type="button" class="btn btn-danger" onclick="deleteAccount({{id}})">Delete</button>
 					</td>
 				</tr>
+				{{/each}}
 			</tbody>
 		</table>
 	</div>
@@ -169,50 +154,50 @@
 					</div>
 					<div class="modal-body mx-3">
 						<div class="md-form mb-1">
-							<input type="text" id="editUsername" class="form-control validate">
+							<input type="text" id="editUsername" class="form-control validate" placeholder="{{account.username}}" value="{{username}}" required>
 							<label data-error="wrong" data-success="right" for="editUsername">Username</label>
 						</div>
 
 						<div class="md-form mb-1">
-							<input type="text" id="editPassword" class="form-control validate">
+							<input type="text" id="editPassword" class="form-control validate" value="{{account.password}}" required>
 							<label data-error="wrong" data-success="right" for="editPassword">Password</label>
 						</div>
 
 						<div class="md-form mb-1">
-							<input type="text" id="editEmail" class="form-control validate">
+							<input type="text" id="editEmail" class="form-control validate" value="{{account.email}}" required>
 							<label data-error="wrong" data-success="right" for="editEmail">Email</label>
 						</div>
 
 						<div class="form-row mb-1">
 							<div class = "col">
-								<input type="text" id="editFname" class="form-control validate">
+								<input type="text" id="editFname" class="form-control validate" value="{{account.fname}}" required>
 								<label data-error="wrong" data-success="right" for="editFname">First Name</label>
 							</div>
 
 							<div class="col">
-								<input type="text" id="editLname" class="form-control datepicker">
+								<input type="text" id="editLname" class="form-control datepicker" value="{{account.lname}}" required>
 								<label data-error="wrong" data-success="right" for="editLname">Last Name</label>
 							</div>
 						</div>
 
 						<div class="md-form">
-							<input type="text" id="editStreet" class="form-control validate">
+							<input type="text" id="editStreet" class="form-control validate" value="{{account.street}}" required>
 							<label data-error="wrong" data-success="right" for="editStreet">Street</label>
 						</div>
 
 						<div class="md-form">
-							<input type="text" id="editCity" class="form-control validate">
+							<input type="text" id="editCity" class="form-control validate" value="{{account.city}}" required>
 							<label data-error="wrong" data-success="right" for="editCity">City</label>
 						</div>
 
 						<div class="md-form">
-							<input type="text" id="editZip" class="form-control validate">
+							<input type="text" id="editZip" class="form-control validate" value="{{account.zip}}" required>
 							<label data-error="wrong" data-success="right" for="editZip">Zip</label>
 						</div>
 
 					</div>
 					<div class="modal-footer d-flex justify-content-center editInsideWrapper">
-						<button onclick="editAccount()" class="btn btn-secondary btn-block editInside" data-dismiss="modal">Confirm Changes
+						<button onclick="updateAccount({{account.id}})" class="btn btn-secondary btn-block editInside" data-dismiss="modal">Confirm Changes
 							<i class="fas fa-paper-plane-o ml-1"></i>
 						</button>
 					</div>

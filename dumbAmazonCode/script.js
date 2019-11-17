@@ -21,7 +21,7 @@ app.use('/static', express.static('public'));
 app.use('/', express.static('public'));
 
 // require mySQL
-var mysql = require('./dbcon2.js');
+var mysql = require('./dbcon1.js');
 app.set('mysql', mysql);
 
 // set port from argument
@@ -35,13 +35,8 @@ app.get('/',function(req,res){
 
 });
 
-// GET account page
-app.get('/account', function (req, res) {
-
-	var context = {};
-	res.render('account', context);
-
-});
+// USE account page
+app.use('/account', require('./account.js'));
 
 // USE categories page
 app.use('/categories', require('./categories.js'));
