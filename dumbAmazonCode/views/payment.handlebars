@@ -4,29 +4,37 @@
 
 	<!-- Search Account -->
 
-			<form class="" action="/payment/search" method="get">
+	<form class="" action="/payment/search" method="get">
 		<div class="form-row">
-				<div class="form-group col-md-9">
-					<input name="search" class="form-control" type="text" placeholder="Search" aria-label="Search">
-				</div>
-				<div class="form-group col-md-3">
-					<select class="form-control" name="filter">
-						<option value="id">Payment ID</option>
-						<option value="username">User ID</option>
-						<option value="email">Email</option>
-						<option value="fname">First Name</option>
-						<option value="lname">Last Name</option>
-						<option value="street">Street</option>
-						<option value="city">City</option>
-						<option value="zip">Zip</option>
-						<option value="card_num">Card Number</option>
-						<option value="card_num">Expiration</option>
-					</select>
-				</div>
+			<div class="form-group col-md-7">
+				<input name="search" class="form-control" type="text" placeholder="Search" aria-label="Search">
+			</div>
+			<div class="form-group col-md-3">
+				<select class="form-control" name="filter">
+					<option value="id">Payment ID</option>
+					<option value="username">User ID</option>
+					<option value="email">Email</option>
+					<option value="fname">First Name</option>
+					<option value="lname">Last Name</option>
+					<option value="street">Street</option>
+					<option value="city">City</option>
+					<option value="zip">Zip</option>
+					<option value="card_num">Card Number</option>
+					<option value="card_num">Expiration</option>
+				</select>
+			</div>
+			<div class="form-group col-md-2">
+				<button type="submit" class="btn btn-primary btn-block">Search</button>
+			</div>
 		</div>
 	</form>
+	<form action="/payment" method="get">
+		<button type="submit" class="btn btn-danger btn-block">Reset Table Display</button>
+	</form>
 
-		<!-- Add Payment -->
+	<br>
+
+	<!-- Add Payment -->
 
 	<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#addpayment" aria-expanded="false" aria-controls="addpayment">
 		Add Payment
@@ -37,7 +45,7 @@
 				<label for="newUserID">User ID</label>
 				<select class="form-control" name="newUserID">
 					{{#each account}}
-						<option value={{id}}>{{username}}</option>
+					<option value={{id}}>{{username}}</option>
 					{{/each}}
 				</select>
 			</div>
@@ -56,11 +64,11 @@
 					<label for="newStreet">Street</label>
 					<input type="text" class="form-control" name="newStreet" placeholder="Street">
 				</div>
-					<div class="form-group col-md-5">
+				<div class="form-group col-md-5">
 					<label for="newCity">City</label>
 					<input type="text" class="form-control" name="newCity" placeholder="City">
 				</div>
-					<div class="form-group col-md-2">
+				<div class="form-group col-md-2">
 					<label for="newZip">Zip</label>
 					<input type="text" class="form-control" name="newZip" placeholder="Zip">
 				</div>
@@ -84,7 +92,7 @@
 	</div>
 	<hr />
 
-		<!-- Display Account Data -->
+	<!-- Display Account Data -->
 
 	<div class="table-responsive">
 		<table class='table'>
@@ -154,7 +162,6 @@
 
 
 	<!-- Edit Pop Up (called Modal) -->
-
 	{{#each payment}}
 
 	<div class="row d-flex justify-content-center modalWrapper">
@@ -175,13 +182,13 @@
 								<label data-error="wrong" data-success="right" for="editUserID">User ID</label>
 								<select class="form-control" name="editUserID">
 									{{#each ../account}}
-										<option value={{id}}>{{id}} - {{username}}</option>
+									<option value={{id}}>{{id}} - {{username}}</option>
 									{{/each}}
 								</select>
 							</div>
 
 							<div class="form-row">
-								<div class = "col">
+								<div class="col">
 									<label data-error="wrong" data-success="right" for="editFname">First Name</label>
 									<input type="text" name="editFname" class="form-control validate" value="{{fname}}" required>
 								</div>
@@ -213,12 +220,12 @@
 							</div>
 
 							<div class="form-row">
-								<div class = "col">
+								<div class="col">
 									<label data-error="wrong" data-success="right" for="editExpMonth">Expiration Month</label>
 									<input type="number" name="editExpMonth" class="form-control validate" value="{{exp_month}}" required>
 								</div>
 
-								<div class = "col">
+								<div class="col">
 									<label data-error="wrong" data-success="right" for="editExpYear">Expiration Year</label>
 									<input type="number" name="editExpYear" class="form-control validate" value="{{exp_year}}" required>
 								</div>
