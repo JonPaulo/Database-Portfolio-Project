@@ -41,7 +41,7 @@ CREATE TABLE `orders` (
     `id` int(10) NOT NULL AUTO_INCREMENT,
     `user_id` int(10) NOT NULL,
     `payment_id` int(10) NOT NULL,
-    `order_date` timestamp NOT NULL,
+    `order_date` date NOT NULL,
     `order_total` decimal(10, 2) NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (user_id) REFERENCES account(id) ON DELETE CASCADE,
@@ -99,7 +99,8 @@ VALUES
     (2, 1, CURRENT_TIMESTAMP, 12345678.90),
     (2, 1, now(), 349.95),
     (2, 1, CURRENT_TIME, 99.99),
-    (2, 1, UTC_TIMESTAMP, 125.00);
+    (2, 1, UTC_TIMESTAMP, 125.00),
+    (1, 3, "2019-05-05", 343.00);
 
 INSERT INTO product(name, price, inventory, category_id)
 VALUES

@@ -36,14 +36,7 @@ app.use('/account', require('./public/js/account.js'));
 app.use('/categories', require('./public/js/categories.js'));
 app.use('/product', require('./public/js/product.js'));
 app.use('/payment', require('./public/js/payment.js'));
-
-// GET orders page
-app.get('/orders', function (req, res) {
-
-	var context = {};
-	res.render('orders', context);
-
-});
+app.use('/orders', require('./public/js/orders.js'));
 
 // GET orders_product page
 app.get('/orders_product', function (req, res) {

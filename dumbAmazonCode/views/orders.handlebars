@@ -3,23 +3,17 @@
 
 	<h1>Order Database</h1>
 
-	<form class="" action="index.html" method="post">
+	<form class="" action="/orders/search" method="get">
 		<div class="form-row">
 				<div class="form-group col-md-9">
-					<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+					<input name="search" class="form-control" type="text" placeholder="Search" aria-label="Search">
 				</div>
 				<div class="form-group col-md-3">
-					<select class="form-control" id="newCategory">
-						<option>Payment ID</option>
-						<option>Username</option>
-						<option>Email</option>
-						<option>First Name</option>
-						<option>Last Name</option>
-						<option>Street</option>
-						<option>City</option>
-						<option>Zip</option>
-						<option>Card Number</option>
-						<option>Expiration</option>
+					<select class="form-control" name="filter">
+						<option value="user_id">User ID</option>
+						<option value="payment_id">Payment ID</option>
+						<option value="order_date">Order Date</option>
+						<option value="order_total">Order Total</option>
 					</select>
 				</div>
 		</div>
@@ -29,59 +23,147 @@
 		Add Order
 	</button><br />
 	<div class="collapse" id="addorder">
-		<form>
+		<form action="/orders/add" method="post">
 			<div class="form-group">
-				<label for="newUsername">Username</label>
-				<input type="text" class="form-control" id="newUsername" placeholder="Username">
+				<label for="newUserID">User ID</label>
+				<select class="form-control" name="newUserID">
+					{{#each account}}
+						<option value={{id}}>{{id}} - {{username}}</option>
+					{{/each}}
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="newPaymentID">Payment ID</label>
+				<select class="form-control" name="newPaymentID">
+					{{#each payment}}
+						<option value={{id}}>{{user_id}}</option>
+					{{/each}}
+				</select>
 			</div>
 			<div class="form-group">
 				<label for="newTotal">Order Total</label>
-				<input type="number" min="0.00" step="0.01" class="form-control" id="newTotal" placeholder="Order Total">
+				<input type="number" min="0.00" step="0.01" class="form-control" name="newTotal" placeholder="Order Total">
 			</div>
 			<div class="form-group">
 				<label for="newDate">Order Date</label>
-				<input type="date" class="form-control" id="newDate" placeholder="newDate">
+				<input type="date" class="form-control" name="newDate" placeholder="newDate">
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
 
+		<!-- Display Order Data -->
+
 	<table class='table'>
 		<thead>
 			<tr>
 				<th>Order Number</th>
-				<th>Username</th>
+				<th>User ID</th>
+				<th>Payment ID</th>
 				<th>Order Total</th>
 				<th>Order Date</th>
 				<th>Order Detail</th>
-				<th>Edit</th>
+				<th>Update</th>
 				<th>Delete</th>
 			</tr>
 		</thead>
 		<tbody>
+			{{#each orders}}
 			<tr>
 				<td>
-					<span id='orderid'>00000001</span>
+					{{id}}
 				</td>
 				<td>
-					<span id='username'>barry</span>
+					{{user_id}}
 				</td>
 				<td>
-					<span id='ordertotal'>$123.45</span>
+					{{payment_id}}
 				</td>
 				<td>
-					<span id='orderdate'>01-23-2019</span>
+					{{order_total}}
+				</td>
+				<td>
+					{{order_date}}
 				</td>
 				<td>
 					<a href="orders_product"><button type="button" class="btn btn-dark">View</button></a>
 				</td>
 				<td>
-					<button type="button" class="btn btn-dark">Edit</button>
+					<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalUpdate{{id}}">Update</button>
 				</td>
 				<td>
-					<button type="button" class="btn btn-danger">Delete</button>
+					<form action="product/delete" method="post">
+						<input type="hidden" name="deleteID" value="{{id}}">
+						<button type="submit" class="btn btn-danger">Delete</button>
+					</form>
 				</td>
 			</tr>
+			{{/each}}
 		</tbody>
 	</table>
+
+
+		<!-- Edit Pop Up (called Modal) -->
+
+		{{#each orders}}
+
+		<div class="row d-flex justify-content-center modalWrapper">
+			<div class="modal fade modalUpdateClass" id="modalUpdate{{id}}" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<form action="/orders/update" method="post">
+							<input type="hidden" name="updateID" value="{{id}}">
+							<div class="modal-header text-center">
+								<h4 class="modal-title w-100 font-weight-bold ml-5">Update Entry</h4>
+								<button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body mx-3">
+
+								<div class="md-form mb-1">
+									<label data-error="wrong" data-success="right" for="updateOrderDate">Order Date</label>
+									<input type="date" name="updateOrderDate" class="form-control validate" value="{{order_date}}" required>
+								</div>
+
+								<div class="md-form mb-1">
+									<label data-error="wrong" data-success="right" for="updateOrderDate">Order Total</label>
+									<input type="number" name="updateOrderTotal" class="form-control validate" value="{{order_total}}" required>
+								</div>
+
+								<div class="form-row">
+									<div class = "col">
+										<label data-error="wrong" data-success="right" for="updatePaymentID">Payment ID</label>
+										<select class="form-control" name="updatePaymentID">
+											{{#each ../payment}}
+												<option value={{id}}>{{user_id}}</option>
+											{{/each}}
+										</select>
+									</div>
+								</div>
+
+								<div class="form-row">
+									<div class = "col">
+										<label data-error="wrong" data-success="right" for="updateUserID">User ID</label>
+										<select class="form-control" name="updateUserID">
+											{{#each ../account}}
+												<option value={{id}}>{{id}} - {{username}}</option>
+											{{/each}}
+										</select>
+									</div>
+								</div>
+							<div class="modal-footer d-flex justify-content-center updateInsideWrapper">
+								<button type="submit" class="btn btn-secondary btn-block updateInside">
+									Confirm Changes
+									<i class="fas fa-paper-plane-o ml-1"></i>
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		{{/each}}
+
 </div>
