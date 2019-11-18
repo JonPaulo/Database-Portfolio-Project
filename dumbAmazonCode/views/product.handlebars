@@ -2,26 +2,33 @@
 	<br>
 	<h1>Products</h1>
 
-		<!-- Search Account -->
+	<!-- Search Account -->
 
-		<form class="" action="/product/search" method="get">
+	<form class="" action="/product/search" method="get">
 		<div class="form-row">
-				<div class="form-group col-md-9">
-					<input name="search" class="form-control" type="text" placeholder="Search" aria-label="Search">
-				</div>
-				<div class="form-group col-md-3">
-					<select class="form-control" name="filter">
-						<option value="name">Name</option>
-						<option value="id">Product ID</option>
-						<option value="inventory">Inventory</option>
-						<option value="category_id">Category ID</option>
-					</select>
-				</div>
+			<div class="form-group col-md-7">
+				<input name="search" class="form-control" type="text" placeholder="Search" aria-label="Search">
+			</div>
+			<div class="form-group col-md-3">
+				<select class="form-control" name="filter">
+					<option value="name">Name</option>
+					<option value="id">Product ID</option>
+					<option value="inventory">Inventory</option>
+					<option value="category_id">Category ID</option>
+				</select>
+			</div>
+			<div class="form-group col-md-2">
+				<button type="submit" class="btn btn-primary btn-block">Search</button>
+			</div>
 		</div>
 	</form>
+	<form action="/product" method="get">
+		<button type="submit" class="btn btn-danger btn-block">Reset Table Display</button>
+	</form>
 
+	<br>
 
-		<!-- Add Product -->
+	<!-- Add Product -->
 
 	<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#addproduct" aria-expanded="false" aria-controls="addproduct">
 		Add Product
@@ -37,7 +44,7 @@
 					<label for="newCategory">Category</label>
 					<select class="form-control" name="newCategory">
 						{{#each categories}}
-							<option value={{id}}>{{name}}</option>
+						<option value={{id}}>{{name}}</option>
 						{{/each}}
 					</select>
 				</div>
@@ -60,7 +67,7 @@
 	<!-- Display Product Data -->
 
 	<div class="table-responsive">
-		<table class = 'table'>
+		<table class='table'>
 			<thead>
 				<tr>
 					<th>Product</th>
@@ -103,7 +110,6 @@
 
 
 	<!-- Edit Pop Up (called Modal) -->
-
 	{{#each product}}
 
 	<div class="row d-flex justify-content-center modalWrapper">
@@ -136,23 +142,23 @@
 							</div>
 
 							<div class="form-row">
-								<div class = "col">
+								<div class="col">
 									<label data-error="wrong" data-success="right" for="editCategory_id">Category ID</label>
 									<select class="form-control" name="updateCategory">
 										{{#each ../categories}}
-											<option value={{id}}>{{name}}</option>
+										<option value={{id}}>{{name}}</option>
 										{{/each}}
 									</select>
 								</div>
 
 
-						</div>
-						<div class="modal-footer d-flex justify-content-center updateInsideWrapper">
-							<button type="submit" class="btn btn-secondary btn-block updateInside">
-								Confirm Changes
-								<i class="fas fa-paper-plane-o ml-1"></i>
-							</button>
-						</div>
+							</div>
+							<div class="modal-footer d-flex justify-content-center updateInsideWrapper">
+								<button type="submit" class="btn btn-secondary btn-block updateInside">
+									Confirm Changes
+									<i class="fas fa-paper-plane-o ml-1"></i>
+								</button>
+							</div>
 					</form>
 				</div>
 			</div>
