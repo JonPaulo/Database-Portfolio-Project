@@ -2,7 +2,7 @@
 
 -- Removes tables if they previously existed in your database
 SET foreign_key_checks = 0;
-DROP TABLE IF EXISTS `order_product`;
+DROP TABLE IF EXISTS `orders_product`;
 DROP TABLE IF EXISTS `orders`;
 DROP TABLE IF EXISTS `payment`;
 DROP TABLE IF EXISTS `account`;
@@ -66,7 +66,7 @@ CREATE TABLE `product` (
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
 )  ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `order_product` (
+CREATE TABLE `orders_product` (
     `order_id` int(10) NOT NULL AUTO_INCREMENT,
     `product_id` int(10) NOT NULL,
     `quantity` int(3) NOT NULL,
@@ -110,7 +110,7 @@ VALUES
     ('television', 349.99, 100, NULL),
     ('phone', 1300, 9000, NULL);
 
-INSERT INTO order_product(order_id, product_id, quantity, price)
+INSERT INTO orders_product(order_id, product_id, quantity, price)
 VALUES
     (1, 1, 24, 123456.78);
 
@@ -118,5 +118,5 @@ DESCRIBE payment;
 DESCRIBE account;
 DESCRIBE categories;
 DESCRIBE orders;
-DESCRIBE order_product;
+DESCRIBE orders_product;
 DESCRIBE product;
