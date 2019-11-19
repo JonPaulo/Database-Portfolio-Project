@@ -98,7 +98,7 @@ module.exports = function () {
 		console.log(req.body)
 		var mysql = req.app.get('mysql');
 		if (req.body.updateCategories_id == "NULL") {
-			var sql = "UPDATE product SET name=?, price=?, inventory=?, WHERE id = ?";
+			var sql = "UPDATE product SET name=?, price=?, inventory=?, categories_id=NULL WHERE id = ?";
 			var inserts = [req.body.updateName, req.body.updatePrice, req.body.updateInventory, req.body.updateID];
 		}
 		else {
