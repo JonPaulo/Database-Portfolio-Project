@@ -3,7 +3,7 @@ module.exports = function () {
 	var router = express.Router();
 
 		function getProduct(res, mysql, context, complete) {
-			mysql.pool.query("SELECT id, name, price, inventory, categories_id, categories.name as categories_name FROM product INNER JOIN categories where product.categories_id = categories.id", function (error, results, fields) {
+			mysql.pool.query("SELECT product.id as id, product.name as name, price, inventory, categories_id, categories.name as categories_name FROM product LEFT JOIN categories on product.categories_id = categories.id", function (error, results, fields) {
 				if (error) {
 					res.write(JSON.stringify(error));
 					res.end();
@@ -97,13 +97,13 @@ module.exports = function () {
 	router.post('/update', function (req, res) {
 		console.log(req.body)
 		var mysql = req.app.get('mysql');
-		if (req.body.newCategories == "NULL") {
-			var sql = "INSERT INTO product (name, price, inventory) VALUES (?, ?, ?)";
-			var inserts = [req.body.updateName, req.body.updatePrice, req.body.updateInventory];
+		if (req.body.updateCategories_id == "NULL") {
+			var sql = "UPDATE product SET name=?, price=?, inventory=?, WHERE id = ?";
+			var inserts = [req.body.updateName, req.body.updatePrice, req.body.updateInventory, req.body.updateID];
 		}
 		else {
-			var sql = "INSERT INTO product (name, price, inventory, categories_id) VALUES (?, ?, ?, ?)";
-			var inserts = [req.body.updateName, req.body.updatePrice, req.body.updateInventory, req.body.updateCategories_id];
+			var sql = "UPDATE product SET name=?, price=?, inventory=?, categories_id=? WHERE id = ?";
+			var inserts = [req.body.updateName, req.body.updatePrice, req.body.updateInventory, req.body.updateCategories_id, req.body.updateID];
 		}
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
