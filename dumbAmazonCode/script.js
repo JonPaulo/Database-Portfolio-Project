@@ -37,7 +37,6 @@ app.use('/categories', require('./public/js/categories.js'));
 app.use('/product', require('./public/js/product.js'));
 app.use('/payment', require('./public/js/payment.js'));
 app.use('/orders', require('./public/js/orders.js'));
-app.use('/reset', require('./public/js/reset.js'));
 
 // GET orders_product page
 app.get('/orders_product', function (req, res) {
