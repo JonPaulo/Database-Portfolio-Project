@@ -1,12 +1,14 @@
 -- Dumb Amazon by Jon Paulo Bautista and Sae Hyoung Oh
 
 -- Removes tables if they previously existed in your database
+SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS `order_product`;
 DROP TABLE IF EXISTS `orders`;
 DROP TABLE IF EXISTS `payment`;
 DROP TABLE IF EXISTS `account`;
 DROP TABLE IF EXISTS `product`;
 DROP TABLE IF EXISTS `categories`;
+SET foreign_key_checks = 1;
 
 CREATE TABLE `account` (
     `id` int(10) NOT NULL AUTO_INCREMENT,

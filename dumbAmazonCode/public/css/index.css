@@ -1,5 +1,5 @@
 html, body, #containerbg {
-  min-height: 100vh;
+  height: 100%;
 }
 
 
@@ -8,10 +8,10 @@ h1 {
 }
 
 body {
+  height:100%;
   padding-top: 55px;
   background-color: #2A4373;
   background-size: cover;
-  background-attachment: fixed;
 }
 
 #containerbg {

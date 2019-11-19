@@ -17,7 +17,7 @@ app.use('/static', express.static('public'));
 app.use('/', express.static('public'));
 
 // require mySQL
-var mysql = require('./dbcon1.js');
+var mysql = require('./dbcon2.js');
 app.set('mysql', mysql);
 
 // set port from argument
@@ -37,6 +37,7 @@ app.use('/categories', require('./public/js/categories.js'));
 app.use('/product', require('./public/js/product.js'));
 app.use('/payment', require('./public/js/payment.js'));
 app.use('/orders', require('./public/js/orders.js'));
+app.use('/reset', require('./public/js/reset.js'));
 
 // GET orders_product page
 app.get('/orders_product', function (req, res) {
