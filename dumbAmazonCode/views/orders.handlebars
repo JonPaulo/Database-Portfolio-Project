@@ -24,7 +24,7 @@
 	</form>
 
 	<!-- reset button -->
-	<form action="/payment" method="get">
+	<form action="/orders" method="get">
 		<button type="submit" class="btn btn-danger btn-block">Reset Table Display</button>
 	</form>
 	<br>
@@ -46,8 +46,8 @@
 			<div class="form-group">
 				<label for="newPaymentID">Payment ID</label>
 				<select class="form-control" name="newPaymentID">
-					{{#each payment}}
-					<option value={{id}}>{{user_id}}</option>
+					{{#each payment_account}}
+					<option value={{id}}>{{id}} - by {{username}}</option>
 					{{/each}}
 				</select>
 			</div>
@@ -97,7 +97,7 @@
 				</td>
 				<td>
 					<form action="/orders_product" method="get">
-						<input type="hidden" name="deleteID" value="{{id}}">
+						<input type="hidden" name="id" value="{{id}}">
 						<button type="submit" class="btn btn-dark">View</button>
 					</form>
 				</td>
@@ -105,8 +105,8 @@
 					<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalUpdate{{id}}">Update</button>
 				</td>
 				<td>
-					<form action="product/delete" method="post">
-						<input type="hidden" name="deleteID" value="{{id}}">
+					<form action="/orders/delete" method="post">
+						<input type="hidden" name="id" value="{{id}}">
 						<button type="submit" class="btn btn-danger">Delete</button>
 					</form>
 				</td>
@@ -117,7 +117,7 @@
 
 
 	<!-- Edit Pop Up (called Modal) -->
-	{{#each orders}}
+	{{#each orders_account}}
 
 	<div class="row d-flex justify-content-center modalWrapper">
 		<div class="modal fade modalUpdateClass" id="modalUpdate{{id}}" tabindex="-1" role="dialog" aria-hidden="true">
@@ -145,10 +145,10 @@
 
 							<div class="form-row">
 								<div class="col">
-									<label data-error="wrong" data-success="right" for="updatePaymentID">Payment ID</label>
-									<select class="form-control" name="updatePaymentID">
-										{{#each ../payment}}
-										<option value={{id}}>{{user_id}}</option>
+									<label data-error="wrong" data-success="right" for="updateUserID">User ID</label>
+									<select class="form-control" name="updateUserID">
+										{{#each ../account}}
+										<option value={{id}}>{{id}} - {{username}}</option>
 										{{/each}}
 									</select>
 								</div>
@@ -156,10 +156,10 @@
 
 							<div class="form-row">
 								<div class="col">
-									<label data-error="wrong" data-success="right" for="updateUserID">User ID</label>
-									<select class="form-control" name="updateUserID">
-										{{#each ../orders_account}}
-										<option value={{account.id}}>{{account.id}} - {{username}}</option>
+									<label data-error="wrong" data-success="right" for="updatePaymentID">Payment ID</label>
+									<select class="form-control" name="updatePaymentID">
+										{{#each ../payment_account}}
+										<option value={{id}}>{{user_id}}</option>
 										{{/each}}
 									</select>
 								</div>
@@ -170,6 +170,7 @@
 									<i class="fas fa-paper-plane-o ml-1"></i>
 								</button>
 							</div>
+						</div>
 					</form>
 				</div>
 			</div>

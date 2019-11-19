@@ -14,7 +14,7 @@ module.exports = function () {
 	}
 
 	function getOrders_account(res, mysql, context, complete) {
-		mysql.pool.query("SELECT orders.id, account.id, username, payment_id, order_date, order_total FROM account INNER JOIN orders on orders.user_id = account.id", function (error, results, fields) {
+		mysql.pool.query("SELECT orders.id, username, payment_id, order_date, order_total FROM account INNER JOIN orders on orders.user_id = account.id", function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
 				res.end();
@@ -24,17 +24,27 @@ module.exports = function () {
 		});
 	}
 
-	function getPayment(res, mysql, context, complete) {
+	function getPayment_account(res, mysql, context, complete) {
 		mysql.pool.query("SELECT payment.id, username FROM payment INNER JOIN account on payment.user_id = account.id", function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
 				res.end();
 			}
-			context.payment = results;
+			context.payment_account = results;
 			complete();
 		});
 	}
 
+	function getAccount(res, mysql, context, complete) {
+		mysql.pool.query("SELECT id, username FROM account", function (error, results, fields) {
+			if (error) {
+				res.write(JSON.stringify(error));
+				res.end();
+			}
+			context.account = results;
+			complete();
+		});
+	}
 
 	/* Find product whose name includes the given string in the req */
 	function searchFunction(req, res, mysql, context, complete) {
@@ -58,10 +68,11 @@ module.exports = function () {
 		var mysql = req.app.get('mysql');
 		//getOrders(res, mysql, context, complete);
 		getOrders_account(res, mysql, context, complete);
-		getPayment(res, mysql, context, complete);
+		getPayment_account(res, mysql, context, complete);
+		getAccount(res, mysql, context, complete);
 		function complete() {
 			callbackCount++;
-			if (callbackCount >= 2) {
+			if (callbackCount >= 3) {
 				res.render('orders', context);
 			}
 

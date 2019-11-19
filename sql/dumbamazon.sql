@@ -71,7 +71,7 @@ CREATE TABLE `orders_product` (
     `orders_id` int(10) NOT NULL AUTO_INCREMENT,
     `product_id` int(10) NOT NULL,
     `quantity` int(3) NOT NULL,
-    `price` decimal(8, 2) NOT NULL,
+    `subtotal` decimal(8, 2) NOT NULL,
     PRIMARY KEY (`orders_id`),
     FOREIGN KEY (`orders_id`) REFERENCES orders(id) ON DELETE CASCADE,
     FOREIGN KEY (`product_id`) REFERENCES product(id) ON DELETE CASCADE

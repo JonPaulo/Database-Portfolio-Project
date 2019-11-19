@@ -32,7 +32,7 @@
      * fname+lname or id column
      */
 	function getOrders_product(req, res, mysql, context, complete) {
-		sql = "SELECT orders.id as oid, product_id as pid, quantity, price FROM orders_product WHERE oid = " + mysql.pool.escape(req.query.id) + " INNER JOIN product on pid = product.id";
+		sql = "SELECT product.name, quantity, subtotal FROM orders_product INNER JOIN product on orders_product.product_id = product.id WHERE orders_id = " + mysql.pool.escape(req.query.id);
 		//sql = "SELECT pid, cid, CONCAT(fname,' ',lname) AS name, title AS certificate FROM bsg_people INNER JOIN bsg_cert_people on bsg_people.character_id = bsg_cert_people.pid INNER JOIN bsg_cert on bsg_cert.certification_id = bsg_cert_people.cid ORDER BY name, certificate"
 		mysql.pool.query(sql, function (error, results, fields) {
 			if (error) {
@@ -49,6 +49,7 @@
      * displaying a form to associate a person with multiple certificates
      */
 	router.get('/', function (req, res) {
+		console.log(req.query);
 		var callbackCount = 0;
 		var context = {};
 		//context.jsscripts = ["deleteperson.js"];
@@ -60,7 +61,7 @@
 		//getProduct(res, mysql, context, complete);
 		function complete() {
 			callbackCount++;
-			if (callbackCount >= 2) {
+			if (callbackCount >= 1) {
 				res.render(handlebars_file, context);
 			}
 		}

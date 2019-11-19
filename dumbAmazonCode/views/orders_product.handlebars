@@ -2,17 +2,17 @@
 	<br>
 	<h1>orders_product Database</h1><hr>
 
-	<table>
-		<body>
-			<form class="" action="index.html" method="post">
-				<tr>
-					<input class="form-control" type="text" placeholder="Search Product Name" aria-label="Search">
-				</tr>
-				<tr></tr>
-			</form>
-		</body>
-	</table>
-
+	<!-- search bar -->
+	<form action="/orders_product/search" method="get">
+		<div class="form-row">
+			<div class="form-group col-md-10">
+				<input name="searchName" class="form-control" type="text" placeholder="Search Product Name" aria-label="Search" />
+			</div>
+			<div class="form-group col-md-2">
+				<button type="submit" class="btn btn-primary btn-block">Search</button>
+			</div>
+		</div>
+	</form>
 	<br>
 
 	<!-- add item -->
@@ -45,7 +45,7 @@
 				<th>Product ID</th>
 				<th>Product Name</th>
 				<th>Quantity</th>
-				<th>Price</th>
+				<th>Subtotal</th>
 				<th>Update</th>
 				<th>Delete</th>
 			</tr>
@@ -63,13 +63,13 @@
 					{{quantity}}
 				</td>
 				<td>
-					{{price}}
+					{{subtotal}}
 				</td>
 				<td>
 					<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalUpdate{{id}}">Update</button>
 				</td>
 				<td>
-					<form action="categories/delete" method="post">
+					<form action="orders_product/delete" method="post">
 						<input type="hidden" name="deleteID" value="{{id}}">
 						<button type="submit" class="btn btn-danger">Delete</button>
 					</form>
@@ -86,7 +86,7 @@
 		<div class="modal fade modalUpdateClass" id="modalUpdate{{id}}" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
-					<form action="/categories/update" method="post">
+					<form action="/orders_product/update" method="post">
 						<input type="hidden" name="updateID" value="{{id}}">
 						<div class="modal-header text-center">
 							<h4 class="modal-title w-100 font-weight-bold ml-5">Update Entry</h4>
