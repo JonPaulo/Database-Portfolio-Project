@@ -39,14 +39,14 @@
 -- THIS PART IS STILL UNFINISHED AND TENTATIVE
 
   -- INSERT new orders_product
-  INSERT INTO orders_product (order_id, product_id, quantity, price)
+  INSERT INTO orders_product (order_id, product_id, quantity, subtotal)
   VALUES (?, ?, ?, ?)
 
   -- SELECT orders_product table data
-  SELECT order_id, product_id, quantity, price FROM orders_product
+  SELECT order_id, product_id, quantity, subtotal FROM orders_product
 
   -- UPDATE orders_product
-  UPDATE orders_product SET order_id=?, product_id=?, quantity=?, price=?
+  UPDATE orders_product SET order_id=?, product_id=?, quantity=?, subtotal=?
   WHERE id = :idSelected
 
   -- Delete orders_product at id location
