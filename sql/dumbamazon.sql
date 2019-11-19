@@ -111,7 +111,7 @@ VALUES
     ('television', 349.99, 100, NULL),
     ('phone', 1300, 9000, NULL);
 
-INSERT INTO orders_product(orders_id, product_id, quantity, price)
+INSERT INTO orders_product(orders_id, product_id, quantity, subtotal)
 VALUES
     (1, 1, 24, 123456.78);
 
