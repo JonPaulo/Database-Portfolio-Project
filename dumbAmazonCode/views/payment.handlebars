@@ -81,11 +81,11 @@
 				</div>
 				<div class="form-group col-md-2">
 					<label for="newExpMonth">Expiration Month</label>
-					<input type="number" class="form-control" name="newExpMonth" placeholder="MM">
+					<input type="number" min="1" step="1" max="12" class="form-control" name="newExpMonth" placeholder="MM">
 				</div>
 				<div class="form-group col-md-2">
 					<label for="newExpYear">Expiration Year</label>
-					<input type="number" class="form-control" name="newExpYear" placeholder="YY">
+					<input type="number" min="0" step="1" max="99" class="form-control" name="newExpYear" placeholder="YY">
 				</div>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
@@ -223,12 +223,12 @@
 							<div class="form-row">
 								<div class="col">
 									<label data-error="wrong" data-success="right" for="editExpMonth">Expiration Month</label>
-									<input type="number" name="editExpMonth" class="form-control validate" value="{{exp_month}}" required>
+									<input type="number" min="1" step="1" max="12" name="editExpMonth" class="form-control validate" value="{{exp_month}}" required>
 								</div>
 
 								<div class="col">
 									<label data-error="wrong" data-success="right" for="editExpYear">Expiration Year</label>
-									<input type="number" name="editExpYear" class="form-control validate" value="{{exp_year}}" required>
+									<input type="number" min="0" step="1" max="99" name="editExpYear" class="form-control validate" value="{{exp_year}}" required>
 								</div>
 							</div>
 

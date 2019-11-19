@@ -1,14 +1,15 @@
 -- Dumb Amazon by Jon Paulo Bautista and Sae Hyoung Oh
 
 -- Removes tables if they previously existed in your database
-SET foreign_key_checks = 0;
+SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `orders_product`;
 DROP TABLE IF EXISTS `orders`;
 DROP TABLE IF EXISTS `payment`;
 DROP TABLE IF EXISTS `account`;
 DROP TABLE IF EXISTS `product`;
 DROP TABLE IF EXISTS `categories`;
-SET foreign_key_checks = 1;
+DROP TABLE IF EXISTS `orders_product`;
+SET FOREIGN_KEY_CHECKS = 1;
 
 CREATE TABLE `account` (
     `id` int(10) NOT NULL AUTO_INCREMENT,
@@ -67,12 +68,12 @@ CREATE TABLE `product` (
 )  ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `orders_product` (
-    `order_id` int(10) NOT NULL AUTO_INCREMENT,
+    `orders_id` int(10) NOT NULL AUTO_INCREMENT,
     `product_id` int(10) NOT NULL,
     `quantity` int(3) NOT NULL,
     `price` decimal(8, 2) NOT NULL,
-    PRIMARY KEY (`order_id`),
-    FOREIGN KEY (`order_id`) REFERENCES orders(id) ON DELETE CASCADE,
+    PRIMARY KEY (`orders_id`),
+    FOREIGN KEY (`orders_id`) REFERENCES orders(id) ON DELETE CASCADE,
     FOREIGN KEY (`product_id`) REFERENCES product(id) ON DELETE CASCADE
 )  ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -110,7 +111,7 @@ VALUES
     ('television', 349.99, 100, NULL),
     ('phone', 1300, 9000, NULL);
 
-INSERT INTO orders_product(order_id, product_id, quantity, price)
+INSERT INTO orders_product(orders_id, product_id, quantity, price)
 VALUES
     (1, 1, 24, 123456.78);
 

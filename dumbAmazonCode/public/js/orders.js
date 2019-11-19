@@ -3,7 +3,7 @@ module.exports = function () {
 	var router = express.Router();
 
 	function getOrders(res, mysql, context, complete) {
-		mysql.pool.query("SELECT id, user_id, payment_id, order_date, order_total FROM orders", function (error, results, fields) {
+		mysql.pool.query("SELECT id as oid, user_id, payment_id, order_date, order_total FROM orders", function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
 				res.end();
@@ -13,19 +13,19 @@ module.exports = function () {
 		});
 	}
 
-	function getAccount(res, mysql, context, complete) {
-		mysql.pool.query("SELECT id, username, password, email, fname, lname, street, city, zip FROM account", function (error, results, fields) {
+	function getOrders_account(res, mysql, context, complete) {
+		mysql.pool.query("SELECT orders.id, account.id, username, payment_id, order_date, order_total FROM account INNER JOIN orders on orders.user_id = account.id", function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
 				res.end();
 			}
-			context.account = results;
+			context.orders_account = results;
 			complete();
 		});
 	}
 
 	function getPayment(res, mysql, context, complete) {
-		mysql.pool.query("SELECT id, user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year FROM payment", function (error, results, fields) {
+		mysql.pool.query("SELECT payment.id, username FROM payment INNER JOIN account on payment.user_id = account.id", function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
 				res.end();
@@ -56,12 +56,12 @@ module.exports = function () {
 		var callbackCount = 0;
 		var context = {};
 		var mysql = req.app.get('mysql');
-		getOrders(res, mysql, context, complete);
-		getAccount(res, mysql, context, complete);
+		//getOrders(res, mysql, context, complete);
+		getOrders_account(res, mysql, context, complete);
 		getPayment(res, mysql, context, complete);
 		function complete() {
 			callbackCount++;
-			if (callbackCount >= 3) {
+			if (callbackCount >= 2) {
 				res.render('orders', context);
 			}
 
@@ -86,9 +86,8 @@ module.exports = function () {
 	router.post('/add', function (req, res) {
 		console.log(req.body)
 		var mysql = req.app.get('mysql');
-		var sql = "INSERT INTO orders (user_id, payment_id, order_total, order_date) VALUES (?, ?, ?, ?)";
-		var inserts = [req.body.newUserID, req.body.newPaymentID, req.body.newTotal,
-			req.body.newDate];
+		var sql = "INSERT INTO orders (user_id, payment_id, order_total, order_date) VALUES (?, ?, 0, ?)";
+		var inserts = [req.body.newUserID, req.body.newPaymentID, req.body.newDate];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
 				console.log(JSON.stringify(error))

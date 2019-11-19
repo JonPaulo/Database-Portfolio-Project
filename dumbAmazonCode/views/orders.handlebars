@@ -51,10 +51,10 @@
 					{{/each}}
 				</select>
 			</div>
-			<div class="form-group">
+			<!--<div class="form-group">
 				<label for="newTotal">Order Total</label>
 				<input type="number" min="0.00" step="0.01" class="form-control" name="newTotal" placeholder="Order Total">
-			</div>
+			</div>-->
 			<div class="form-group">
 				<label for="newDate">Order Date</label>
 				<input type="date" class="form-control" name="newDate" placeholder="newDate">
@@ -68,7 +68,7 @@
 		<thead>
 			<tr>
 				<th>Order Number</th>
-				<th>User ID</th>
+				<th>Username</th>
 				<th>Payment ID</th>
 				<th>Order Total</th>
 				<th>Order Date</th>
@@ -78,13 +78,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			{{#each orders}}
+			{{#each orders_account}}
 			<tr>
 				<td>
 					{{id}}
 				</td>
 				<td>
-					{{user_id}}
+					{{username}}
 				</td>
 				<td>
 					{{payment_id}}
@@ -96,7 +96,10 @@
 					{{order_date}}
 				</td>
 				<td>
-					<a href="orders_product"><button type="button" class="btn btn-dark">View</button></a>
+					<form action="/orders_product" method="get">
+						<input type="hidden" name="deleteID" value="{{id}}">
+						<button type="submit" class="btn btn-dark">View</button>
+					</form>
 				</td>
 				<td>
 					<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalUpdate{{id}}">Update</button>
@@ -135,10 +138,10 @@
 								<input type="date" name="updateOrderDate" class="form-control validate" value="{{order_date}}" required>
 							</div>
 
-							<div class="md-form mb-1">
+							<!--<div class="md-form mb-1">
 								<label data-error="wrong" data-success="right" for="updateOrderDate">Order Total</label>
 								<input type="number" name="updateOrderTotal" class="form-control validate" value="{{order_total}}" required>
-							</div>
+							</div>-->
 
 							<div class="form-row">
 								<div class="col">
@@ -155,8 +158,8 @@
 								<div class="col">
 									<label data-error="wrong" data-success="right" for="updateUserID">User ID</label>
 									<select class="form-control" name="updateUserID">
-										{{#each ../account}}
-										<option value={{id}}>{{id}} - {{username}}</option>
+										{{#each ../orders_account}}
+										<option value={{account.id}}>{{account.id}} - {{username}}</option>
 										{{/each}}
 									</select>
 								</div>
