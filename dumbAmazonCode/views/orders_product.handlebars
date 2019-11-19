@@ -15,16 +15,24 @@
 	</form>
 	<br>
 
+	<!-- reset button -->
+	<form action="/orders_product" method="get">
+		<input type="hidden" name="id" value="{{this_id}}">
+		<button type="submit" class="btn btn-danger btn-block">Reset Table Display</button>
+	</form>
+	<br>
+
 	<!-- add item -->
 	<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#addorders_product" aria-expanded="false" aria-controls="addorders_product">
 		Add orders_product
 	</button><br />
-	<div class="collapse" id="addorder">
-		<form action="/orders/add" method="post">
+	<div class="collapse" id="addorders_product">
+		<form action="/orders_product/add" method="post">
+			<input type="hidden" name="newOrdersID" value="{{this_id}}">
 			<div class="form-group">
-				<label for="newProductID">Product ID</label>
+				<label for="newProductID">Product</label>
 				<select class="form-control" name="newProductID">
-					{{#each orders_product}}
+					{{#each product}}
 					<option value={{id}}>{{id}} - {{name}}</option>
 					{{/each}}
 				</select>
@@ -44,6 +52,7 @@
 			<tr>
 				<th>Product ID</th>
 				<th>Product Name</th>
+				<th>Price per Item</th>
 				<th>Quantity</th>
 				<th>Subtotal</th>
 				<th>Update</th>
@@ -58,6 +67,9 @@
 				</td>
 				<td>
 					{{name}}
+				</td>
+				<td>
+					{{price}}
 				</td>
 				<td>
 					{{quantity}}

@@ -68,11 +68,11 @@ CREATE TABLE `product` (
 )  ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `orders_product` (
-    `orders_id` int(10) NOT NULL AUTO_INCREMENT,
+    `orders_id` int(10) NOT NULL,
     `product_id` int(10) NOT NULL,
     `quantity` int(3) NOT NULL,
     `subtotal` decimal(8, 2) NOT NULL,
-    PRIMARY KEY (`orders_id`),
+    PRIMARY KEY (`orders_id`, `product_id`),
     FOREIGN KEY (`orders_id`) REFERENCES orders(id) ON DELETE CASCADE,
     FOREIGN KEY (`product_id`) REFERENCES product(id) ON DELETE CASCADE
 )  ENGINE=InnoDB DEFAULT CHARSET=latin1;
