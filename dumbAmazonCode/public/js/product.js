@@ -3,7 +3,7 @@ module.exports = function () {
 	var router = express.Router();
 
 		function getProduct(res, mysql, context, complete) {
-			mysql.pool.query("SELECT id, name, price, inventory, category_id FROM product", function (error, results, fields) {
+			mysql.pool.query("SELECT id, name, price, inventory, categories_id, categories.name as categories_name FROM product INNER JOIN categories where product.categories_id = categories.id", function (error, results, fields) {
 				if (error) {
 					res.write(JSON.stringify(error));
 					res.end();
@@ -27,7 +27,7 @@ module.exports = function () {
 	/* Find product whose name includes the given string in the req */
 	function searchFunction(req, res, mysql, context, complete) {
 		//sanitize the input as well as include the % character
-		var query = "SELECT id, name, price, inventory, category_id FROM product WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
+		var query = "SELECT id, name, price, inventory, categories_id FROM product WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
 		console.log(query)
 		mysql.pool.query(query, function (error, results, fields) {
 			if (error) {
@@ -74,13 +74,12 @@ module.exports = function () {
 	router.post('/add', function (req, res) {
 		console.log(req.body)
 		var mysql = req.app.get('mysql');
-		var sql = "INSERT INTO product (name, price, inventory, category_id) VALUES (?, ?, ?, ?)";
 		if (req.body.newCategories == "NULL") {
 			var sql = "INSERT INTO product (name, price, inventory) VALUES (?, ?, ?)";
 			var inserts = [req.body.newProductName, req.body.newPrice, req.body.newInventory];
 		}
 		else {
-			var sql = "INSERT INTO product (name, price, inventory, category_id) VALUES (?, ?, ?, ?)";
+			var sql = "INSERT INTO product (name, price, inventory, categories_id) VALUES (?, ?, ?, ?)";
 			var inserts = [req.body.newProductName, req.body.newPrice, req.body.newInventory, req.body.newCategories];
 		}
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
@@ -98,8 +97,14 @@ module.exports = function () {
 	router.post('/update', function (req, res) {
 		console.log(req.body)
 		var mysql = req.app.get('mysql');
-		var sql = "UPDATE product SET name=?, price=?, inventory=?, category_id=? WHERE id = ?";
-		var inserts = [req.body.editName, req.body.editPrice, req.body.editInventory,
+		if (req.body.newCategories == "NULL") {
+			var sql = "INSERT INTO product (name, price, inventory) VALUES (?, ?, ?)";
+			var inserts = [req.body.updateName, req.body.updatePrice, req.body.updateInventory];
+		}
+		else {
+			var sql = "INSERT INTO product (name, price, inventory, categories_id) VALUES (?, ?, ?, ?)";
+			var inserts = [req.body.updateName, req.body.updatePrice, req.body.updateInventory, req.body.updateCategories_id];
+		}
 			req.body.updateCategory, req.body.updateID];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {

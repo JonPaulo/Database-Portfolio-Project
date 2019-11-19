@@ -14,7 +14,7 @@
 					<option value="name">Name</option>
 					<option value="id">Product ID</option>
 					<option value="inventory">Inventory</option>
-					<option value="category_id">Category ID</option>
+					<option value="categories_id">Category ID</option>
 				</select>
 			</div>
 			<div class="form-group col-md-2">
@@ -46,7 +46,7 @@
 					<select class="form-control" name="newCategories">
 						<option value="NULL">None</option>
 						{{#each categories}}
-						<option value={{id}}>{{id}} - {{name}}</option>
+						<option value={{id}}>{{name}}</option>
 						{{/each}}
 					</select>
 				</div>
@@ -93,7 +93,7 @@
 						{{inventory}}
 					</td>
 					<td>
-						{{category_id}}
+						{{categories_name}}
 					</td>
 					<td>
 						<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalUpdate{{id}}">Update</button>
@@ -111,7 +111,7 @@
 	</div>
 
 
-	<!-- Edit Pop Up (called Modal) -->
+	<!-- Update Pop Up (called Modal) -->
 	{{#each product}}
 
 	<div class="row d-flex justify-content-center modalWrapper">
@@ -129,27 +129,27 @@
 						<div class="modal-body mx-3">
 
 							<div class="md-form mb-1">
-								<label data-error="wrong" data-success="right" for="editName">Name</label>
-								<input type="text" name="editName" class="form-control validate" value="{{name}}" required>
+								<label data-error="wrong" data-success="right" for="updateName">Name</label>
+								<input type="text" name="updateName" class="form-control validate" value="{{name}}" required>
 							</div>
 
 							<div class="md-form mb-1">
-								<label data-error="wrong" data-success="right" for="editPrice">Price</label>
-								<input type="text" name="editPrice" class="form-control validate" value="{{price}}" required>
+								<label data-error="wrong" data-success="right" for="updatePrice">Price</label>
+								<input type="text" name="updatePrice" class="form-control validate" value="{{price}}" required>
 							</div>
 
 							<div class="md-form mb-1">
-								<label data-error="wrong" data-success="right" for="editInventory">Inventory</label>
-								<input type="text" name="editInventory" class="form-control validate" value="{{inventory}}" required>
+								<label data-error="wrong" data-success="right" for="updateInventory">Inventory</label>
+								<input type="text" name="updateInventory" class="form-control validate" value="{{inventory}}" required>
 							</div>
 
 							<div class="form-row">
 								<div class="col">
-									<label data-error="wrong" data-success="right" for="editCategory_id">Category ID</label>
-									<select class="form-control" name="updateCategory">
+									<label data-error="wrong" data-success="right" for="updatecategories_id">Category ID</label>
+									<select class="form-control" name="updateCategories_id">
 										<option value="NULL">None</option>
 										{{#each ../categories}}
-										<option value={{id}}>{{id}} - {{name}}</option>
+										<option value={{id}}>{{name}}</option>
 										{{/each}}
 									</select>
 								</div>

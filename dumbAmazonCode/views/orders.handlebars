@@ -39,7 +39,7 @@
 				<label for="newUserID">User ID</label>
 				<select class="form-control" name="newUserID">
 					{{#each account}}
-					<option value={{id}}>{{id}} - {{username}}</option>
+					<option value={{id}}>{{username}}</option>
 					{{/each}}
 				</select>
 			</div>
@@ -148,7 +148,7 @@
 									<label data-error="wrong" data-success="right" for="updateUserID">User ID</label>
 									<select class="form-control" name="updateUserID">
 										{{#each ../account}}
-										<option value={{id}}>{{id}} - {{username}}</option>
+										<option value={{id}}>{{username}}</option>
 										{{/each}}
 									</select>
 								</div>
