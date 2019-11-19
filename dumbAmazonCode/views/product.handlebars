@@ -42,10 +42,11 @@
 					<input type="text" class="form-control" name="newProductName" placeholder="Product Name">
 				</div>
 				<div class="form-group col-md-6">
-					<label for="newCategory">Category</label>
-					<select class="form-control" name="newCategory">
+					<label for="newCategories">Category</label>
+					<select class="form-control" name="newCategories">
+						<option value="NULL">None</option>
 						{{#each categories}}
-						<option value={{id}}>{{name}}</option>
+						<option value={{id}}>{{id}} - {{name}}</option>
 						{{/each}}
 					</select>
 				</div>
@@ -146,8 +147,9 @@
 								<div class="col">
 									<label data-error="wrong" data-success="right" for="editCategory_id">Category ID</label>
 									<select class="form-control" name="updateCategory">
+										<option value="NULL">None</option>
 										{{#each ../categories}}
-										<option value={{id}}>{{name}}</option>
+										<option value={{id}}>{{id}} - {{name}}</option>
 										{{/each}}
 									</select>
 								</div>

@@ -75,8 +75,14 @@ module.exports = function () {
 		console.log(req.body)
 		var mysql = req.app.get('mysql');
 		var sql = "INSERT INTO product (name, price, inventory, category_id) VALUES (?, ?, ?, ?)";
-		var inserts = [req.body.newProductName, req.body.newPrice, req.body.newInventory,
-			req.body.newCategory];
+		if (req.body.newCategories == "NULL") {
+			var sql = "INSERT INTO product (name, price, inventory) VALUES (?, ?, ?)";
+			var inserts = [req.body.newProductName, req.body.newPrice, req.body.newInventory];
+		}
+		else {
+			var sql = "INSERT INTO product (name, price, inventory, category_id) VALUES (?, ?, ?, ?)";
+			var inserts = [req.body.newProductName, req.body.newPrice, req.body.newInventory, req.body.newCategories];
+		}
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
 				console.log(JSON.stringify(error))
