@@ -105,7 +105,6 @@ module.exports = function () {
 			var sql = "INSERT INTO product (name, price, inventory, categories_id) VALUES (?, ?, ?, ?)";
 			var inserts = [req.body.updateName, req.body.updatePrice, req.body.updateInventory, req.body.updateCategories_id];
 		}
-			req.body.updateCategory, req.body.updateID];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
 				console.log(JSON.stringify(error))
