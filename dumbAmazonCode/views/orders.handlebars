@@ -39,7 +39,7 @@
 				<label for="newUserID">User ID</label>
 				<select class="form-control" name="newUserID">
 					{{#each account}}
-					<option value={{id}}>{{username}}</option>
+					<option value={{id}}>{{id}} - {{username}}</option>
 					{{/each}}
 				</select>
 			</div>
@@ -47,7 +47,7 @@
 				<label for="newPaymentID">Payment ID</label>
 				<select class="form-control" name="newPaymentID">
 					{{#each payment_account}}
-					<option value={{id}}>{{id}} - by {{username}}</option>
+					<option value={{id}}>{{id}} - {{username}}'s card</option>
 					{{/each}}
 				</select>
 			</div>

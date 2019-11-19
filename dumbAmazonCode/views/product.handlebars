@@ -149,7 +149,7 @@
 									<select class="form-control" name="updateCategories_id">
 										<option value="NULL">None</option>
 										{{#each ../categories}}
-										<option value={{id}}>{{name}}</option>
+										<option value={{id}}>{{id}} - {{name}}</option>
 										{{/each}}
 									</select>
 								</div>
@@ -162,6 +162,7 @@
 									<i class="fas fa-paper-plane-o ml-1"></i>
 								</button>
 							</div>
+						</div>
 					</form>
 				</div>
 			</div>

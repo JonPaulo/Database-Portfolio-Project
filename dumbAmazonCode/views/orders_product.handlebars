@@ -63,7 +63,7 @@
 			{{#each orders_product}}
 			<tr>
 				<td>
-					{{id}}
+					{{product_id}}
 				</td>
 				<td>
 					{{name}}
@@ -78,11 +78,12 @@
 					{{subtotal}}
 				</td>
 				<td>
-					<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalUpdate{{id}}">Update</button>
+					<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalUpdate{{product_id}}">Update</button>
 				</td>
 				<td>
 					<form action="orders_product/delete" method="post">
-						<input type="hidden" name="deleteID" value="{{id}}">
+						<input type="hidden" name="ordersID" value="{{orders_id}}">
+						<input type="hidden" name="productID" value="{{product_id}}">
 						<button type="submit" class="btn btn-danger">Delete</button>
 					</form>
 				</td>
@@ -95,11 +96,12 @@
 	{{#each orders_product}}
 
 	<div class="row d-flex justify-content-center modalWrapper">
-		<div class="modal fade modalUpdateClass" id="modalUpdate{{id}}" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal fade modalUpdateClass" id="modalUpdate{{product_id}}" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<form action="/orders_product/update" method="post">
-						<input type="hidden" name="updateID" value="{{id}}">
+						<input type="hidden" name="updateOrdersID" value="{{orders_id}}">
+						<input type="hidden" name="updateProductID" value="{{product_id}}">
 						<div class="modal-header text-center">
 							<h4 class="modal-title w-100 font-weight-bold ml-5">Update Entry</h4>
 							<button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
@@ -107,13 +109,10 @@
 							</button>
 						</div>
 						<div class="modal-body mx-3">
-							<div class="md-form mb-1">
-								<label data-error="wrong" data-success="right" for="updateProductID">Product ID</label>
-								<select class="form-control" name="updateProductID">
-									{{#each product}}
-									<option value={{id}}>{{name}}</option>
-									{{/each}}
-								</select>
+
+							<div class="md-form">
+								<label data-error="wrong" data-success="right" for="updateQuantity">Quantity</label>
+								<input type="number" name="updateQuantity" class="form-control validate" value="{{quantity}}" required>
 							</div>
 
 						</div>
