@@ -22,15 +22,15 @@
 -- Product Table Code
 
   -- INSERT new product
-  INSERT INTO product (name, price, inventory, category_id)
-  VALUES (:nameInput, :priceInput, :inventoryInput, :selectionOfCategory_Ids)
+  INSERT INTO product (name, price, inventory, categories_id)
+  VALUES (:nameInput, :priceInput, :inventoryInput, :selectionOfcategories_ids)
 
   -- SELECT product table data
-  SELECT id, name, price, inventory, category_id FROM product
+  SELECT id, name, price, inventory, categories_id FROM product
 
   -- UPDATE product
   UPDATE product SET name=:nameInput, price=:priceInput, inventory=:inventoryInput,
-  category_id=selectionOfCategory_Ids WHERE id = :idSelected
+  categories_id=selectionOfcategories_ids WHERE id = :idSelected
 
   -- Delete product at id location
   DELETE FROM product WHERE id = :idSelected;
@@ -55,8 +55,8 @@
 -- Orders Table Code
 
   -- INSERT new order
-  INSERT INTO product (name, price, inventory, category_id)
-  VALUES (:nameOfProduct, :priceInput, :inventoryInput, :selectionOfCategory_Ids)
+  INSERT INTO product (name, price, inventory, categories_id)
+  VALUES (:nameOfProduct, :priceInput, :inventoryInput, :selectionOfcategories_ids)
 
   -- SELECT orders table data
   SELECT id as oid, user_id, payment_id, order_date, order_total FROM orders

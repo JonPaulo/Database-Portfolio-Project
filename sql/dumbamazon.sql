@@ -62,9 +62,9 @@ CREATE TABLE `product` (
     `name` varchar(255) NOT NULL,
     `price` decimal(8, 2) NOT NULL,
     `inventory` int(10) NOT NULL,
-    `category_id` int(10) NULL,
+    `categories_id` int(10) NULL,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
+    FOREIGN KEY (categories_id) REFERENCES categories(id) ON DELETE CASCADE
 )  ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `orders_product` (
@@ -105,7 +105,7 @@ VALUES
     (2, 1, UTC_TIMESTAMP, 125.00),
     (1, 3, "2019-05-05", 343.00);
 
-INSERT INTO product(name, price, inventory, category_id)
+INSERT INTO product(name, price, inventory, categories_id)
 VALUES
     ('car', 123456.78, 1234567890, 1),
     ('television', 349.99, 100, NULL),
