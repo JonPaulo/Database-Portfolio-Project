@@ -3,7 +3,7 @@
 	var router = express.Router();
 
 	function getPayment(res, mysql, context, complete) {
-		mysql.pool.query("SELECT id, user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year FROM payment", function (error, results, fields) {
+		mysql.pool.query("SELECT payment.id as pid, user_id, username, payment.fname, payment.lname, payment.street, payment.city, payment.zip, card_num, exp_month, exp_year FROM payment INNER JOIN account on payment.user_id = account.id", function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
 				res.end();
