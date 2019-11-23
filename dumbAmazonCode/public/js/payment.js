@@ -24,7 +24,7 @@
 		});
 	}
 
-	/* Find categories whose name includes the given string in the req */
+	/* Find payment whose name includes the given string in the req */
 	function searchFunction(req, res, mysql, context, complete) {
 		//sanitize the input as well as include the % character
 		var query = "SELECT id, user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year FROM payment WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
@@ -39,7 +39,7 @@
 		});
 	}
 
-	/*Display all categories. Requires web based javascript to delete users with AJAX*/
+	/*Display all payments. Requires web based javascript to delete users with AJAX*/
 	router.get('/', function (req, res) {
 		var callbackCount = 0;
 		var context = {};
@@ -55,7 +55,7 @@
 		}
 	});
 
-	/*Display all categories whose name starts with a given string. */
+	/*Display all payments whose name starts with a given string. */
 	router.get('/search', function (req, res) {
 		var callbackCount = 0;
 		var context = {};
@@ -69,7 +69,7 @@
 		}
 	});
 
-	/* Adds a categories, redirects to the categories page after adding */
+	/* Adds a payment, redirects to the payment page after adding */
 	router.post('/add', function (req, res) {
 		console.log(req.body)
 		var mysql = req.app.get('mysql');
@@ -88,7 +88,7 @@
 		});
 	});
 
-	/* updates a categories, redirects to the categories page after adding */
+	/* updates a payment, redirects to the payment page after adding */
 	router.post('/update', function (req, res) {
 		console.log(req.body)
 		var mysql = req.app.get('mysql');
@@ -107,7 +107,7 @@
 		});
 	});
 
-	/* delete a categories, redirects to the categories page after deleting */
+	/* delete a payment, redirects to the payment page after deleting */
 	router.post('/delete', function (req, res) {
 		var mysql = req.app.get('mysql');
 		var sql = "DELETE FROM payment WHERE id = ?";

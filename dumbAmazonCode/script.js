@@ -39,14 +39,6 @@ app.use('/payment', require('./public/js/payment.js'));
 app.use('/orders', require('./public/js/orders.js'));
 app.use('/orders_product', require('./public/js/orders_product.js'));
 
-// GET orders_product page
-app.get('/orders_product', function (req, res) {
-
-	var context = {};
-	res.render('orders_product', context);
-
-});
-
 //exceptions handling
 app.use(function(req, res) {
   res.status(404);

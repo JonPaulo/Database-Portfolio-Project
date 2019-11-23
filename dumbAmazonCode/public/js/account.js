@@ -13,7 +13,7 @@ module.exports = function () {
 			});
 		}
 
-	/* Find categories whose name includes the given string in the req */
+	/* Find account whose name includes the given string in the req */
 	function searchFunction(req, res, mysql, context, complete) {
 		//sanitize the input as well as include the % character
 		var query = "SELECT id, username, password, email, fname, lname, street, city, zip FROM account WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
@@ -28,7 +28,7 @@ module.exports = function () {
 		});
 	}
 
-	/*Display all categories. Requires web based javascript to delete users with AJAX*/
+	/*Display all accounts. Requires web based javascript to delete users with AJAX*/
 	router.get('/', function (req, res) {
 		var callbackCount = 0;
 		var context = {};
@@ -43,7 +43,7 @@ module.exports = function () {
 		}
 	});
 
-	/*Display all categories whose name starts with a given string. */
+	/*Display all accounts whose name starts with a given string. */
 	router.get('/search', function (req, res) {
 		var callbackCount = 0;
 		var context = {};
@@ -58,7 +58,7 @@ module.exports = function () {
 		}
 	});
 
-	/* Adds a categories, redirects to the categories page after adding */
+	/* Adds an account, redirects to the account page after adding */
 	router.post('/add', function (req, res) {
 		console.log(req.body)
 		var mysql = req.app.get('mysql');
@@ -77,7 +77,7 @@ module.exports = function () {
 		});
 	});
 
-	/* updates a categories, redirects to the categories page after adding */
+	/* updates an account, redirects to the account page after adding */
 	router.post('/update', function (req, res) {
 		console.log(req.body)
 		var mysql = req.app.get('mysql');
@@ -96,7 +96,7 @@ module.exports = function () {
 		});
 	});
 
-	/* delete a categories, redirects to the categories page after deleting */
+	/* delete an account, redirects to the account page after deleting */
 	router.post('/delete', function (req, res) {
 		var mysql = req.app.get('mysql');
 		var sql = "DELETE FROM account WHERE id = ?";

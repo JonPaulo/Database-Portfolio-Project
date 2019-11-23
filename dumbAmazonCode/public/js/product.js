@@ -39,7 +39,7 @@ module.exports = function () {
 		});
 	}
 
-	/*Display all product. Requires web based javascript to delete users with AJAX*/
+	/*Display all products. Requires web based javascript to delete users with AJAX*/
 	router.get('/', function (req, res) {
 		var callbackCount = 0;
 		var context = {};
@@ -55,7 +55,7 @@ module.exports = function () {
 		}
 	});
 
-	/*Display all product whose name starts with a given string. */
+	/*Display all products whose name starts with a given string. */
 	router.get('/search', function (req, res) {
 		var callbackCount = 0;
 		var context = {};
@@ -70,7 +70,7 @@ module.exports = function () {
 		}
 	});
 
-	/* Adds a categories, redirects to the product page after adding */
+	/* Adds a product, redirects to the product page after adding */
 	router.post('/add', function (req, res) {
 		console.log(req.body)
 		var mysql = req.app.get('mysql');
