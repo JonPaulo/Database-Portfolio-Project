@@ -69,7 +69,7 @@ CREATE TABLE `orders_product` (
     `orders_id` int(10) NOT NULL,
     `product_id` int(10) NOT NULL,
     `quantity` int(3) NOT NULL,
-    `subtotal` decimal(8, 2) NOT NULL,
+    `subtotal` decimal(12, 2) NOT NULL,
     PRIMARY KEY (`orders_id`, `product_id`),
     FOREIGN KEY (`orders_id`) REFERENCES orders(id) ON DELETE CASCADE,
     FOREIGN KEY (`product_id`) REFERENCES product(id) ON DELETE CASCADE
@@ -105,13 +105,13 @@ VALUES
 
 INSERT INTO product(name, price, categories_id)
 VALUES
-    ('car', 123456.78, 1),
+    ('car', 12345.67, 1),
     ('television', 349.99, NULL),
     ('phone', 1300, NULL);
 
 INSERT INTO orders_product(orders_id, product_id, quantity, subtotal)
 VALUES
-    (1, 1, 24, 123456.78);
+    (1, 1, 3, 37037.01);
 
 DESCRIBE payment;
 DESCRIBE account;
