@@ -45,7 +45,6 @@ CREATE TABLE `orders` (
     `user_id` int(10) NOT NULL,
     `payment_id` int(10) NOT NULL,
     `order_date` date NOT NULL,
-    `order_total` decimal(10, 2) NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (user_id) REFERENCES account(id) ON DELETE CASCADE,
     FOREIGN KEY (payment_id) REFERENCES payment(id) ON DELETE CASCADE
@@ -97,13 +96,13 @@ VALUES
     ('electronics'),
     ('food');
 
-INSERT INTO orders(user_id, payment_id, order_date, order_total)
+INSERT INTO orders(user_id, payment_id, order_date)
 VALUES
-    (2, 1, CURRENT_TIMESTAMP, 12345678.90),
-    (2, 1, now(), 349.95),
-    (2, 1, CURRENT_TIME, 99.99),
-    (2, 1, UTC_TIMESTAMP, 125.00),
-    (1, 3, "2019-05-05", 343.00);
+    (2, 1, CURRENT_TIMESTAMP),
+    (2, 1, now()),
+    (2, 1, CURRENT_TIME),
+    (2, 1, UTC_TIMESTAMP),
+    (1, 3, "2019-05-05");
 
 INSERT INTO product(name, price, inventory, categories_id)
 VALUES

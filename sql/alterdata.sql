@@ -59,11 +59,11 @@
   VALUES (:nameOfProduct, :priceInput, :inventoryInput, :selectionOfcategories_ids)
 
   -- SELECT orders table data
-  SELECT id as oid, user_id, payment_id, order_date, order_total FROM orders
+  SELECT id as oid, user_id, payment_id, order_date FROM orders
 
   -- UPDATE orders
   UPDATE orders SET user_id=:dropdownOfAccountList, payment_id=dropdownOfPaymentList,
-  order_date=:inputCalendarDate, order_total=:inputPrice WHERE id = :idSelected
+  order_date=:inputCalendarDate WHERE id = :idSelected
 
   -- DELETE orders at id location
   DELETE FROM product WHERE id = :idSelected;
