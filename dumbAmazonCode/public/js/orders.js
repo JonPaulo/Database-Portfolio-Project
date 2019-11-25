@@ -76,6 +76,9 @@ module.exports = function () {
 
 			var accountPayment = {};
 			var i;
+			// for (i = 0; i < results.length; i++) {
+			// 	accountPayment[results[i].id] = results[i].username;
+			// }
 			for (i = 0; i < results.length; i++) {
 				if (!(results[i].username in accountPayment)) {
 					accountPayment[results[i].username] = new Array();
