@@ -64,46 +64,48 @@
 	</div>
 
 	<!-- Display Order Data -->
-	<table class='table'>
-		<thead>
-			<tr>
-				<th>Order Number</th>
-				<th>Username</th>
-				<th>Payment ID</th>
-				<th>Order Total</th>
-				<th>Order Date</th>
-				<th>Order Detail</th>
-				<th>Update</th>
-				<th>Delete</th>
-			</tr>
-		</thead>
-		<tbody>
-			{{#each orders_account}}
-			<tr>
-				<td>{{id}}</td>
-				<td>{{username}}</td>
-				<td>{{payment_id}}</td>
-				<td>{{order_total}}</td>
-				<td>{{order_date}}</td>
-				<td>
-					<form action="/orders_product" method="get">
-						<input type="hidden" name="id" value="{{id}}">
-						<button type="submit" class="btn btn-dark">View</button>
-					</form>
-				</td>
-				<td>
-					<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalUpdate{{id}}">Update</button>
-				</td>
-				<td>
-					<form action="/orders/delete" method="post">
-						<input type="hidden" name="id" value="{{id}}">
-						<button type="submit" class="btn btn-danger">Delete</button>
-					</form>
-				</td>
-			</tr>
-			{{/each}}
-		</tbody>
-	</table>
+	<div class="table-responsive">
+		<table class='table'>
+			<thead>
+				<tr>
+					<th>Order Number</th>
+					<th>Username</th>
+					<th>Payment ID</th>
+					<th>Order Total</th>
+					<th>Order Date</th>
+					<th>Order Detail</th>
+					<th>Update</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each orders_account}}
+				<tr>
+					<td>{{id}}</td>
+					<td>{{username}}</td>
+					<td>{{payment_id}}</td>
+					<td>{{order_total}}</td>
+					<td>{{order_date}}</td>
+					<td>
+						<form action="/orders_product" method="get">
+							<input type="hidden" name="id" value="{{id}}">
+							<button type="submit" class="btn btn-dark">View</button>
+						</form>
+					</td>
+					<td>
+						<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalUpdate{{id}}">Update</button>
+					</td>
+					<td>
+						<form action="/orders/delete" method="post">
+							<input type="hidden" name="id" value="{{id}}">
+							<button type="submit" class="btn btn-danger">Delete</button>
+						</form>
+					</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
 
 
 	<!-- Edit Pop Up (called Modal) -->

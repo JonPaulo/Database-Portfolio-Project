@@ -20,6 +20,43 @@ module.exports = function () {
 				res.end();
 			}
 			context.orders_account = results;
+			console.log("context.orders_account:");
+			console.log(context.orders_account);
+			var i;
+			for (i = 0; i < results.length; i++) {
+				if ((context.orders_account)[i].id in orderSubtotals) {
+					(context.orders_account)[i].order_total = orderSubtotals[(context.orders_account)[i].id];
+				}
+				else {
+					(context.orders_account)[i].order_total = 0;
+				}
+				console.log("orderSubtotals:" + orderSubtotals[i+1]);
+			}
+			complete();
+		});
+	}
+
+	function getOrders_product(res, mysql, context, complete) {
+		mysql.pool.query("SELECT orders_id, product_id, quantity, subtotal FROM orders_product", function (error, results, fields) {
+			if (error) {
+				res.write(JSON.stringify(error));
+				res.end();
+			}
+			context.orders_product = results;
+			orderSubtotals = new Object();
+			var i;
+			for (i = 0; i < results.length; i++) {
+				if (!(results[i].orders_id in orderSubtotals)) {
+					orderSubtotals[results[i].orders_id] = results[i].subtotal;
+				}
+				else {
+					orderSubtotals[results[i].orders_id] += results[i].subtotal;
+				}
+			}
+			// console.log(context.orders_product);
+			// console.log(results[0].subtotal);
+			context.order_subtotal = orderSubtotals;
+			console.log(orderSubtotals);
 			complete();
 		});
 	}
@@ -67,12 +104,13 @@ module.exports = function () {
 		var context = {};
 		var mysql = req.app.get('mysql');
 		//getOrders(res, mysql, context, complete);
+		getOrders_product(res, mysql, context, complete);
 		getOrders_account(res, mysql, context, complete);
 		getPayment_account(res, mysql, context, complete);
 		getAccount(res, mysql, context, complete);
 		function complete() {
 			callbackCount++;
-			if (callbackCount >= 3) {
+			if (callbackCount >= 4) {
 				res.render('orders', context);
 			}
 
