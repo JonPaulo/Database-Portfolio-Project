@@ -33,6 +33,7 @@ module.exports = function () {
 				}
 				(context.orders_account)[i].order_date_formatted = (context.orders_account)[i].order_date;
 				(context.orders_account)[i].order_date_formatted = moment((context.orders_account)[i].order_date).format('MM/DD/YYYY');
+				(context.orders_account)[i].order_date = moment((context.orders_account)[i].order_date).format('YYYY-MM-DD');
 			}
 			complete();
 		});
