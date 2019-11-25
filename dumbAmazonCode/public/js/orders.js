@@ -3,7 +3,7 @@ module.exports = function () {
 	var router = express.Router();
 
 	function getOrders(res, mysql, context, complete) {
-		mysql.pool.query("SELECT id as oid, user_id, payment_id, order_date, order_total FROM orders", function (error, results, fields) {
+		mysql.pool.query("SELECT id as oid, user_id, payment_id, order_date FROM orders", function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
 				res.end();
@@ -14,14 +14,12 @@ module.exports = function () {
 	}
 
 	function getOrders_account(res, mysql, context, complete) {
-		mysql.pool.query("SELECT orders.id, username, payment_id, order_date, order_total FROM account INNER JOIN orders on orders.user_id = account.id", function (error, results, fields) {
+		mysql.pool.query("SELECT orders.id, username, payment_id, order_date FROM account INNER JOIN orders on orders.user_id = account.id", function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
 				res.end();
 			}
 			context.orders_account = results;
-			console.log("context.orders_account:");
-			console.log(context.orders_account);
 			var i;
 			for (i = 0; i < results.length; i++) {
 				if ((context.orders_account)[i].id in orderSubtotals) {
@@ -30,8 +28,10 @@ module.exports = function () {
 				else {
 					(context.orders_account)[i].order_total = 0;
 				}
-				console.log("orderSubtotals:" + orderSubtotals[i+1]);
+				//console.log("orderSubtotals:" + orderSubtotals[i+1]);
 			}
+			//console.log("context.orders_account:");
+			//console.log(context.orders_account);
 			complete();
 		});
 	}
@@ -86,7 +86,7 @@ module.exports = function () {
 	/* Find order whose name includes the given string in the req */
 	function searchFunction(req, res, mysql, context, complete) {
 		//sanitize the input as well as include the % character
-		var query = "SELECT id, user_id, payment_id, order_date, order_total FROM orders WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
+		var query = "SELECT id, user_id, payment_id, order_date FROM orders WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
 		console.log(query)
 		mysql.pool.query(query, function (error, results, fields) {
 			if (error) {
@@ -135,7 +135,7 @@ module.exports = function () {
 	router.post('/add', function (req, res) {
 		console.log(req.body)
 		var mysql = req.app.get('mysql');
-		var sql = "INSERT INTO orders (user_id, payment_id, order_total, order_date) VALUES (?, ?, 0, ?)";
+		var sql = "INSERT INTO orders (user_id, payment_id, order_date) VALUES (?, ?, 0, ?)";
 		var inserts = [req.body.newUserID, req.body.newPaymentID, req.body.newDate];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
@@ -152,8 +152,8 @@ module.exports = function () {
 	router.post('/update', function (req, res) {
 		console.log(req.body)
 		var mysql = req.app.get('mysql');
-		var sql = "UPDATE orders SET user_id=?, payment_id=?, order_date=?, order_total=? WHERE id = ?";
-		var inserts = [req.body.updateUserID, req.body.updatePaymentID, req.body.updateOrderDate,  req.body.updateOrderTotal, req.body.updateID];
+		var sql = "UPDATE orders SET user_id=?, payment_id=?, order_date=? WHERE id = ?";
+		var inserts = [req.body.updateUserID, req.body.updatePaymentID, req.body.updateOrderDate, req.body.updateID];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
 				console.log(JSON.stringify(error))
