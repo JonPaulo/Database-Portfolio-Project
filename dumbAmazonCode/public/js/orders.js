@@ -1,6 +1,9 @@
+
+
 module.exports = function () {
 	var express = require('express');
 	var router = express.Router();
+	var moment = require('moment');
 
 	function getOrders(res, mysql, context, complete) {
 		mysql.pool.query("SELECT id as oid, user_id, payment_id, order_date, order_total FROM orders", function (error, results, fields) {
@@ -30,6 +33,7 @@ module.exports = function () {
 				else {
 					(context.orders_account)[i].order_total = 0;
 				}
+				(context.orders_account)[i].order_date = moment((context.orders_account)[i].order_date).format('MM/DD/YYYY');
 				console.log("orderSubtotals:" + orderSubtotals[i+1]);
 			}
 			complete();
