@@ -4,7 +4,7 @@
 
 	/* get product */
 	function getProduct(res, mysql, context, complete) {
-		sql = "SELECT id, name, price, inventory FROM product";
+		sql = "SELECT id, name, price FROM product";
 		mysql.pool.query(sql, function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
@@ -33,7 +33,7 @@
 	}
 
 	function getNewPrice(req, res, mysql, context, complete) {
-		sql = "SELECT price, inventory FROM product WHERE id = " + mysql.pool.escape(req.body.newProductID);
+		sql = "SELECT price FROM product WHERE id = " + mysql.pool.escape(req.body.newProductID);
 		mysql.pool.query(sql, function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
@@ -45,7 +45,7 @@
 	}
 
 	function getUpdatePrice(req, res, mysql, context, complete) {
-		sql = "SELECT price, inventory FROM product WHERE id = " + mysql.pool.escape(req.body.updateProductID);
+		sql = "SELECT price FROM product WHERE id = " + mysql.pool.escape(req.body.updateProductID);
 		mysql.pool.query(sql, function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
@@ -84,7 +84,7 @@
 		var context1 = {};
 		var mysql = req.app.get('mysql');
 
-		// get the price and inventory of the item first
+		// get the price of the item first
 		getNewPrice(req, res, mysql, context1, complete);
 		function complete() {
 			callbackCount++;
@@ -113,7 +113,7 @@
 		var context1 = {};
 		var mysql = req.app.get('mysql');
 
-		// get the price and inventory of the item first
+		// get the price  of the item first
 		getUpdatePrice(req, res, mysql, context1, complete);
 		function complete() {
 			callbackCount++;

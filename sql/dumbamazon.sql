@@ -60,7 +60,6 @@ CREATE TABLE `product` (
     `id` int(10) NOT NULL AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
     `price` decimal(8, 2) NOT NULL,
-    `inventory` int(10) NOT NULL,
     `categories_id` int(10) NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (categories_id) REFERENCES categories(id) ON DELETE CASCADE
@@ -104,11 +103,11 @@ VALUES
     (2, 1, UTC_TIMESTAMP),
     (1, 3, "2019-05-05");
 
-INSERT INTO product(name, price, inventory, categories_id)
+INSERT INTO product(name, price, categories_id)
 VALUES
-    ('car', 123456.78, 1234567890, 1),
-    ('television', 349.99, 100, NULL),
-    ('phone', 1300, 9000, NULL);
+    ('car', 123456.78, 1),
+    ('television', 349.99, NULL),
+    ('phone', 1300, NULL);
 
 INSERT INTO orders_product(orders_id, product_id, quantity, subtotal)
 VALUES

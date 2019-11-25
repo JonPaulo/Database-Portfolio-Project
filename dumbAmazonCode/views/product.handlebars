@@ -13,7 +13,6 @@
 				<select class="form-control" name="filter">
 					<option value="name">Name</option>
 					<option value="id">Product ID</option>
-					<option value="inventory">Inventory</option>
 					<option value="categories_id">Category ID</option>
 				</select>
 			</div>
@@ -56,10 +55,6 @@
 					<label for="newPrice">Price</label>
 					<input type="number" min="0.00" step="0.01" class="form-control" name="newPrice" placeholder="Price">
 				</div>
-				<div class="form-group col-md-6">
-					<label for="newInventory">Inventory</label>
-					<input type="number" class="form-control" name="newInventory" placeholder="Inventory Count">
-				</div>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
@@ -74,7 +69,6 @@
 				<tr>
 					<th>Product</th>
 					<th>Price</th>
-					<th>Inventory</th>
 					<th>Category</th>
 					<th>Update</th>
 					<th>Remove Product</th>
@@ -85,7 +79,6 @@
 				<tr>
 					<td>{{name}}</td>
 					<td>${{price}}</td>
-					<td>{{inventory}}</td>
 					<td>{{categories_name}}</td>
 					<td>
 						<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalUpdate{{id}}">Update</button>
@@ -128,11 +121,6 @@
 							<div class="md-form mb-1">
 								<label data-error="wrong" data-success="right" for="updatePrice">Price</label>
 								<input type="text" name="updatePrice" class="form-control validate" value="{{price}}" required>
-							</div>
-
-							<div class="md-form mb-1">
-								<label data-error="wrong" data-success="right" for="updateInventory">Inventory</label>
-								<input type="number" name="updateInventory" class="form-control validate" value="{{inventory}}" required>
 							</div>
 
 							<div class="form-row">
