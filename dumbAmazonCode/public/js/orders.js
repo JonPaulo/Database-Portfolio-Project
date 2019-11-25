@@ -64,16 +64,17 @@ module.exports = function () {
 	}
 
 	function getPayment_account(res, mysql, context, complete) {
-		mysql.pool.query("SELECT payment.id, username FROM payment INNER JOIN account on payment.user_id = account.id", function (error, results, fields) {
+		mysql.pool.query("SELECT payment.id as pid, user_id as uid, username FROM payment INNER JOIN account on payment.user_id = account.id", function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
 				res.end();
 			}
 			context.payment_account = results;
-			console.log("Payment Data");
-			console.log(context.payment_account);
-			console.log(context.payment_account[0]);
+			//console.log("Payment Data");
+			//console.log(context.payment_account);
+			//console.log(context.payment_account[0]);
 
+			//var accountPayment = {};
 			var accountPayment = {};
 			var i;
 			// for (i = 0; i < results.length; i++) {
@@ -81,13 +82,16 @@ module.exports = function () {
 			// }
 			for (i = 0; i < results.length; i++) {
 				if (!(results[i].username in accountPayment)) {
-					accountPayment[results[i].username] = new Array();
+					//accountPayment[results[i].username] = new Array();
+					accountPayment[results[i].username] = {
+						uid: results[i].uid, username: results[i].username, pid: []};
 				}
-				accountPayment[results[i].username].push(results[i].id);
+				//accountPayment[results[i].username].push(results[i].id);
+				accountPayment[results[i].username].pid.push(results[i].pid);
 			}
 			context.accountPayment = accountPayment;
-			console.log("Account Payment Links:");
-			console.log(accountPayment);
+			//console.log("Account Payment Links:");
+			//console.log(accountPayment);
 
 			complete();
 		});
@@ -100,8 +104,8 @@ module.exports = function () {
 				res.end();
 			}
 			context.account = results;
-			console.log("Account Data");
-			console.log(context.account);
+			//console.log("Account Data");
+			//console.log(context.account);
 			complete();
 		});
 	}
@@ -156,10 +160,13 @@ module.exports = function () {
 
 	/* Adds an order, redirects to the order page after adding */
 	router.post('/add', function (req, res) {
-		//console.log(req.body)
+		console.log(req.body)
+		var parsed = req.body.newPaymentID.split("-");
+		console.log(parsed);
 		var mysql = req.app.get('mysql');
 		var sql = "INSERT INTO orders (user_id, payment_id, order_date) VALUES (?, ?, ?)";
-		var inserts = [req.body.newUserID, req.body.newPaymentID, req.body.newDate];
+		//var inserts = [req.body.newUserID, req.body.newPaymentID, req.body.newDate];
+		var inserts = [parsed[0], parsed[1], req.body.newDate];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
 				console.log(JSON.stringify(error))

@@ -35,28 +35,41 @@
 	</button><br />
 	<div class="collapse" id="addorder">
 		<form action="/orders/add" method="post">
-			<!-- <div class="form-group">
-				<label for="newUserID">User ID</label>
-				<select id="newUserID" class="form-control" name="newUserID">
-					{{#each account}}
-					<option value={{id}}>{{id}} - {{username}}</option>
-					{{/each}}
-				</select>
+			<div class="form-row">
+				<div class="col">
+					<label data-error="wrong" data-success="right" for="updatePaymentID">Payment ID</label>
+					<select class="form-control" name="newPaymentID">
+						{{#each accountPayment}}
+						<optgroup label={{username}}>
+							{{#each pid}}
+							<option value="{{../uid}}-{{this}}">{{this}}</option>
+							{{/each}}
+						</optgroup>
+						{{/each}}
+					</select>
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="newPaymentID">Payment ID</label>
-				<select id="newPaymentID" class="form-control" name="newPaymentID">
-					{{#each payment_account}}
-					<option value={{id}}>{{id}} - {{username}}'s card</option>
-					{{/each}}
-				</select>
-			</div> -->
 
-
+			<!-- <div class="form-group">
+		<label for="newUserID">User ID</label>
+		<select id="newUserID" class="form-control" name="newUserID">
+			{{#each account}}
+			<option value={{id}}>{{id}} - {{username}}</option>
+			{{/each}}
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="newPaymentID">Payment ID</label>
+		<select id="newPaymentID" class="form-control" name="newPaymentID">
+			{{#each payment_account}}
+			<option value={{id}}>{{id}} - {{username}}'s card</option>
+			{{/each}}
+		</select>
+	</div> -->
 			<!--<div class="form-group">
-				<label for="newTotal">Order Total</label>
-				<input type="number" min="0.00" step="0.01" class="form-control" name="newTotal" placeholder="Order Total">
-			</div>-->
+		<label for="newTotal">Order Total</label>
+		<input type="number" min="0.00" step="0.01" class="form-control" name="newTotal" placeholder="Order Total">
+	</div>-->
 			<div class="form-group">
 				<label for="newDate">Order Date</label>
 				<input type="date" class="form-control" name="newDate" placeholder="newDate">
@@ -173,20 +186,6 @@
 	</div>
 	{{/each}}
 
-	<div class="form-row">
-		<div class="col">
-			<label data-error="wrong" data-success="right" for="updatePaymentID">Payment ID</label>
-			<select class="form-control">
-				{{#each accountPayment}}
-			  <optgroup label={{@key}}>
-					{{#each this}}
-			    <option>{{this}}</option>
-					{{/each}}
-			  </optgroup>
-				{{/each}}
-			</select>
-		</div>
-	</div>
 
 
 </div>
