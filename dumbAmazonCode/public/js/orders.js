@@ -5,16 +5,16 @@ module.exports = function () {
 	var router = express.Router();
 	var moment = require('moment');
 
-	function getOrders(res, mysql, context, complete) {
-		mysql.pool.query("SELECT id as oid, user_id, payment_id, order_date FROM orders", function (error, results, fields) {
-			if (error) {
-				res.write(JSON.stringify(error));
-				res.end();
-			}
-			context.orders = results;
-			complete();
-		});
-	}
+	//function getOrders(res, mysql, context, complete) {
+	//	mysql.pool.query("SELECT id as oid, user_id, payment_id, order_date FROM orders", function (error, results, fields) {
+	//		if (error) {
+	//			res.write(JSON.stringify(error));
+	//			res.end();
+	//		}
+	//		context.orders = results;
+	//		complete();
+	//	});
+	//}
 
 	function getOrders_account(res, mysql, context, complete) {
 		mysql.pool.query("SELECT orders.id as id, username, payment_id, order_date FROM account INNER JOIN orders on orders.user_id = account.id", function (error, results, fields) {
@@ -59,6 +59,7 @@ module.exports = function () {
 			context.order_subtotal = orderSubtotals;
 			//console.log(orderSubtotals);
 			complete();
+			getOrders_account(res, mysql, context, complete);
 		});
 	}
 
@@ -106,7 +107,7 @@ module.exports = function () {
 		var mysql = req.app.get('mysql');
 		//getOrders(res, mysql, context, complete);
 		getOrders_product(res, mysql, context, complete);
-		getOrders_account(res, mysql, context, complete);
+		//getOrders_account(res, mysql, context, complete);
 		getPayment_account(res, mysql, context, complete);
 		getAccount(res, mysql, context, complete);
 		function complete() {
@@ -186,3 +187,4 @@ module.exports = function () {
 
 	return router;
 }();
+
