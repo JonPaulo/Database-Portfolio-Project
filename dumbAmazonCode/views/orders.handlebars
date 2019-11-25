@@ -100,7 +100,7 @@
 					<td>{{username}}</td>
 					<td>{{payment_id}}</td>
 					<td>${{order_total}}</td>
-					<td>{{order_date}}</td>
+					<td>{{order_date_formatted}}</td>
 					<td>
 						<form action="/orders_product" method="get">
 							<input type="hidden" name="id" value="{{id}}">
@@ -150,7 +150,7 @@
 								<input type="number" name="updateOrderTotal" class="form-control validate" value="{{order_total}}" required>
 							</div>-->
 
-							<div class="form-row">
+							<!--<div class="form-row">
 								<div class="col">
 									<label data-error="wrong" data-success="right" for="updateUserID">User ID</label>
 									<select class="form-control" name="updateUserID">
@@ -159,14 +159,18 @@
 										{{/each}}
 									</select>
 								</div>
-							</div>
+							</div>-->
 
 							<div class="form-row">
 								<div class="col">
 									<label data-error="wrong" data-success="right" for="updatePaymentID">Payment ID</label>
-									<select class="form-control" name="updatePaymentID">
-										{{#each ../payment_account}}
-										<option value={{id}}>{{id}} - {{username}}'s card</option>
+									<select class="form-control" name="newPaymentID">
+										{{#each ../accountPayment}}
+										<optgroup label={{username}}>
+											{{#each pid}}
+											<option value="{{../uid}}-{{this}}">{{this}}</option>
+											{{/each}}
+										</optgroup>
 										{{/each}}
 									</select>
 								</div>

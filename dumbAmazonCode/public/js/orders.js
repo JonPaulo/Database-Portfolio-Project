@@ -31,7 +31,8 @@ module.exports = function () {
 				else {
 					(context.orders_account)[i].order_total = 0;
 				}
-				(context.orders_account)[i].order_date = moment((context.orders_account)[i].order_date).format('MM/DD/YYYY');
+				(context.orders_account)[i].order_date_formatted = (context.orders_account)[i].order_date;
+				(context.orders_account)[i].order_date_formatted = moment((context.orders_account)[i].order_date).format('MM/DD/YYYY');
 			}
 			complete();
 		});
@@ -160,9 +161,9 @@ module.exports = function () {
 
 	/* Adds an order, redirects to the order page after adding */
 	router.post('/add', function (req, res) {
-		console.log(req.body)
+		//console.log(req.body)
 		var parsed = req.body.newPaymentID.split("-");
-		console.log(parsed);
+		//console.log(parsed);
 		var mysql = req.app.get('mysql');
 		var sql = "INSERT INTO orders (user_id, payment_id, order_date) VALUES (?, ?, ?)";
 		//var inserts = [req.body.newUserID, req.body.newPaymentID, req.body.newDate];
@@ -181,9 +182,10 @@ module.exports = function () {
 	/* updates an order, redirects to the order page after adding */
 	router.post('/update', function (req, res) {
 		//console.log(req.body)
+		var parsed = req.body.newPaymentID.split("-");
 		var mysql = req.app.get('mysql');
 		var sql = "UPDATE orders SET user_id=?, payment_id=?, order_date=? WHERE id = ?";
-		var inserts = [req.body.updateUserID, req.body.updatePaymentID, req.body.updateOrderDate, req.body.updateID];
+		var inserts = [parsed[0], parsed[1], req.body.updateOrderDate, req.body.updateID];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
 				console.log(JSON.stringify(error))
