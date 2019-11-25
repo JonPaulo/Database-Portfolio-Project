@@ -70,6 +70,22 @@ module.exports = function () {
 				res.end();
 			}
 			context.payment_account = results;
+			console.log("Payment Data");
+			console.log(context.payment_account);
+			console.log(context.payment_account[0]);
+
+			var accountPayment = {};
+			var i;
+			for (i = 0; i < results.length; i++) {
+				if (!(results[i].username in accountPayment)) {
+					accountPayment[results[i].username] = new Array();
+				}
+				accountPayment[results[i].username].push(results[i].id);
+			}
+			context.accountPayment = accountPayment;
+			console.log("Account Payment Links:");
+			console.log(accountPayment);
+
 			complete();
 		});
 	}
@@ -81,6 +97,8 @@ module.exports = function () {
 				res.end();
 			}
 			context.account = results;
+			console.log("Account Data");
+			console.log(context.account);
 			complete();
 		});
 	}
@@ -187,4 +205,3 @@ module.exports = function () {
 
 	return router;
 }();
-
