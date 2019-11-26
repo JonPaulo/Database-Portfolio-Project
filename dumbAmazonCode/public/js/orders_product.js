@@ -89,7 +89,6 @@
 
 	/*Display all products whose name starts with a given string. */
 	router.get('/search', function (req, res) {
-		console.log(req.query);
 		var callbackCount = 0;
 		var context = {};
 		var mysql = req.app.get('mysql');
@@ -98,7 +97,7 @@
 		function complete() {
 			callbackCount++;
 			if (callbackCount >= 1) {
-				res.redirect('/orders_product?id=' + req.query.searchID, context);
+				res.render('orders_product', context);
 			}
 		}
 	});
