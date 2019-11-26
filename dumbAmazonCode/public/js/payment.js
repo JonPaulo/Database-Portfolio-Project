@@ -29,7 +29,7 @@
 	/* Find payment whose name includes the given string in the req */
 	function searchFunction(req, res, mysql, context, complete) {
 		//sanitize the input as well as include the % character
-		var query = "SELECT id, user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year FROM payment WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
+		var query = "SELECT payment.id as pid, user_id, username, payment.fname, payment.lname, payment.street, payment.city, payment.zip, card_num, exp_month, exp_year FROM payment INNER JOIN account on payment.user_id = account.id WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
 		mysql.pool.query(query, function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
