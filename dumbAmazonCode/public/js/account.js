@@ -2,6 +2,7 @@ module.exports = function () {
 	var express = require('express');
 	var router = express.Router();
 
+		// get columns to display from account table
 		function getAccount(res, mysql, context, complete) {
 			mysql.pool.query("SELECT id, username, password, email, fname, lname, street, city, zip FROM account", function (error, results, fields) {
 				if (error) {
@@ -17,7 +18,6 @@ module.exports = function () {
 	function searchFunction(req, res, mysql, context, complete) {
 		//sanitize the input as well as include the % character
 		var query = "SELECT id, username, password, email, fname, lname, street, city, zip FROM account WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
-		console.log(query)
 		mysql.pool.query(query, function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
@@ -60,7 +60,6 @@ module.exports = function () {
 
 	/* Adds an account, redirects to the account page after adding */
 	router.post('/add', function (req, res) {
-		console.log(req.body)
 		var mysql = req.app.get('mysql');
 		var sql = "INSERT INTO account (username, password, email, fname, lname, street, city, zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		var inserts = [req.body.newUsername, req.body.newPassword, req.body.newEmail,
@@ -68,7 +67,6 @@ module.exports = function () {
 			req.body.newZip];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
-				console.log(JSON.stringify(error))
 				res.write(JSON.stringify(error));
 				res.end();
 			} else {
@@ -79,7 +77,6 @@ module.exports = function () {
 
 	/* updates an account, redirects to the account page after adding */
 	router.post('/update', function (req, res) {
-		console.log(req.body)
 		var mysql = req.app.get('mysql');
 		var sql = "UPDATE account SET username = ?, password=?, email=?, fname=?, lname=?, street=?, city=?, zip=? WHERE id = ?";
 		var inserts = [req.body.editUsername, req.body.editPassword, req.body.editEmail,
@@ -87,7 +84,6 @@ module.exports = function () {
 			req.body.editZip, req.body.updateID];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
-				console.log(JSON.stringify(error))
 				res.write(JSON.stringify(error));
 				res.end();
 			} else {
@@ -103,7 +99,6 @@ module.exports = function () {
 		var inserts = [req.body.deleteID];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
-				console.log(error)
 				res.write(JSON.stringify(error));
 				res.status(400);
 				res.end();

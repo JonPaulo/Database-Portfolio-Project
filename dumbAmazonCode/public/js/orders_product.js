@@ -32,6 +32,7 @@
 		});
 	}
 
+	// get price of the specified product id for new function
 	function getNewPrice(req, res, mysql, context, complete) {
 		sql = "SELECT price FROM product WHERE id = " + mysql.pool.escape(req.body.newProductID);
 		mysql.pool.query(sql, function (error, results, fields) {
@@ -44,6 +45,7 @@
 		});
 	}
 
+	// get price of the specified product id for update function
 	function getUpdatePrice(req, res, mysql, context, complete) {
 		sql = "SELECT price FROM product WHERE id = " + mysql.pool.escape(req.body.updateProductID);
 		mysql.pool.query(sql, function (error, results, fields) {
@@ -95,7 +97,6 @@
 				var inserts = [req.body.newOrdersID, req.body.newProductID, req.body.newQuantity, total];
 				sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 					if (error) {
-						console.log(JSON.stringify(error))
 						res.write(JSON.stringify(error));
 						res.end();
 					} else {
@@ -108,7 +109,6 @@
 
 	/* updates a orders_product, redirects to the orders_product page after adding */
 	router.post('/update', function (req, res) {
-		console.log(req.body);
 		var callbackCount = 0;
 		var context1 = {};
 		var mysql = req.app.get('mysql');
@@ -119,14 +119,11 @@
 			callbackCount++;
 			if (callbackCount >= 1) {
 				// update the item
-				console.log(context1.product[0].price);
-				console.log(req.body.updateQuantity);
 				var total = context1.product[0].price * req.body.updateQuantity;
 				var sql = "UPDATE orders_product SET quantity = ?, subtotal = ? WHERE orders_id = ? AND product_id = ?";
 				var inserts = [req.body.updateQuantity, total, req.body.updateOrdersID, req.body.updateProductID];
 				sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 					if (error) {
-						console.log(JSON.stringify(error))
 						res.write(JSON.stringify(error));
 						res.end();
 					} else {
@@ -144,7 +141,6 @@
 		var inserts = [req.body.ordersID, req.body.productID];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
-				console.log(error)
 				res.write(JSON.stringify(error));
 				res.status(400);
 				res.end();
