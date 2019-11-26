@@ -1,0 +1,23 @@
+h1 {
+  text-align: center;
+}
+
+body {
+  padding-top: 55px;
+  background-color: #2A4373;
+  background-size: cover;
+}
+
+#containerbg {
+  min-height: 100vh;
+  background: white;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1440px) {
+    .container{
+        max-width: 1440px;
+    }
+}
