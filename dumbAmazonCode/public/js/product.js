@@ -29,7 +29,7 @@ module.exports = function () {
 	/* Find product whose name includes the given string in the req */
 	function searchFunction(req, res, mysql, context, complete) {
 		//sanitize the input as well as include the % character
-		var query = "SELECT id, name, price, categories_id FROM product WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
+		var query = "SELECT product.id as id, product.name as name, price, categories_id, categories.name as categories_name FROM product LEFT JOIN categories on categories.id = product.categories_id WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
 		mysql.pool.query(query, function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
