@@ -15,19 +15,29 @@
 		});
 	}
 
-	/* get people with their certificates */
-    /* TODO: get multiple certificates in a single column and group on
-     * fname+lname or id column
-     */
+	// get columns to display from orders_product joined tables
 	function getOrders_product(req, res, mysql, context, complete) {
 		sql = "SELECT orders_id, product_id, product.name, product.price, quantity, subtotal FROM orders_product INNER JOIN product on orders_product.product_id = product.id WHERE orders_id = " + mysql.pool.escape(req.query.id);
-		//sql = "SELECT pid, cid, CONCAT(fname,' ',lname) AS name, title AS certificate FROM bsg_people INNER JOIN bsg_cert_people on bsg_people.character_id = bsg_cert_people.pid INNER JOIN bsg_cert on bsg_cert.certification_id = bsg_cert_people.cid ORDER BY name, certificate"
 		mysql.pool.query(sql, function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
 				res.end()
 			}
 			context.orders_product = results
+			complete();
+		});
+	}
+
+	/* Find product whose name includes the given string in the req */
+	function searchFunction(req, res, mysql, context, complete) {
+		//sanitize the input as well as include the % character
+		var query = "SELECT orders_id, product_id, product.name, product.price, quantity, subtotal FROM orders_product INNER JOIN product on orders_product.product_id = product.id WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
+		mysql.pool.query(query, function (error, results, fields) {
+			if (error) {
+				res.write(JSON.stringify(error));
+				res.end();
+			}
+			context.orders_product = results;
 			complete();
 		});
 	}
@@ -58,13 +68,10 @@
 		});
 	}
 
-    /* List people with certificates along with 
-     * displaying a form to associate a person with multiple certificates
-     */
+	// main get page for the table
 	router.get('/', function (req, res) {
 		var callbackCount = 0;
 		var context = {};
-		//context.jsscripts = ["deleteperson.js"];
 		var mysql = req.app.get('mysql');
 		var handlebars_file = 'orders_product'
 		context.this_id = req.query.id;
@@ -76,6 +83,22 @@
 			callbackCount++;
 			if (callbackCount >= 2) {
 				res.render(handlebars_file, context);
+			}
+		}
+	});
+
+	/*Display all products whose name starts with a given string. */
+	router.get('/search', function (req, res) {
+		console.log(req.query);
+		var callbackCount = 0;
+		var context = {};
+		var mysql = req.app.get('mysql');
+
+		searchFunction(req, res, mysql, context, complete);
+		function complete() {
+			callbackCount++;
+			if (callbackCount >= 1) {
+				res.redirect('/orders_product?id=' + req.query.searchID, context);
 			}
 		}
 	});

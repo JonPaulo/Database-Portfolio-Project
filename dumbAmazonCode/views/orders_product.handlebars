@@ -4,9 +4,19 @@
 
 	<!-- search bar -->
 	<form action="/orders_product/search" method="get">
+		<input type="hidden" name="searchID" value="{{this_id}}">
 		<div class="form-row">
-			<div class="form-group col-md-10">
-				<input name="searchName" class="form-control" type="text" placeholder="Search Product Name" aria-label="Search" />
+			<div class="form-group col-md-7">
+				<input name="search" class="form-control" type="text" placeholder="Search" aria-label="Search" />
+			</div>
+			<div class="form-group col-md-3">
+				<select class="form-control" name="filter">
+					<option value="product.id">Product ID</option>
+					<option value="product.name">Product Name</option>
+					<option value="product.price">Price per Item</option>
+					<option value="orders_product.quantity">Quantity</option>
+					<option value="orders_product.subtotal">Subtotal</option>
+				</select>
 			</div>
 			<div class="form-group col-md-2">
 				<button type="submit" class="btn btn-primary btn-block">Search</button>
