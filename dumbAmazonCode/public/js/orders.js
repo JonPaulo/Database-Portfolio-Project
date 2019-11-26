@@ -49,7 +49,6 @@ module.exports = function () {
 			}
 			context.order_subtotal = orderSubtotals;
 			complete();
-			getOrders_account(res, mysql, context, complete);
 		});
 	}
 
@@ -93,13 +92,23 @@ module.exports = function () {
 	function searchFunction(req, res, mysql, context, complete) {
 		//sanitize the input as well as include the % character
 		var query = "SELECT orders.id as id, username, payment_id, order_date FROM account INNER JOIN orders on orders.user_id = account.id WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
-		console.log(query);
 		mysql.pool.query(query, function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
 				res.end();
 			}
 			context.orders_account = results;
+			for (i = 0; i < results.length; i++) {
+				if ((context.orders_account)[i].id in orderSubtotals) {
+					(context.orders_account)[i].order_total = orderSubtotals[(context.orders_account)[i].id];
+				}
+				else {
+					(context.orders_account)[i].order_total = 0;
+				}
+				(context.orders_account)[i].order_date_formatted = (context.orders_account)[i].order_date;
+				(context.orders_account)[i].order_date_formatted = moment((context.orders_account)[i].order_date).format('MM/DD/YYYY');
+				(context.orders_account)[i].order_date = moment((context.orders_account)[i].order_date).format('YYYY-MM-DD');
+			}
 			complete();
 		});
 	}
@@ -112,6 +121,7 @@ module.exports = function () {
 		getOrders_product(res, mysql, context, complete);
 		getPayment_account(res, mysql, context, complete);
 		getAccount(res, mysql, context, complete);
+		getOrders_account(res, mysql, context, complete);
 		function complete() {
 			callbackCount++;
 			if (callbackCount >= 4) {
@@ -123,14 +133,16 @@ module.exports = function () {
 
 	/*Display all orders whose name starts with a given string. */
 	router.get('/search', function (req, res) {
-		console.log(req.query);
 		var callbackCount = 0;
 		var context = {};
 		var mysql = req.app.get('mysql');
+		getOrders_product(res, mysql, context, complete);
+		getPayment_account(res, mysql, context, complete);
+		getAccount(res, mysql, context, complete);
 		searchFunction(req, res, mysql, context, complete);
 		function complete() {
 			callbackCount++;
-			if (callbackCount >= 1) {
+			if (callbackCount >= 4) {
 				res.render('orders', context);
 			}
 		}
