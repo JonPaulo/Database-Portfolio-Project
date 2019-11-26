@@ -118,10 +118,6 @@ VALUES
     ('television', 349.99, NULL),
     ('phone', 1300, NULL);
 
-INSERT INTO orders_product(orders_id, product_id, quantity, subtotal)
-VALUES
-    (1, 1, 3, 37037.01);
-
 
 -- Randomly Generated Data
 
@@ -173,6 +169,15 @@ insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_mon
 insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (20, 'Filberte', 'Querree', '95 Erie Trail', 'Barra de São Francisco', 51618, '4041379867906', '03', '52');
 insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (14, 'Dian', 'Gamet', '54 Dahle Circle', 'Purorejo', 95438, '6759758011988063', '06', '39');
 
+INSERT INTO orders_product(orders_id, product_id, quantity, subtotal)
+VALUES
+    (1, 1, 3, 37037.01),
+    (1, 2, 3, 1049.97),
+    (2, 3, 3, 3900),
+    (3, 9, 25, 3739.75),
+    (4, 4, 3, 3717.30),
+    (5, 5, 30, 30.60),
+    (5, 10, 60, 1026.00);
 
 DESCRIBE payment;
 DESCRIBE account;
