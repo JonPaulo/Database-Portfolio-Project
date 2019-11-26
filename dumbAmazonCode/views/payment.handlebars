@@ -81,7 +81,7 @@
 				<div class="form-group col-md-8">
 					<label for="newCardNum">Card Number</label>
 					<!--reference: https://stackoverflow.com/questions/51933218/how-to-remove-please-match-the-requested-format-->
-					<input type="number" class="form-control" name="newCardNum" placeholder="Card Number" required
+					<input type="text" class="form-control" name="newCardNum" placeholder="Card Number" required
 							oninvalid="this.setCustomValidity('Please enter a valid 13-16 digit combination.')"
 							onchange="try{setCustomValidity('')}catch(e){}"
 							oninput="setCustomValidity(' ')"
@@ -95,7 +95,7 @@
 				</div>
 				<div class="form-group col-md-2">
 					<label for="newExpYear">Expiration Year</label>
-					<input type="number" min="00" step="1" max="99" class="form-control" name="newExpYear" placeholder="YY" required>
+					<input type="number" min="0" step="1" max="99" class="form-control" name="newExpYear" placeholder="YY" required>
 				</div>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
@@ -204,7 +204,7 @@
 							<div class="md-form">
 								<label data-error="wrong" data-success="right" for="editCardNum">Card Number</label>
 								<!--reference: https://stackoverflow.com/questions/51933218/how-to-remove-please-match-the-requested-format-->
-								<input type="number" name="editCardNum" class="form-control validate" value="{{card_num}}" required
+								<input type="text" name="editCardNum" class="form-control validate" value="{{card_num}}" required
 									   oninvalid="this.setCustomValidity('Please enter a valid 13-16 digit combination.')"
 									   onchange="try{setCustomValidity('')}catch(e){}"
 									   oninput="setCustomValidity(' ')"
