@@ -129,11 +129,11 @@
 					<td>{{exp_month}}</td>
 					<td>{{exp_year}}</td>
 					<td>
-						<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalUpdate{{id}}">Update</button>
+						<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalUpdate{{pid}}">Update</button>
 					</td>
 					<td>
 						<form action="payment/delete" method="post">
-							<input type="hidden" name="deleteID" value="{{id}}">
+							<input type="hidden" name="deleteID" value="{{pid}}">
 							<button type="submit" class="btn btn-danger">Delete</button>
 						</form>
 					</td>
@@ -148,11 +148,11 @@
 	{{#each payment}}
 
 	<div class="row d-flex justify-content-center modalWrapper">
-		<div class="modal fade modalUpdateClass" id="modalUpdate{{id}}" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal fade modalUpdateClass" id="modalUpdate{{pid}}" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<form action="/payment/update" method="post">
-						<input type="hidden" name="updateID" value="{{id}}">
+						<input type="hidden" name="updateID" value="{{pid}}">
 						<div class="modal-header text-center">
 							<h4 class="modal-title w-100 font-weight-bold ml-5">Update Entry</h4>
 							<button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">

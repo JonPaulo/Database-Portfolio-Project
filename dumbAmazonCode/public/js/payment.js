@@ -2,6 +2,7 @@
 	var express = require('express');
 	var router = express.Router();
 
+	// get columns to display from payment_account joined table
 	function getPayment(res, mysql, context, complete) {
 		mysql.pool.query("SELECT payment.id as pid, user_id, username, payment.fname, payment.lname, payment.street, payment.city, payment.zip, card_num, exp_month, exp_year FROM payment INNER JOIN account on payment.user_id = account.id", function (error, results, fields) {
 			if (error) {
@@ -13,6 +14,7 @@
 		});
 	}
 
+	// get columns to display from account table
 	function getAccount(res, mysql, context, complete) {
 		mysql.pool.query("SELECT id, username, password, email, fname, lname, street, city, zip FROM account", function (error, results, fields) {
 			if (error) {
@@ -28,7 +30,6 @@
 	function searchFunction(req, res, mysql, context, complete) {
 		//sanitize the input as well as include the % character
 		var query = "SELECT id, user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year FROM payment WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
-		console.log(query)
 		mysql.pool.query(query, function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
@@ -71,7 +72,6 @@
 
 	/* Adds a payment, redirects to the payment page after adding */
 	router.post('/add', function (req, res) {
-		console.log(req.body)
 		var mysql = req.app.get('mysql');
 		var sql = "INSERT INTO payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		var inserts = [req.body.newUserID, req.body.newFname, req.body.newLname,
@@ -79,7 +79,6 @@
 			req.body.newExpMonth, req.body.newExpYear];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
-				console.log(JSON.stringify(error))
 				res.write(JSON.stringify(error));
 				res.end();
 			} else {
@@ -90,7 +89,6 @@
 
 	/* updates a payment, redirects to the payment page after adding */
 	router.post('/update', function (req, res) {
-		console.log(req.body)
 		var mysql = req.app.get('mysql');
 		var sql = "UPDATE payment SET user_id=?, fname=?, lname=?, street=?, city=?, zip=?, card_num=?, exp_month=?, exp_year=? WHERE id = ?";
 		var inserts = [req.body.editUserID, req.body.editFname, req.body.editLname,
@@ -98,7 +96,6 @@
 			req.body.editExpMonth, req.body.editExpYear, req.body.updateID];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
-				console.log(JSON.stringify(error))
 				res.write(JSON.stringify(error));
 				res.end();
 			} else {
@@ -114,7 +111,6 @@
 		var inserts = [req.body.deleteID];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
-				console.log(error)
 				res.write(JSON.stringify(error));
 				res.status(400);
 				res.end();

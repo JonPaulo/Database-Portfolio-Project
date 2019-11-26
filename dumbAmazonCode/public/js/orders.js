@@ -5,17 +5,7 @@ module.exports = function () {
 	var router = express.Router();
 	var moment = require('moment');
 
-	//function getOrders(res, mysql, context, complete) {
-	//	mysql.pool.query("SELECT id as oid, user_id, payment_id, order_date FROM orders", function (error, results, fields) {
-	//		if (error) {
-	//			res.write(JSON.stringify(error));
-	//			res.end();
-	//		}
-	//		context.orders = results;
-	//		complete();
-	//	});
-	//}
-
+	// get columns to display from orders_account joined tables
 	function getOrders_account(res, mysql, context, complete) {
 		mysql.pool.query("SELECT orders.id as id, username, payment_id, order_date FROM account INNER JOIN orders on orders.user_id = account.id", function (error, results, fields) {
 			if (error) {
@@ -39,6 +29,7 @@ module.exports = function () {
 		});
 	}
 
+	// get columns to display from orders_product joined tables
 	function getOrders_product(res, mysql, context, complete) {
 		mysql.pool.query("SELECT orders_id, product_id, quantity, subtotal FROM orders_product", function (error, results, fields) {
 			if (error) {
@@ -56,15 +47,13 @@ module.exports = function () {
 					orderSubtotals[results[i].orders_id] += results[i].subtotal;
 				}
 			}
-			// console.log(context.orders_product);
-			// console.log(results[0].subtotal);
 			context.order_subtotal = orderSubtotals;
-			//console.log(orderSubtotals);
 			complete();
 			getOrders_account(res, mysql, context, complete);
 		});
 	}
 
+	// get columns to display from payment_account joined tables
 	function getPayment_account(res, mysql, context, complete) {
 		mysql.pool.query("SELECT payment.id as pid, user_id as uid, username FROM payment INNER JOIN account on payment.user_id = account.id", function (error, results, fields) {
 			if (error) {
@@ -72,33 +61,23 @@ module.exports = function () {
 				res.end();
 			}
 			context.payment_account = results;
-			//console.log("Payment Data");
-			//console.log(context.payment_account);
-			//console.log(context.payment_account[0]);
 
-			//var accountPayment = {};
 			var accountPayment = {};
 			var i;
-			// for (i = 0; i < results.length; i++) {
-			// 	accountPayment[results[i].id] = results[i].username;
-			// }
 			for (i = 0; i < results.length; i++) {
 				if (!(results[i].username in accountPayment)) {
-					//accountPayment[results[i].username] = new Array();
 					accountPayment[results[i].username] = {
 						uid: results[i].uid, username: results[i].username, pid: []};
 				}
-				//accountPayment[results[i].username].push(results[i].id);
 				accountPayment[results[i].username].pid.push(results[i].pid);
 			}
 			context.accountPayment = accountPayment;
-			//console.log("Account Payment Links:");
-			//console.log(accountPayment);
 
 			complete();
 		});
 	}
 
+	// get columns to display from account table
 	function getAccount(res, mysql, context, complete) {
 		mysql.pool.query("SELECT id, username FROM account", function (error, results, fields) {
 			if (error) {
@@ -106,8 +85,6 @@ module.exports = function () {
 				res.end();
 			}
 			context.account = results;
-			//console.log("Account Data");
-			//console.log(context.account);
 			complete();
 		});
 	}
@@ -116,7 +93,6 @@ module.exports = function () {
 	function searchFunction(req, res, mysql, context, complete) {
 		//sanitize the input as well as include the % character
 		var query = "SELECT id, user_id, payment_id, order_date FROM orders WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
-		//console.log(query)
 		mysql.pool.query(query, function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
@@ -132,9 +108,7 @@ module.exports = function () {
 		var callbackCount = 0;
 		var context = {};
 		var mysql = req.app.get('mysql');
-		//getOrders(res, mysql, context, complete);
 		getOrders_product(res, mysql, context, complete);
-		//getOrders_account(res, mysql, context, complete);
 		getPayment_account(res, mysql, context, complete);
 		getAccount(res, mysql, context, complete);
 		function complete() {
@@ -162,16 +136,12 @@ module.exports = function () {
 
 	/* Adds an order, redirects to the order page after adding */
 	router.post('/add', function (req, res) {
-		//console.log(req.body)
 		var parsed = req.body.newPaymentID.split("-");
-		//console.log(parsed);
 		var mysql = req.app.get('mysql');
 		var sql = "INSERT INTO orders (user_id, payment_id, order_date) VALUES (?, ?, ?)";
-		//var inserts = [req.body.newUserID, req.body.newPaymentID, req.body.newDate];
 		var inserts = [parsed[0], parsed[1], req.body.newDate];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
-				console.log(JSON.stringify(error))
 				res.write(JSON.stringify(error));
 				res.end();
 			} else {
@@ -182,14 +152,12 @@ module.exports = function () {
 
 	/* updates an order, redirects to the order page after adding */
 	router.post('/update', function (req, res) {
-		//console.log(req.body)
 		var parsed = req.body.newPaymentID.split("-");
 		var mysql = req.app.get('mysql');
 		var sql = "UPDATE orders SET user_id=?, payment_id=?, order_date=? WHERE id = ?";
 		var inserts = [parsed[0], parsed[1], req.body.updateOrderDate, req.body.updateID];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
-				console.log(JSON.stringify(error))
 				res.write(JSON.stringify(error));
 				res.end();
 			} else {
@@ -200,13 +168,11 @@ module.exports = function () {
 
 	/* delete an order, redirects to the order page after deleting */
 	router.post('/delete', function (req, res) {
-		//console.log(req.body);
 		var mysql = req.app.get('mysql');
 		var sql = "DELETE FROM orders WHERE id = ?";
 		var inserts = [req.body.id];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
-				console.log(error)
 				res.write(JSON.stringify(error));
 				res.status(400);
 				res.end();

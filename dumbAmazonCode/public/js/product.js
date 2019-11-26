@@ -2,6 +2,7 @@ module.exports = function () {
 	var express = require('express');
 	var router = express.Router();
 
+		// get columns to display from product_categories joined table
 		function getProduct(res, mysql, context, complete) {
 			mysql.pool.query("SELECT product.id as id, product.name as name, price, categories_id, categories.name as categories_name FROM product LEFT JOIN categories on product.categories_id = categories.id", function (error, results, fields) {
 				if (error) {
@@ -13,6 +14,7 @@ module.exports = function () {
 			});
 		}
 
+		// get columns to display from categories table
 		function getCategories(res, mysql, context, complete) {
 			mysql.pool.query("SELECT id, name FROM categories", function (error, results, fields) {
 				if (error) {
@@ -28,7 +30,6 @@ module.exports = function () {
 	function searchFunction(req, res, mysql, context, complete) {
 		//sanitize the input as well as include the % character
 		var query = "SELECT id, name, price, categories_id FROM product WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
-		console.log(query)
 		mysql.pool.query(query, function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
@@ -72,7 +73,6 @@ module.exports = function () {
 
 	/* Adds a product, redirects to the product page after adding */
 	router.post('/add', function (req, res) {
-		console.log(req.body)
 		var mysql = req.app.get('mysql');
 		if (req.body.newCategories == "NULL") {
 			var sql = "INSERT INTO product (name, price) VALUES (?, ?)";
@@ -84,7 +84,6 @@ module.exports = function () {
 		}
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
-				console.log(JSON.stringify(error))
 				res.write(JSON.stringify(error));
 				res.end();
 			} else {
@@ -95,7 +94,6 @@ module.exports = function () {
 
 	/* updates a product, redirects to the product page after adding */
 	router.post('/update', function (req, res) {
-		console.log(req.body)
 		var mysql = req.app.get('mysql');
 		if (req.body.updateCategories_id == "NULL") {
 			var sql = "UPDATE product SET name=?, price=?, categories_id=NULL WHERE id = ?";
@@ -107,7 +105,6 @@ module.exports = function () {
 		}
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
-				console.log(JSON.stringify(error))
 				res.write(JSON.stringify(error));
 				res.end();
 			} else {
@@ -123,7 +120,6 @@ module.exports = function () {
 		var inserts = [req.body.deleteID];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
-				console.log(error)
 				res.write(JSON.stringify(error));
 				res.status(400);
 				res.end();

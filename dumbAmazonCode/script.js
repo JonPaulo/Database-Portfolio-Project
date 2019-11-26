@@ -10,14 +10,13 @@ app.set('view engine', 'handlebars');
 // require body-parser for POST
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(bodyParser.json());
 
 // use specific folders for files
 app.use('/static', express.static('public'));
 app.use('/', express.static('public'));
 
 // require mySQL
-var mysql = require('./dbcon1.js');
+var mysql = require('./dbcon2.js');
 app.set('mysql', mysql);
 
 // set port from argument

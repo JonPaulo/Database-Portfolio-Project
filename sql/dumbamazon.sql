@@ -11,6 +11,7 @@ DROP TABLE IF EXISTS `categories`;
 DROP TABLE IF EXISTS `orders_product`;
 SET FOREIGN_KEY_CHECKS = 1;
 
+-- create tables
 CREATE TABLE `account` (
     `id` int(10) NOT NULL AUTO_INCREMENT,
     `username` varchar(20) NOT NULL,
