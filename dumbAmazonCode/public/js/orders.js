@@ -92,13 +92,14 @@ module.exports = function () {
 	/* Find order whose name includes the given string in the req */
 	function searchFunction(req, res, mysql, context, complete) {
 		//sanitize the input as well as include the % character
-		var query = "SELECT id, user_id, payment_id, order_date FROM orders WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
+		var query = "SELECT orders.id as id, username, payment_id, order_date FROM account INNER JOIN orders on orders.user_id = account.id WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
+		console.log(query);
 		mysql.pool.query(query, function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
 				res.end();
 			}
-			context.orders = results;
+			context.orders_account = results;
 			complete();
 		});
 	}
@@ -122,6 +123,7 @@ module.exports = function () {
 
 	/*Display all orders whose name starts with a given string. */
 	router.get('/search', function (req, res) {
+		console.log(req.query);
 		var callbackCount = 0;
 		var context = {};
 		var mysql = req.app.get('mysql');
