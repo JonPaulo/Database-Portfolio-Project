@@ -90,8 +90,8 @@
 	/* updates a payment, redirects to the payment page after adding */
 	router.post('/update', function (req, res) {
 		var mysql = req.app.get('mysql');
-		var sql = "UPDATE payment SET user_id=?, fname=?, lname=?, street=?, city=?, zip=?, card_num=?, exp_month=?, exp_year=? WHERE id = ?";
-		var inserts = [req.body.editUserID, req.body.editFname, req.body.editLname,
+		var sql = "UPDATE payment SET fname=?, lname=?, street=?, city=?, zip=?, card_num=?, exp_month=?, exp_year=? WHERE id = ?";
+		var inserts = [req.body.editFname, req.body.editLname,
 			req.body.editStreet, req.body.editCity, req.body.editZip, req.body.editCardNum,
 			req.body.editExpMonth, req.body.editExpYear, req.body.updateID];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {

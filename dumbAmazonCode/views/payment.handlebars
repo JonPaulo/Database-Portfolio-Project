@@ -167,9 +167,11 @@
 						<div class="modal-body mx-3">
 
 							<div class="md-form mb-1" style="text-align: center;">
-								<label data-error="wrong" data-success="right" for="editUserID" style="text-align: center;">
-									<h5>Account Holder:</h5><h4><strong>{{username}}</strong></h4><h5>User ID - {{user_id}}</h5></label>
+								<label data-error="wrong" data-success="right" for="editUserID" style="text-align: center;" value="{{user_id}}">
+									<h5>Account Holder:</h5><h4><strong>{{username}}</strong></h4>
+								</label>
 							</div>
+							<span style="color: grey;"><em>User ID - {{user_id}}</em></span>
 
 							<div class="form-row">
 								<div class="col">
