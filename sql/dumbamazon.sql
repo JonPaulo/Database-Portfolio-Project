@@ -122,13 +122,6 @@ INSERT INTO orders_product(orders_id, product_id, quantity, subtotal)
 VALUES
     (1, 1, 3, 37037.01);
 
-DESCRIBE payment;
-DESCRIBE account;
-DESCRIBE categories;
-DESCRIBE orders;
-DESCRIBE orders_product;
-DESCRIBE product;
-
 
 -- Randomly Generated Data
 
@@ -179,3 +172,11 @@ insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_mon
 insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (3, 'Alair', 'McCarly', '31632 Susan Alley', 'Asbestos', 77693, '670981288330781158', 9, 91);
 insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (20, 'Filberte', 'Querree', '95 Erie Trail', 'Barra de São Francisco', 51618, '4041379867906', 3, 52);
 insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (14, 'Dian', 'Gamet', '54 Dahle Circle', 'Purorejo', 95438, '6759758011988063', 6, 39);
+
+
+DESCRIBE payment;
+DESCRIBE account;
+DESCRIBE categories;
+DESCRIBE orders;
+DESCRIBE orders_product;
+DESCRIBE product;

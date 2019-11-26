@@ -154,18 +154,16 @@
 					<form action="/payment/update" method="post">
 						<input type="hidden" name="updateID" value="{{pid}}">
 						<div class="modal-header text-center">
-							<h4 class="modal-title w-100 font-weight-bold ml-5">Update Entry</h4>
+							<h4 class="modal-title w-100 font-weight-bold ml-5">Update Payment ID - {{pid}}</h4>
 							<button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<div class="modal-body mx-3">
 
-							<div class="md-form mb-1">
-								<label data-error="wrong" data-success="right" for="editUserID">User ID</label>
-								<select class="form-control" name="editUserID">
-									<option value={{user_id}}>{{username}}</option>
-								</select>
+							<div class="md-form mb-1" style="text-align: center;">
+								<label data-error="wrong" data-success="right" for="editUserID" style="text-align: center;">
+									<h5>Account Holder:</h5><h4><strong>{{username}}</strong></h4><h5>User ID - {{user_id}}</h5></label>
 							</div>
 
 							<div class="form-row">
