@@ -92,6 +92,7 @@
 		var callbackCount = 0;
 		var context = {};
 		var mysql = req.app.get('mysql');
+		context.this_id = req.query.searchID;
 
 		searchFunction(req, res, mysql, context, complete);
 		function complete() {
