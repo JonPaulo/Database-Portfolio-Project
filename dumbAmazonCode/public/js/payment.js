@@ -109,10 +109,12 @@
 
 	/* delete a payment, redirects to the payment page after deleting */
 	router.post('/delete', function (req, res) {
+		console.log(req.body);
 		var mysql = req.app.get('mysql');
 		var sql = "DELETE FROM payment WHERE id = ?";
 		var inserts = [req.body.deleteID];
 		sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
+			console.log(results);
 			if (error) {
 				console.log(error)
 				res.write(JSON.stringify(error));

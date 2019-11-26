@@ -127,11 +127,11 @@
 					<td>{{exp_month}}</td>
 					<td>{{exp_year}}</td>
 					<td>
-						<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalUpdate{{id}}">Update</button>
+						<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalUpdate{{pid}}">Update</button>
 					</td>
 					<td>
 						<form action="payment/delete" method="post">
-							<input type="hidden" name="deleteID" value="{{id}}">
+							<input type="hidden" name="deleteID" value="{{pid}}">
 							<button type="submit" class="btn btn-danger">Delete</button>
 						</form>
 					</td>
