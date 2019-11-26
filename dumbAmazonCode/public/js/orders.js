@@ -16,10 +16,11 @@ module.exports = function () {
 			var i;
 			for (i = 0; i < results.length; i++) {
 				if ((context.orders_account)[i].id in orderSubtotals) {
-					(context.orders_account)[i].order_total = orderSubtotals[(context.orders_account)[i].id];
+					// reference: https://stackoverflow.com/questions/149055/how-can-i-format-numbers-as-currency-string-in-javascript
+					(context.orders_account)[i].order_total = orderSubtotals[(context.orders_account)[i].id].toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
 				}
 				else {
-					(context.orders_account)[i].order_total = 0;
+					(context.orders_account)[i].order_total = (0).toFixed(2);
 				}
 				(context.orders_account)[i].order_date_formatted = (context.orders_account)[i].order_date;
 				(context.orders_account)[i].order_date_formatted = moment((context.orders_account)[i].order_date).format('MM/DD/YYYY');
@@ -106,10 +107,11 @@ module.exports = function () {
 			context.orders_account = results;
 			for (i = 0; i < results.length; i++) {
 				if ((context.orders_account)[i].id in orderSubtotals) {
-					(context.orders_account)[i].order_total = orderSubtotals[(context.orders_account)[i].id];
+					// reference: https://stackoverflow.com/questions/149055/how-can-i-format-numbers-as-currency-string-in-javascript
+					(context.orders_account)[i].order_total = orderSubtotals[(context.orders_account)[i].id].toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
 				}
 				else {
-					(context.orders_account)[i].order_total = 0;
+					(context.orders_account)[i].order_total = (0).toFixed(2);
 				}
 				(context.orders_account)[i].order_date_formatted = (context.orders_account)[i].order_date;
 				(context.orders_account)[i].order_date_formatted = moment((context.orders_account)[i].order_date).format('MM/DD/YYYY');

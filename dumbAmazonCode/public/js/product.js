@@ -9,6 +9,11 @@ module.exports = function () {
 					res.write(JSON.stringify(error));
 					res.end();
 				}
+				var i;
+				for (i = 0; i < results.length; i++) {
+					// reference: https://stackoverflow.com/questions/149055/how-can-i-format-numbers-as-currency-string-in-javascript
+					results[i].price = (results[i].price).toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
+				}
 				context.product = results;
 				complete();
 			});
@@ -34,6 +39,10 @@ module.exports = function () {
 			if (error) {
 				res.write(JSON.stringify(error));
 				res.end();
+			}
+			for (i = 0; i < results.length; i++) {
+					// reference: https://stackoverflow.com/questions/149055/how-can-i-format-numbers-as-currency-string-in-javascript
+				results[i].price = (results[i].price).toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
 			}
 			context.product = results;
 			complete();
