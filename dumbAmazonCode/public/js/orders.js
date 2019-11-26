@@ -30,7 +30,7 @@ module.exports = function () {
 	}
 
 	// get columns to display from orders_product joined tables
-	function getOrders_product(res, mysql, context, complete) {
+	function getOrders_product(req, res, mysql, context, complete) {
 		mysql.pool.query("SELECT orders_id, product_id, quantity, subtotal FROM orders_product", function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
@@ -49,6 +49,12 @@ module.exports = function () {
 			}
 			context.order_subtotal = orderSubtotals;
 			complete();
+			if (req.query.search) {
+				searchFunction(req, res, mysql, context, complete);
+			}
+			else {
+				getOrders_account(res, mysql, context, complete);
+			}
 		});
 	}
 
@@ -118,10 +124,9 @@ module.exports = function () {
 		var callbackCount = 0;
 		var context = {};
 		var mysql = req.app.get('mysql');
-		getOrders_product(res, mysql, context, complete);
+		getOrders_product(req, res, mysql, context, complete);
 		getPayment_account(res, mysql, context, complete);
 		getAccount(res, mysql, context, complete);
-		getOrders_account(res, mysql, context, complete);
 		function complete() {
 			callbackCount++;
 			if (callbackCount >= 4) {
@@ -136,10 +141,9 @@ module.exports = function () {
 		var callbackCount = 0;
 		var context = {};
 		var mysql = req.app.get('mysql');
-		getOrders_product(res, mysql, context, complete);
+		getOrders_product(req, res, mysql, context, complete);
 		getPayment_account(res, mysql, context, complete);
 		getAccount(res, mysql, context, complete);
-		searchFunction(req, res, mysql, context, complete);
 		function complete() {
 			callbackCount++;
 			if (callbackCount >= 4) {
