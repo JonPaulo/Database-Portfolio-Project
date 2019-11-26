@@ -56,39 +56,44 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="newFname">First Name</label>
-					<input type="text" class="form-control" name="newFname" placeholder="First Name">
+					<input type="text" class="form-control" name="newFname" placeholder="First Name" required>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="newLname">Last Name</label>
-					<input type="text" class="form-control" name="newLname" placeholder="Last Name">
+					<input type="text" class="form-control" name="newLname" placeholder="Last Name" required>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-5">
 					<label for="newStreet">Street</label>
-					<input type="text" class="form-control" name="newStreet" placeholder="Street">
+					<input type="text" class="form-control" name="newStreet" placeholder="Street" required>
 				</div>
 				<div class="form-group col-md-5">
 					<label for="newCity">City</label>
-					<input type="text" class="form-control" name="newCity" placeholder="City">
+					<input type="text" class="form-control" name="newCity" placeholder="City" required>
 				</div>
 				<div class="form-group col-md-2">
 					<label for="newZip">Zip</label>
-					<input type="text" class="form-control" name="newZip" placeholder="Zip">
+					<input type="text" class="form-control" name="newZip" placeholder="Zip" required>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-8">
 					<label for="newCardNum">Card Number</label>
-					<input type="number" class="form-control" name="newCardNum" placeholder="Card Number">
+					<!--reference: https://stackoverflow.com/questions/51933218/how-to-remove-please-match-the-requested-format-->
+					<input type="text" class="form-control" name="newCardNum" placeholder="Card Number" required
+						   oninvalid="this.setCustomValidity('Please enter numbers only.')" 
+						   onchange="try{setCustomValidity('')}catch(e){}" 
+						   oninput="setCustomValidity(' ')" 
+						   pattern="[0-9]+">
 				</div>
 				<div class="form-group col-md-2">
 					<label for="newExpMonth">Expiration Month</label>
-					<input type="number" min="1" step="1" max="12" class="form-control" name="newExpMonth" placeholder="MM">
+					<input type="number" min="1" step="1" max="12" class="form-control" name="newExpMonth" placeholder="MM" required>
 				</div>
 				<div class="form-group col-md-2">
 					<label for="newExpYear">Expiration Year</label>
-					<input type="number" min="0" step="1" max="99" class="form-control" name="newExpYear" placeholder="YY">
+					<input type="number" min="0" step="1" max="99" class="form-control" name="newExpYear" placeholder="YY" required>
 				</div>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
@@ -196,7 +201,12 @@
 
 							<div class="md-form">
 								<label data-error="wrong" data-success="right" for="editCardNum">Card Number</label>
-								<input type="number" name="editCardNum" class="form-control validate" value="{{card_num}}" required>
+								<!--reference: https://stackoverflow.com/questions/51933218/how-to-remove-please-match-the-requested-format-->
+								<input type="text" name="editCardNum" class="form-control validate" value="{{card_num}}" required
+									   oninvalid="this.setCustomValidity('Please enter numbers only.')"
+									   onchange="try{setCustomValidity('')}catch(e){}"
+									   oninput="setCustomValidity(' ')"
+									   pattern="[0-9]+">
 							</div>
 
 							<div class="form-row">
