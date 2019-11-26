@@ -153,14 +153,29 @@ insert into account (username, password, email, fname, lname, street, city, zip)
 insert into account (username, password, email, fname, lname, street, city, zip) values ('cgodbolti', 'e1EGbx6TTDhy', 'cgodbolti@toplist.cz', 'Collen', 'Godbolt', '7 Morning Parkway', 'Zagreb', 84103);
 insert into account (username, password, email, fname, lname, street, city, zip) values ('mglauberj', '7YTSMKj6ceU', 'mglauberj@blinklist.com', 'Maureen', 'Glauber', '041 Mitchell Junction', 'Douarnenez', 33130);
 
-
 insert into product (name, price, categories_id) values ('Praline Paste', '1239.10', 6);
-insert into product (name, price, categories_id) values ('Ice - Clear, 300 Lb For Carving', '1911.02', 7);
-insert into product (name, price, categories_id) values ('Sprouts - China Rose', '974.79', 6);
-insert into product (name, price, categories_id) values ('Pepperoni Slices', '1671.28', 4);
-insert into product (name, price, categories_id) values ('Soup - Tomato Mush. Florentine', '1828.31', 6);
-insert into product (name, price, categories_id) values ('Vodka - Smirnoff', '1489.59', 8);
-insert into product (name, price, categories_id) values ('Shrimp - 16/20, Iqf, Shell On', '1173.10', 9);
-insert into product (name, price, categories_id) values ('Canada Dry', '117.98', 8);
-insert into product (name, price, categories_id) values ('Pasta - Bauletti, Chicken White', '1340.17', 10);
-insert into product (name, price, categories_id) values ('Pasta - Orzo, Dry', '107.84', 5);
+insert into product (name, price, categories_id) values ('Ice - Clear, 300 Lb For Carving', '1.02', 7);
+insert into product (name, price, categories_id) values ('Sprouts - China Rose', '97.79', 6);
+insert into product (name, price, categories_id) values ('Pepperoni Slices', '16.28', 4);
+insert into product (name, price, categories_id) values ('Soup - Tomato Mush. Florentine', '12.31', 6);
+insert into product (name, price, categories_id) values ('Vodka - Smirnoff', '149.59', 8);
+insert into product (name, price, categories_id) values ('Shrimp - 16/20, Iqf, Shell On', '17.10', 9);
+insert into product (name, price, categories_id) values ('Canada Dry', '11.98', 8);
+insert into product (name, price, categories_id) values ('Pasta - Bauletti, Chicken White', '14.17', 10);
+insert into product (name, price, categories_id) values ('Pasta - Orzo, Dry', '17.84', 5);
+
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (4, 'Gaylor', 'Spedroni', '9568 Graceland Road', 'Sonquil', 83173, '6767939231486282', 9, 38);
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (13, 'Hastings', 'Gabits', '77 Bay Alley', 'Detroit', 66562, '4041375204567', 7, 88);
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (12, 'Sanford', 'Oliver', '90190 Burrows Place', 'Vinsady', 82814, '630449777762645923', 1, 63);
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (3, 'Tammy', 'Johnikin', '47 Huxley Terrace', 'Paraty', 76641, '3545161080926435', 4, 30);
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (12, 'Claudelle', 'Harpur', '238 Warner Junction', 'Litvínovice', 61771, '3530171840484465', 8, 57);
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (8, 'Morley', 'Meikle', '87347 Meadow Ridge Parkway', 'Pancur', 88026, '3583478688121026', 10, 52);
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (5, 'Ingrid', 'Colbourne', '40407 Sunbrook Crossing', 'Świnna', 14515, '5110737011255240', 5, 20);
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (15, 'Hewet', 'Sheran', '14810 Fulton Place', 'Al Madān', 69873, '3529760208272257', 2, 55);
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (23, 'Ailene', 'Sonley', '1347 Grover Street', 'Ondoy', 43379, '3569258839442424', 11, 2);
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (15, 'Brigg', 'Morford', '60 Hauk Road', 'Yanhe', 23397, '3571839462092291', 6, 28);
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (6, 'Darelle', 'Hargraves', '218 Comanche Avenue', 'Benešov', 80639, '3561863347076750', 10, 58);
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (9, 'Rogerio', 'Sommerly', '8287 Shelley Center', 'Vila Chã', 75677, '30538939555739', 3, 79);
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (3, 'Alair', 'McCarly', '31632 Susan Alley', 'Asbestos', 77693, '670981288330781158', 9, 91);
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (20, 'Filberte', 'Querree', '95 Erie Trail', 'Barra de São Francisco', 51618, '4041379867906', 3, 52);
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (14, 'Dian', 'Gamet', '54 Dahle Circle', 'Purorejo', 95438, '6759758011988063', 6, 39);
