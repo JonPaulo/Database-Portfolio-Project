@@ -81,9 +81,10 @@
 					<label for="newCardNum">Card Number</label>
 					<!--reference: https://stackoverflow.com/questions/51933218/how-to-remove-please-match-the-requested-format-->
 					<input type="text" class="form-control" name="newCardNum" placeholder="Card Number" required
-						   oninvalid="this.setCustomValidity('Please enter numbers only.')" 
-						   onchange="try{setCustomValidity('')}catch(e){}" 
-						   oninput="setCustomValidity(' ')" 
+						   oninvalid="this.setCustomValidity('Please enter numbers only.')"
+						   onchange="try{setCustomValidity('')}catch(e){}"
+						   oninput="setCustomValidity(' ')"
+						   maxlength="16"
 						   pattern="[0-9]+">
 				</div>
 				<div class="form-group col-md-2">
@@ -205,6 +206,7 @@
 									   oninvalid="this.setCustomValidity('Please enter numbers only.')"
 									   onchange="try{setCustomValidity('')}catch(e){}"
 									   oninput="setCustomValidity(' ')"
+									   maxlength="16"
 									   pattern="[0-9]+">
 							</div>
 
