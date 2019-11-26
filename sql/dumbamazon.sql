@@ -35,8 +35,8 @@ CREATE TABLE `payment` (
     `city` varchar(20) NOT NULL,
     `zip` varchar(10) NOT NULL,
     `card_num` varchar(16) NOT NULL,
-    `exp_month` int(2) NOT NULL,
-    `exp_year` int(2) NOT NULL,
+    `exp_month` varchar(2) NOT NULL,
+    `exp_year` varchar(2) NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (user_id) REFERENCES account(id) ON DELETE CASCADE
 )  ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -157,21 +157,21 @@ insert into product (name, price, categories_id) values ('Canada Dry', '11.98', 
 insert into product (name, price, categories_id) values ('Pasta - Bauletti, Chicken White', '14.17', 10);
 insert into product (name, price, categories_id) values ('Pasta - Orzo, Dry', '17.84', 5);
 
-insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (4, 'Gaylor', 'Spedroni', '9568 Graceland Road', 'Sonquil', 83173, '6767939231486282', 9, 38);
-insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (13, 'Hastings', 'Gabits', '77 Bay Alley', 'Detroit', 66562, '4041375204567', 7, 88);
-insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (12, 'Sanford', 'Oliver', '90190 Burrows Place', 'Vinsady', 82814, '630449777762645923', 1, 63);
-insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (3, 'Tammy', 'Johnikin', '47 Huxley Terrace', 'Paraty', 76641, '3545161080926435', 4, 30);
-insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (12, 'Claudelle', 'Harpur', '238 Warner Junction', 'Litvínovice', 61771, '3530171840484465', 8, 57);
-insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (8, 'Morley', 'Meikle', '87347 Meadow Ridge Parkway', 'Pancur', 88026, '3583478688121026', 10, 52);
-insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (5, 'Ingrid', 'Colbourne', '40407 Sunbrook Crossing', 'Świnna', 14515, '5110737011255240', 5, 20);
-insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (15, 'Hewet', 'Sheran', '14810 Fulton Place', 'Al Madān', 69873, '3529760208272257', 2, 55);
-insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (23, 'Ailene', 'Sonley', '1347 Grover Street', 'Ondoy', 43379, '3569258839442424', 11, 2);
-insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (15, 'Brigg', 'Morford', '60 Hauk Road', 'Yanhe', 23397, '3571839462092291', 6, 28);
-insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (6, 'Darelle', 'Hargraves', '218 Comanche Avenue', 'Benešov', 80639, '3561863347076750', 10, 58);
-insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (9, 'Rogerio', 'Sommerly', '8287 Shelley Center', 'Vila Chã', 75677, '30538939555739', 3, 79);
-insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (3, 'Alair', 'McCarly', '31632 Susan Alley', 'Asbestos', 77693, '670981288330781158', 9, 91);
-insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (20, 'Filberte', 'Querree', '95 Erie Trail', 'Barra de São Francisco', 51618, '4041379867906', 3, 52);
-insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (14, 'Dian', 'Gamet', '54 Dahle Circle', 'Purorejo', 95438, '6759758011988063', 6, 39);
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (4, 'Gaylor', 'Spedroni', '9568 Graceland Road', 'Sonquil', 83173, '6767939231486282', '09', '38');
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (13, 'Hastings', 'Gabits', '77 Bay Alley', 'Detroit', 66562, '4041375204567', '07', '88');
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (12, 'Sanford', 'Oliver', '90190 Burrows Place', 'Vinsady', 82814, '630449777762645923', '01', '63');
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (3, 'Tammy', 'Johnikin', '47 Huxley Terrace', 'Paraty', 76641, '3545161080926435', '04', '30');
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (12, 'Claudelle', 'Harpur', '238 Warner Junction', 'Litvínovice', 61771, '3530171840484465', '08', '57');
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (8, 'Morley', 'Meikle', '87347 Meadow Ridge Parkway', 'Pancur', 88026, '3583478688121026', '10', '52');
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (5, 'Ingrid', 'Colbourne', '40407 Sunbrook Crossing', 'Świnna', 14515, '5110737011255240', '05', '20');
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (15, 'Hewet', 'Sheran', '14810 Fulton Place', 'Al Madān', 69873, '3529760208272257', '02', '55');
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (23, 'Ailene', 'Sonley', '1347 Grover Street', 'Ondoy', 43379, '3569258839442424', '11', '02');
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (15, 'Brigg', 'Morford', '60 Hauk Road', 'Yanhe', 23397, '3571839462092291', '06', '28');
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (6, 'Darelle', 'Hargraves', '218 Comanche Avenue', 'Benešov', 80639, '3561863347076750', '10', '58');
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (9, 'Rogerio', 'Sommerly', '8287 Shelley Center', 'Vila Chã', 75677, '30538939555739', '03', '79');
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (3, 'Alair', 'McCarly', '31632 Susan Alley', 'Asbestos', 77693, '670981288330781158', '09', '91');
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (20, 'Filberte', 'Querree', '95 Erie Trail', 'Barra de São Francisco', 51618, '4041379867906', '03', '52');
+insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (14, 'Dian', 'Gamet', '54 Dahle Circle', 'Purorejo', 95438, '6759758011988063', '06', '39');
 
 
 DESCRIBE payment;
