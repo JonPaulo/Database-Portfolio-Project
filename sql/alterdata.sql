@@ -19,38 +19,49 @@
   -- DELETE account where username = whatever the user selected
   DELETE FROM account WHERE id = :idSelected;
 
+
+
+
 -- Product Table Code
 
   -- INSERT new product
   INSERT INTO product (name, price, categories_id)
   VALUES (:nameInput, :priceInput, :selectionOfcategories_ids)
 
-  -- SELECT product table data
-  SELECT id, name, price, categories_id FROM product
+  -- SELECT product table data and include category name
+  SELECT product.id as id, product.name as name, price, categories_id, categories.name as categories_name FROM product LEFT JOIN categories on product.categories_id = categories.id
 
   -- UPDATE product
-  UPDATE product SET name=:nameInput, price=:priceInput,
-  categories_id=selectionOfcategories_ids WHERE id = :idSelected
+
+  -- UPDATE when assigning a product to a NULL Category
+  UPDATE product SET name=:nameInput, price=:priceInput, categories_id=NULL
+  WHERE id = :idSelected
+
+  -- UPDATE when assigning a product with a Category
+  UPDATE product SET name=:nameInput, price=:priceInput, categories_id=:selectedCategoryID
+  WHERE id = :idSelected
 
   -- Delete product at id location
   DELETE FROM product WHERE id = :idSelected;
 
+
+
+
 -- Orders_Product Table Code
--- THIS PART IS STILL UNFINISHED AND TENTATIVE
 
   -- INSERT new orders_product
   INSERT INTO orders_product (order_id, product_id, quantity, subtotal)
-  VALUES (?, ?, ?, ?)
+  VALUES (:order_id, :newProductID, :newQuantity, (productPrice * quantity))
 
-  -- SELECT orders_product table data
-  SELECT order_id, product_id, quantity, subtotal FROM orders_product
+  -- SELECT orders_product table data with product data
+  SELECT orders_id, product_id, product.name, product.price, quantity, subtotal FROM orders_product INNER JOIN product on orders_product.product_id = product.id
 
   -- UPDATE orders_product
-  UPDATE orders_product SET order_id=?, product_id=?, quantity=?, subtotal=?
-  WHERE id = :idSelected
+  UPDATE orders_product SET order_id=:orderSelected, product_id= :productSelected, quantity= :quantityChosen, subtotal=(productPrice * quantity)
+  WHERE id = :idSelected AND product_id = :productSelected
 
   -- Delete orders_product at id location
-  DELETE FROM orders_product WHERE id = :idSelected;
+  DELETE FROM DELETE FROM orders_product WHERE orders_id = :idSelected AND product_id = :productSelected;
 
 -- Orders Table Code
 
@@ -68,6 +79,9 @@
   -- DELETE orders at id location
   DELETE FROM product WHERE id = :idSelected;
 
+
+
+
 -- Payment Table Code
 
   -- INSERT new payment
@@ -75,8 +89,8 @@
   VALUES (:dropdownOfAccountList, :fnameInput, :lnameInput, :streetInput, :cityInput,
   :zipInput, :card_numInput, :dayOfExp_Month, :dayOfExp_Year)
 
-  -- SELECT payment table data
-  SELECT id, user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year FROM payment
+  -- SELECT payment table data with Account information
+  SELECT payment.id as pid, user_id, username, payment.fname, payment.lname, payment.street, payment.city, payment.zip, card_num, exp_month, exp_year FROM payment INNER JOIN account on payment.user_id = account.id
 
   -- UPDATE payment
   UPDATE payment SET user_id=:dropdownOfAccountList, fname=?, lname=?,
@@ -86,6 +100,9 @@
 
   -- DELETE payment at id location
   DELETE FROM payment WHERE id = :idSelected;
+
+
+
 
 -- Categories Table Code
 
