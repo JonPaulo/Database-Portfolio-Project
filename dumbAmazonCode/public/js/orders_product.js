@@ -21,13 +21,14 @@
 
 	// get columns to display from orders_product joined tables
 	function getOrders_product(req, res, mysql, context, complete) {
-		sql = "SELECT orders_id, product_id, product.name, product.price, quantity, subtotal FROM orders_product INNER JOIN product on orders_product.product_id = product.id WHERE orders_id = " + mysql.pool.escape(req.query.id);
+		sql = "SELECT orders_id, product_id, product.name, product.price, quantity FROM orders_product INNER JOIN product on orders_product.product_id = product.id WHERE orders_id = " + mysql.pool.escape(req.query.id);
 		mysql.pool.query(sql, function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
 				res.end()
 			}
 			for (i = 0; i < results.length; i++) {
+				results[i].subtotal = results[i].price * results[i].quantity;
 				// reference: https://stackoverflow.com/questions/149055/how-can-i-format-numbers-as-currency-string-in-javascript
 				results[i].price = (results[i].price).toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
 				results[i].subtotal = (results[i].subtotal).toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
@@ -40,7 +41,7 @@
 	/* Find product whose name includes the given string in the req */
 	function searchFunction(req, res, mysql, context, complete) {
 		//sanitize the input as well as include the % character
-		var query = "SELECT orders_id, product_id, product.name, product.price, quantity, subtotal FROM orders_product INNER JOIN product on orders_product.product_id = product.id WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
+		var query = "SELECT orders_id, product_id, product.name, product.price, quantity FROM orders_product INNER JOIN product on orders_product.product_id = product.id WHERE " + req.query.filter + " LIKE " + mysql.pool.escape('%' + req.query.search + '%');
 		mysql.pool.query(query, function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
@@ -129,8 +130,8 @@
 			if (callbackCount >= 1) {
 				// add the item
 				var total = context1.product[0].price * req.body.newQuantity;
-				var sql = "INSERT INTO orders_product (orders_id, product_id, quantity, subtotal) VALUES (?, ?, ?, ?)";
-				var inserts = [req.body.newOrdersID, req.body.newProductID, req.body.newQuantity, total];
+				var sql = "INSERT INTO orders_product (orders_id, product_id, quantity) VALUES (?, ?, ?)";
+				var inserts = [req.body.newOrdersID, req.body.newProductID, req.body.newQuantity];
 				sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 					if (error) {
 						res.write(JSON.stringify(error));
@@ -156,8 +157,8 @@
 			if (callbackCount >= 1) {
 				// update the item
 				var total = context1.product[0].price * req.body.updateQuantity;
-				var sql = "UPDATE orders_product SET quantity = ?, subtotal = ? WHERE orders_id = ? AND product_id = ?";
-				var inserts = [req.body.updateQuantity, total, req.body.updateOrdersID, req.body.updateProductID];
+				var sql = "UPDATE orders_product SET quantity = ? WHERE orders_id = ? AND product_id = ?";
+				var inserts = [req.body.updateQuantity, req.body.updateOrdersID, req.body.updateProductID];
 				sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
 					if (error) {
 						res.write(JSON.stringify(error));

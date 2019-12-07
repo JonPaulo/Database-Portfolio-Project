@@ -16,7 +16,7 @@ app.use('/static', express.static('public'));
 app.use('/', express.static('public'));
 
 // require mySQL
-var mysql = require('./dbcon2.js');
+var mysql = require('./dbcon1.js');
 app.set('mysql', mysql);
 
 // set port from argument

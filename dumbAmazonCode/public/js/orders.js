@@ -32,7 +32,7 @@ module.exports = function () {
 
 	// get columns to display from orders_product joined tables
 	function getOrders_product(req, res, mysql, context, complete) {
-		mysql.pool.query("SELECT orders_id, product_id, quantity, subtotal FROM orders_product", function (error, results, fields) {
+		mysql.pool.query("SELECT orders_id, product_id, quantity, product.price FROM orders_product INNER JOIN product on product.id = orders_product.product_id", function (error, results, fields) {
 			if (error) {
 				res.write(JSON.stringify(error));
 				res.end();
@@ -42,10 +42,10 @@ module.exports = function () {
 			var i;
 			for (i = 0; i < results.length; i++) {
 				if (!(results[i].orders_id in orderSubtotals)) {
-					orderSubtotals[results[i].orders_id] = results[i].subtotal;
+					orderSubtotals[results[i].orders_id] = results[i].price * results[i].quantity;
 				}
 				else {
-					orderSubtotals[results[i].orders_id] += results[i].subtotal;
+					orderSubtotals[results[i].orders_id] += results[i].price * results[i].quantity;
 				}
 			}
 			context.order_subtotal = orderSubtotals;
