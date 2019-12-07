@@ -50,14 +50,14 @@
 -- Orders_Product Table Code
 
   -- INSERT new orders_product
-  INSERT INTO orders_product (order_id, product_id, quantity, subtotal)
-  VALUES (:order_id, :newProductID, :newQuantity, (productPrice * quantity))
+  INSERT INTO orders_product (order_id, product_id, quantity)
+  VALUES (:order_id, :newProductID, :newQuantity)
 
   -- SELECT orders_product table data with product data
-  SELECT orders_id, product_id, product.name, product.price, quantity, subtotal FROM orders_product INNER JOIN product on orders_product.product_id = product.id
+  SELECT orders_id, product_id, product.name, product.price, quantity FROM orders_product INNER JOIN product on orders_product.product_id = product.id
 
   -- UPDATE orders_product
-  UPDATE orders_product SET order_id=:orderSelected, product_id= :productSelected, quantity= :quantityChosen, subtotal=(productPrice * quantity)
+  UPDATE orders_product SET order_id=:orderSelected, product_id= :productSelected, quantity= :quantityChosen
   WHERE id = :idSelected AND product_id = :productSelected
 
   -- Delete orders_product at id location

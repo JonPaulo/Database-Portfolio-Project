@@ -70,7 +70,6 @@ CREATE TABLE `orders_product` (
     `orders_id` int(10) NOT NULL,
     `product_id` int(10) NOT NULL,
     `quantity` int(3) NOT NULL,
-    `subtotal` decimal(12, 2) NOT NULL,
     PRIMARY KEY (`orders_id`, `product_id`),
     FOREIGN KEY (`orders_id`) REFERENCES orders(id) ON DELETE CASCADE,
     FOREIGN KEY (`product_id`) REFERENCES product(id) ON DELETE CASCADE
@@ -169,15 +168,15 @@ insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_mon
 insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (20, 'Filberte', 'Querree', '95 Erie Trail', 'Barra de São Francisco', 51618, '4041379867906', '03', '52');
 insert into payment (user_id, fname, lname, street, city, zip, card_num, exp_month, exp_year) values (14, 'Dian', 'Gamet', '54 Dahle Circle', 'Purorejo', 95438, '6759758011988063', '06', '39');
 
-INSERT INTO orders_product(orders_id, product_id, quantity, subtotal)
+INSERT INTO orders_product(orders_id, product_id, quantity)
 VALUES
-    (1, 1, 3, 37037.01),
-    (1, 2, 3, 1049.97),
-    (2, 3, 3, 3900),
-    (3, 9, 25, 3739.75),
-    (4, 4, 3, 3717.30),
-    (5, 5, 30, 30.60),
-    (5, 10, 60, 1026.00);
+    (1, 1, 3),
+    (1, 2, 3),
+    (2, 3, 3),
+    (3, 9, 25),
+    (4, 4, 3),
+    (5, 5, 30),
+    (5, 10, 60);
 
 DESCRIBE payment;
 DESCRIBE account;
