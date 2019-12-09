@@ -35,13 +35,13 @@
 
   -- UPDATE product
 
-  -- UPDATE when assigning a product to a NULL Category
-  UPDATE product SET name=:nameInput, price=:priceInput, categories_id=NULL
-  WHERE id = :idSelected
+	  -- UPDATE when assigning a product with a NULL Category
+	  UPDATE product SET name=:nameInput, price=:priceInput, categories_id=NULL
+	  WHERE id = :idSelected
 
-  -- UPDATE when assigning a product with a Category
-  UPDATE product SET name=:nameInput, price=:priceInput, categories_id=:selectedCategoryID
-  WHERE id = :idSelected
+	  -- UPDATE when assigning a product with a Category
+	  UPDATE product SET name=:nameInput, price=:priceInput, categories_id=:selectedCategoryID
+	  WHERE id = :idSelected
 
   -- Delete product at id location
   DELETE FROM product WHERE id = :idSelected;
