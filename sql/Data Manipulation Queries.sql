@@ -65,6 +65,8 @@
   -- Delete orders_product at id location
   DELETE FROM DELETE FROM orders_product WHERE orders_id = :idSelected AND product_id = :productSelected;
 
+
+
 -- Orders Table Code
 
   -- INSERT new order
