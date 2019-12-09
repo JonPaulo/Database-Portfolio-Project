@@ -1,5 +1,5 @@
 -- Dumb Amazon by Jon Paulo Bautista and Sae Hyoung Oh
--- Sample of SELECT, INSERT, UPDATE, AND DELETE queries to our database
+-- SELECT, INSERT, UPDATE, AND DELETE queries used for our database
 
 -- Account Table Code
 

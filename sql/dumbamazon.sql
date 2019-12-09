@@ -117,7 +117,7 @@ VALUES
     ('phone', 1300, NULL);
 
 
--- Randomly Generated Data
+-- Randomly Generated Data (used https://mockaroo.com/ to generate random data)
 
 insert into account (username, password, email, fname, lname, street, city, zip) values ('kminget0', 'QCf7kblN', 'kminget0@mapy.cz', 'Kalila', 'Minget', '71 Fallview Junction', 'Alvito', 90522);
 insert into account (username, password, email, fname, lname, street, city, zip) values ('mwesthead1', 'aMRwId', 'mwesthead1@slideshare.net', 'Marc', 'Westhead', '9048 8th Center', 'La Loma', 63350);
