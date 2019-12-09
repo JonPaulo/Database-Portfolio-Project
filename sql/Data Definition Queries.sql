@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS `categories`;
 DROP TABLE IF EXISTS `orders_product`;
 SET FOREIGN_KEY_CHECKS = 1;
 
--- create tables
+-- Create Tables
 CREATE TABLE `account` (
     `id` int(10) NOT NULL AUTO_INCREMENT,
     `username` varchar(20) NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE `orders_product` (
     FOREIGN KEY (`product_id`) REFERENCES product(id) ON DELETE CASCADE
 )  ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Tables that don't contain FOREIGN KEYs must have their data inserted first
+-- Insert values to their respective tables
 
 INSERT INTO account(username, password, email, fname, lname, street, city, zip)
 VALUES
