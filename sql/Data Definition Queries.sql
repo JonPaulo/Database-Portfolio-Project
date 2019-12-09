@@ -24,7 +24,7 @@ CREATE TABLE `account` (
     `street` varchar(30) NOT NULL,
     `city` varchar(20) NOT NULL,
     `zip` varchar(10) NOT NULL,
-    PRIMARY KEY (`id`),
+    PRIMARY KEY (`id`)
 )  ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `payment` (
