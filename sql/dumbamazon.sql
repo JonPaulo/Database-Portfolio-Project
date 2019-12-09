@@ -23,7 +23,6 @@ CREATE TABLE `account` (
     `city` varchar(20) NOT NULL,
     `zip` varchar(10) NOT NULL,
     PRIMARY KEY (`id`),
-    UNIQUE `full_name` (fname, lname)
 )  ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `payment` (
