@@ -1,3 +1,5 @@
+-- DATA MANIPULATION QUERIES
+
 -- Dumb Amazon by Jon Paulo Bautista and Sae Hyoung Oh
 -- SELECT, INSERT, UPDATE, AND DELETE queries used for our database
 

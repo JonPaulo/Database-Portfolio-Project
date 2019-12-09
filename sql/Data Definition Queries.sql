@@ -1,3 +1,5 @@
+-- DATA DEFINITION QUERIES
+
 -- Dumb Amazon by Jon Paulo Bautista and Sae Hyoung Oh
 
 -- Removes tables if they previously existed in your database
